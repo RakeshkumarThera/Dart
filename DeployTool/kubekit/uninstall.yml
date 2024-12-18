@@ -1,0 +1,256 @@
+# The uninstall procedure is not an official part of 
+# the KubeKit product. It is for developer use only.
+#
+# It should never be used in a production environment.
+#
+# Let me repeat that - louder.
+#
+# IT SHOULD NEVER BE USED IN A PRODUCTION ENVIRONMENT.
+#
+# It's easier and usually faster to reinstall the cluster 
+# from scratch.
+#
+# If you use uninstall and it doesn't work, reinstall the 
+# cluster from scratch.
+#
+# If you use uninstall and then re-run kube-cluster, and your
+# cluster is fubared, reinstall the cluster from scratch.
+#
+# If your cluster has problems after doing an uninstall/re-install, 
+# don't ask for support, re-install the cluster, verify the problem
+# exists on a fresh cluster, then ask for support.
+#
+# Since you don't believe me, this is how you run an uninstall.
+#
+# ansible-playbook  -i inventory.yml uninstall.yml
+# 
+# Then reinstall KubeKit:
+#
+# ansible-playbook -i inventory.yml kube-cluster.yml
+#
+# You can ignore errors.
+#
+# There is an option to really get rid of potential
+# secrets on disk by setting the two shred vars at the
+# top of the uninstall.yml file. 
+#
+#Defaults are:
+#
+# shred: false
+# shred_iterations: 1
+#
+# If you want to shred, set "shred" to "true."
+#
+# Anything more than 1 for shred_iterations
+# makes the uninstall take a really, really
+# long time. 
+#
+# You might as well reinstall the cluster.
+#
+# Use the uninstall at your own risk.
+#
+- hosts: kube_cluster
+  vars:
+    shred: false
+    shred_iterations: 1
+  vars_files:
+    - ./roles/kubernetes/systemd/defaults/main.yml
+    - ./roles/root-cert/defaults/main.yml
+
+  tasks:
+  - name: wait until kube apiserver is available
+    uri:
+      url: "{{ kube_api_server_local }}/healthz"
+      status_code: 200
+      client_cert: "{{ cert_dir }}/{{ certs.admin.pem }}"
+    register: check_kube_apiserver
+    retries: 12
+    delay: 5
+    changed_when: no
+    when: groups.kube_master|first == inventory_hostname
+
+  - block:
+
+    - name: Delete All Kubernetes Resources
+      command: kubectl delete -f /srv/kubernetes/manifests --ignore-not-found
+      ignore_errors: true
+
+    - name: Get all Namespaces
+      shell: kubectl get namespaces -o name | cut -d '/' -f2
+      register: all_namespaces
+
+    - name: Delete all Secrets
+      command: kubectl delete secret --all -n {{ item }} --ignore-not-found
+      with_items: "{{all_namespaces.stdout_lines}}"
+
+    - name: Delete all ConfigMaps
+      command: kubectl delete configmap --all -n {{ item }} --ignore-not-found
+      with_items: "{{all_namespaces.stdout_lines}}"
+
+    when: groups.kube_master|first == inventory_hostname and
+          check_kube_apiserver|success
+
+  - name: Stop Kubelets
+    systemd:
+      name: "{{ item }}"
+      enabled: false
+      state: stopped
+    with_items:
+    - kubelet
+    - kube-proxy
+    become: yes
+
+  - block:
+    - name: Stop Master Components
+      systemd:
+        name: "{{ item }}"
+        enabled: false
+        state: stopped
+      with_items:
+      - kube-scheduler
+      - kube-controller-manager
+      - kube-apiserver
+      - registry
+      - etcd
+      - keepalived
+      - haproxy 
+
+    - name: shred master {{ item }}
+      shell: find {{ item }} -type f -exec shred --force --iterations={{ shred_iterations }} --zero --remove --exact --verbose {} \;
+      ignore_errors: true
+      with_items:
+        - /etc/etcd/etcd.conf
+
+    - name: Remove master files and dirs
+      shell: rm -rf {{ item }}
+      ignore_errors: true
+      with_items:
+        - /etc/etcd/etcd.conf
+      when: not shred
+
+    - name: Remove master etcd
+      shell: rm -rf {{ item }}
+      ignore_errors: true
+      with_items:
+        - /var/lib/etcd
+        - /var/opt/teradata/etcd-snapshots
+
+    when: "'kube_master' in group_names"
+    become: yes
+
+  - name: Check Docker deamon
+    command: docker ps
+    changed_when: false
+    register: docker_daemon_check
+    ignore_errors: true
+    become: yes
+
+  - block:
+
+    - name: Get all container IDs
+      command: docker ps -a -q
+      register: all_container_ids
+
+    - name: Stop all containers
+      command: docker stop {{ item }}
+      with_items: "{{ all_container_ids.stdout_lines }}"
+
+    - name: Remove containers
+      command: docker rm {{ item }}
+      with_items: "{{ all_container_ids.stdout_lines }}"
+
+    - name: Stop Docker services
+      systemd:
+        name: "{{ item }}"
+        enabled: false
+        state: stopped
+      with_items:
+      - docker
+      - containerd
+
+    when: docker_daemon_check | success
+    become: yes
+
+  - block: 
+    - name: Remove Docker interfaces
+      command: ip link del {{ item }}
+      with_items:
+      - flannel.1
+      - docker0
+      - cni0
+      when: item in hostvars[inventory_hostname]['ansible_interfaces']
+      ignore_errors: True
+
+    - name: Get all leftover mounts
+      shell: ls -d -1 /var/lib/kubelet/pods/*/volumes/kubernetes.io*/*
+      ignore_errors: true
+      register: leftover_mounts
+      changed_when: false
+
+    - name: Unmount leftover mounts
+      command: umount {{ item }}
+      with_items: "{{ leftover_mounts.stdout_lines }}"
+      ignore_errors: true
+      when: leftover_mounts|success
+    
+    become: yes  
+
+  - block:
+    - name: shred {{ item }}
+      shell: find {{ item }} -type f -exec shred --force --iterations={{ shred_iterations }} --zero --remove --exact --verbose {} \;
+      ignore_errors: true
+      with_items:
+      - /etc/docker/key.json
+      - /etc/pki
+      - /srv/kubernetes
+      - /var/lib/kubelet/
+      - /etc/kubernetes/
+      - /var/lib/ca-certificates/openssl/etcd-ca.pem
+      - /var/lib/ca-certificates/pem/etcd-ca.pem
+      - /var/lib/ca-certificates/openssl/kube-ca.pem
+      - /var/lib/ca-certificates/pem/kube-ca.pem
+      - /root/.kube/
+      - /etc/docker/certs.d
+      when: shred
+    
+    - name: Remove files and dirs
+      shell: rm -rf {{ item }}
+      ignore_errors: true
+      with_items:
+      - /etc/pki/*
+      - /var/lib/ca-certificates/openssl/etcd-ca.pem
+      - /var/lib/ca-certificates/pem/etcd-ca.pem
+      - /var/lib/ca-certificates/openssl/kube-ca.pem
+      - /var/lib/ca-certificates/pem/kube-ca.pem
+      - /etc/docker/certs.d/*
+      when: not shred
+
+    - name: Remove files and dirs
+      shell: rm -rf {{ item }}
+      ignore_errors: true
+      with_items:
+      - /srv/kubernetes/*
+      - /var/lib/kubelet/*
+      - /etc/kubernetes/*
+      - /etc/docker/key.json
+      - /etc/cni/net.d/*
+      - /etc/motd
+      - /var/opt/teradata/consul
+      - /var/opt/teradata/minio
+      - /var/log/docker.log
+      - /var/log/kube-services.log
+      - /var/log/etcd.log
+      - /var/lib/dockershim/*
+      - /var/log/containers/*
+      - /var/lib/docker/*
+      - /var/lib/keepalived/*
+      - /root/.kube
+
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+
+  - name: Remove rendered certificates
+    file:
+      path: ./rendered/{{ cluster_name }}/
+      state: absent 

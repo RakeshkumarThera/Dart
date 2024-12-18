@@ -1,0 +1,25 @@
+INFO: 2018-08-21 11:42:06,133:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-21-114206.log
+INFO: 2018-08-21 11:42:06,134:DartRunner.py:109: Current Process Id: 36294
+INFO: 2018-08-21 11:42:06,134:DartRunner.py:170: clusterList = dart-docker-sls12-13 
+INFO: 2018-08-21 11:42:06,134:DartRunner.py:178: dart-docker-sls12-13
+INFO: 2018-08-21 11:44:13,464:DartRunner.py:1984: [Errno 110] Connection timed out
+ERROR: 2018-08-21 11:44:13,464:DartRunner.py:1985: (<class 'socket.error'>, error(110, 'Connection timed out'), <traceback object at 0x7fe7a8fff710>)
+ERROR: 2018-08-21 11:44:13,464:DartRunner.py:1986: Traceback (most recent call last):
+  File "DartRunner.py", line 1968, in loadClusterConfigs
+    cfgJson = self.updateCfgJson(cfgJson)
+  File "DartRunner.py", line 2026, in updateCfgJson
+    stdout = self.kubeExecute(commandStr, cfgJson)
+  File "DartRunner.py", line 2006, in kubeExecute
+    kubeMasterCon.connect()
+  File "/root/Dart/lib/SshConnect.py", line 49, in connect
+    self.client.connect(hostname=self.hostname, username=self.username, password=self.password, key_filename=self.key)
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/client.py", line 338, in connect
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/util.py", line 279, in retry_on_signal
+    return function()
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/client.py", line 338, in <lambda>
+    retry_on_signal(lambda: sock.connect(addr))
+  File "/usr/lib/python2.7/socket.py", line 224, in meth
+    return getattr(self._sock,name)(*args)
+error: [Errno 110] Connection timed out
+

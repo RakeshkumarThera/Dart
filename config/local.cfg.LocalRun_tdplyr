@@ -1,0 +1,14 @@
+{
+    "clients": {
+      "ClientIP":"10.20.30.40",
+      "ClientUsername":"root",
+      "ClientPassword":"aster4data",
+      "ClientPkgeLocation":"/tmp/pckg",
+      "RPacakageLocation" : "/tmp/TeradataRDownload",
+      "RclientLocation": "/Library/Frameworks/R.framework/Resources/bin/",
+      "ClientOS": "mac",
+      "LocalClient":"True",
+      "DriverManager": "unixODBC",
+      "ODBCDSN": "TDDSN"
+   }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!--
+    Name: compareResult.html
+    Author: esme.li@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 06/30/2017
+    Uri: /compareResult
+    Description: Show test status of each runid.
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style>
+          #content{
+		position: relative;
+		top: 8px;
+	   }
+    </style>
+    <style media="all" type="text/css">
+        .alignCenter { text-align: center; }
+    </style>
+    <style media="all" type="text/css">
+        .dataTable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <title>Test Results Comparison</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/utility.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script>
+	$(document).ready(function(){
+	   //Get the runID
+	   var runid_arr = $.urlParam("run_id").split(",");
+	   loadData(runid_arr);
+	});
+
+	function renderTable(res){
+	   results = res.results
+
+	   //form dynamic html 
+           tableContent = "<thead><tr><th>Seq<br></th><th>Testcase<br></th>"
+	   for (var i = 0; i < results['col'].length; i ++){
+		tableContent = tableContent + "<th>" + results['col'][i] +"<br></th>"
+		}
+	   tableContent = tableContent + "</tr></thead>"
+	   tableContent = tableContent + "<tbody>"
+
+	   //Put data into datatable
+	   col = results['col']
+	   row = results['row']
+	   colStatus = results['data']
+
+	   for (var j = 0; j < row.length; j++){
+		tableContent = tableContent + "<tr><td>" + (j+1) + "</td>"  +  "<td>" + row[j] + "</td>"
+	 	for (var k = 0; k < col.length; k++){
+		    tableContent = tableContent + "<td>" + $.checkFieldEmpty(colStatus[j][k]) + "</td>"	
+		    }
+		tableContent = tableContent + "</tr>"
+		} 
+	   tableContent = tableContent + "</tbody>"
+	   return tableContent
+	};
+	function loadData(runid_arr){
+	   var apiUrl = "/api/transform_data?run_id=" + encodeURIComponent(runid_arr);
+	  $.ajax({
+		   url : apiUrl,
+	  	   type : 'GET',
+		   dataType : 'json',
+		   contentType : 'application/json',
+		   success : function(res){
+		       tableContent = renderTable(res);
+		       if($.fn.DataTable.isDataTable('#datatable')){
+
+			  $('#datatable').dataTable().fnDestroy();
+			}
+			$('#datatable').html(tableContent)
+		        $('#datatable').dataTable({
+			   "scrollX" : "true",
+			   "autoWidth" : true,
+			   "lengthMenu" : [20, 50, 75, 100],
+			   "aoColumnDefs": [
+			   	{className : "dt-left", aTargets : ["_all"]}
+		           ],
+	
+			   initComplete: function(){
+				this.api().columns().every(function(){
+				    var column = this;
+				    var select = $('<select><option value=""></option></select>')
+					.appendTo($(column.header()))
+					.on('change', function(){
+					    var val = $.fn.dataTable.util.escapeRegex($(this).val());
+					    column
+						.search(val ? '^'+val+'$' : '', true, false)
+						.draw();
+					});
+				    var selectList =[]
+				    column.data().sort().each(function(d,j){
+					var selectVal=''
+					if(d[0]=='<'){
+					    selectVal = (d.split('>')[1]).split('<')[0]
+					    }else{selectVal = d}
+					if(selectList.includes(selectVal) == false){
+					    selectList.push(selectVal)
+					    select.append('<option value="'+selectVal+'">'+selectVal+'</option>')
+					    }
+					});
+				    });
+				}
+	
+			});
+		   },
+		   error : function(res, err){console.log('errors: ' + err)}
+	  });
+          }
+	/*	
+	    onkey = function(arg,colIndex){
+	        var table = $('#datatable').DataTable();
+		var this_id = arg.getAttribute('id')
+		console.log("this_id: " + this_id)
+                var val = document.getElementById(this_id).value;
+	        table
+		    .columns(colIndex)
+		    .search(val)
+		    .draw();
+	}
+	*/
+    </script>
+</head>
+<body>
+    <div id="head" style="background-color:#f9bc99; width:100%; height:50px; float:center; border-radius: 5px;" align="center">
+        <b>
+            <font size="6" color="black">Test Result Comparison</font>
+        </b>
+    </div>
+    <div id="content" style="background-color:#f9bf99; width:100%; float:center; border-radius: 5px;">
+        <table id="datatable" style="width:100%;" class="stripe row-border hover">
+        </table>
+    </div>
+</body>
+</html>

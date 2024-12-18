@@ -1,0 +1,17 @@
+{
+"clients": {
+      "ClientIP" : "153.64.29.84",
+      "ClientUsername" : "Administrator",
+      "ClientPassword" : "TCAMPass123",
+      "ClientPkgLocation" : "/tmp/pckg",
+      "TdplyrPackage" : "tdplyr_00.01.00.00.zip",
+      "RPackageLocation": "tmp/TeradataRDownload",
+      "RclientLocation" : "/cygdrive/c/Program\\ Files/R/R-3.4.3/bin",
+      "ClientOS" : "windows64",
+      "DriverManager" : "unixODBC",
+      "ODBCDSN" : "TeradataDSN",
+      "TD_USER": "alice",
+      "TD_PASS": "alice"
+  }
+}
+

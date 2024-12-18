@@ -1,0 +1,158 @@
+<!Doctype html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.18/datatables.min.js"></script>
+
+   <script type="text/javascript">
+
+    var checkedList = new Object()
+    
+    deleteTests = function() {
+            var idStr = "";
+            var ids = "";
+
+            if (Object.keys(checkedList).length === 0) {
+                alert("Please choose at least one test to delete");
+                return;
+            }
+
+            for (var key in checkedList) {
+                if (idStr == "") {
+                    idStr = "runid='" + checkedList[key] + "'";
+                    ids = checkedList[key]
+                } else {
+                    idStr = idStr + " or "  + "runid='" + checkedList[key] + "'";
+                    ids = ids + "," + checkedList[key]
+                }
+            }
+            
+            if (idStr == "") {
+                alert("Please choose at least one test to delete");
+            } else {
+                ret = confirm('Are you sure you want to delete ' + ids + '. Press OK to confirm.');
+                if (ret) {
+                    console.log(idStr)
+                    console.log(ids)
+                    idsJson={}
+        		idsJson['ids']= idStr
+        		var Id = JSON.stringify(idsJson);
+        		console.log(Id);
+                    deleteRun(Id)
+                }
+            }
+        }
+
+
+       function deleteRun(Id) {
+             $.ajax({
+                     //url: '/delete_history?dbname=my_db&table=history&condition='+ encodeURIComponent(condition),
+                     url: '/delete_history',
+		     type: 'DELETE',
+                     data: Id ,
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         alert("Delete tests sucessful! Go to Dart Dashboard");
+                         window.open("/", "_parent");
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+         }
+
+       checkboxChecked = function(id, checked) {
+            if (checked) {
+                if (!(id in checkedList)) {
+                    checkedList[id] = id;
+                }
+            } else {
+                if (id in checkedList) {
+                    delete checkedList[id];
+                }
+            }
+       }
+
+     function LoadFormValuess(cmd) {
+     var str = String(cmd);
+     var split = str.split(" ");
+     clusterIndex = split.indexOf("-c");
+     clusterIndex = clusterIndex + 1;
+     clusters = split[clusterIndex];
+     console.log(clusters)
+     testIndex = split.indexOf("-t");
+     testIndex = testIndex + 1;
+     tests = split[testIndex];
+     alert (" selected clusers are: " + clusters + "\n selected tests are: " + tests);
+     }
+     
+     function LoadFormValues(cmd){
+         var command = String(cmd);
+         url = 'http://sdl21492.labs.teradata.com:8080/?command=' + encodeURIComponent(command);
+	 document.location.href = url;
+      }
+    
+
+     $(document).ready(function(){
+         table = $('#datatable').DataTable({
+                  "select": true,
+                  "responsive": true,
+                  "serverSide": true,
+                  "ajax": {
+                    "url": "/conn_history", // url which will handle datatable request
+                    "type": "GET"
+                   },
+                  "stateSave": true, 
+                  "lengthMenu": [[10,50,100], [10,50,100]],
+                  "columns": [
+                             {"data":null,
+                               "className": "dt-center",
+                               "render":function( data, type, full, meta){
+                                   var checkedStr = ""
+                                   if (data["run_id"] in checkedList) {
+                                    checkedStr = "checked";
+                                   }
+                                   var tmp = '<input class="runIdCheckbox" type="checkbox" id=' + data["run_id"]  + ' value=';
+                                   tmp = tmp + data["run_id"] + ' ' + checkedStr + ' onclick="checkboxChecked(this.id, this.checked);">&nbsp;&nbsp;'+'<a href=http://dartdashboard.labs.teradata.com/report?run_id=' + data["run_id"]  + '>' + data["run_id"]+'</a>';
+                                   return tmp;     
+                              }},
+                             {"data":"user","className": "dt-center"}, 
+                             {"data":"date","className": "dt-center"},
+                             {"data":null,
+                               "className": "dt-center",
+                               "render":function( data, type, full, meta){
+                                   var command =  data["command"]
+ 			           var tmp = '<input style= "float:right" type="button" class="btn btn-success btn-xs" id=' + command  + ' value=';
+                                   tmp = command + '&nbsp;&nbsp;' + tmp +'"Go"' + 'onclick="LoadFormValues(\'' + command + '\')">';
+                                   return tmp;
+                              }}
+                             ],
+                  "aaSorting": [[0,'desc']],
+         });
+    });
+    </script>
+    <title> DartExe History </title>
+</head>
+
+<body>
+<div class="container">
+    <div><h1 style="padding:5px"> History <i class="fas fa-history fa-xs"></i> </h1></div>
+    <div style="float:right;padding:5px"><input style="" id="delete" type="button" class="btn btn-danger btn-xs" value="Delete" onclick="deleteTests()"></div>
+    <div style="clear:both"><table id="datatable"  class="table table-hover table-bordered" style="width:100%"> 
+          <thead>
+                <tr>
+                   <th style="min-width:75px">Runid</th>
+                   <th>User</th>
+ 		   <th style="min-width:95px">Start Time</th>
+                   <th>Dart Command</th>
+                </tr>
+          </thead>
+         </table>
+    </div>
+</body>
+</html>

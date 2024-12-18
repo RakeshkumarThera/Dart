@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!--
+    Name: cluster.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /report/cluster
+    Description: Show cluster information by test row ID
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Cluster</title>
+    <style>
+        table, th, td, th {
+            border: 1px solid black;
+        }
+        .alignLeft { float: left; }
+        .alignCenter { float: center; }
+    </style>
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/utility.js" type="text/javascript"></script>
+    <script>
+        $.renderTable = function renderTable(res) {
+             var text = "<table>"
+             var results = res.results
+             for (i = 0; i < results.length; i++) {
+                 text = text + "<tr><th align='left'>Cluster Name</th><td>" + $.checkFieldEmpty(results[i].cluster_name) + "</td></td>"
+                 text = text + "<tr><th align='left'>Cluster Type</th><td>" + $.checkFieldEmpty(results[i].cluster_type) + "</td></td>"
+                 text = text + "<tr><th align='left'>Queen Node</th><td>" + $.checkFieldEmpty(results[i].queen_nodes) + "</td></td>"
+                 text = text + "<tr><th align='left'>Worker Node</th><td>" + $.checkFieldEmpty(results[i].worker_nodes) + "</td></td>"
+                 text = text + "<tr><th align='left'>Number of Workers</th><td>" + $.checkFieldEmpty(results[i].number_of_workers) + "</td></td>"
+                 text = text + "<tr><th align='left'>Loader Node</th><td>" + $.checkFieldEmpty(results[i].loader_nodes) + "</td></td>"
+                 text = text + "<tr><th align='left'>Kube Master</th><td>" + $.checkFieldEmpty(results[i].kube_master) + "</td></td>"
+                 text = text + "<tr><th align='left'>Kube Node</th><td>" + $.checkFieldEmpty(results[i].kube_nodes) + "</td></td>"
+                 text = text + "<tr><th align='left'>DB Version</th><td>" + $.checkFieldEmpty(results[i].db_version) + "</td></td>"
+                 text = text + "<tr><th align='left'>DB Type</th><td>" + $.checkFieldEmpty(results[i].db_type) + "</td></td>"
+                 text = text + "<tr><th align='left'>OS Version</th><td>" + $.checkFieldEmpty(results[i].os_version) + "</td></td>"
+                 text = text + "<tr><th align='left'>Kernel Version</th><td>" + $.checkFieldEmpty(results[i].kernel_version) + "</td></td>"
+             }
+
+             text = text + "</table>";
+
+             return text;
+         }
+
+        $(document).ready(function(){
+            var id = decodeURIComponent($.urlParam("id"))
+            var sql = "DISTINCT cluster_name,cluster_type,queen_nodes,worker_nodes,loader_nodes,os_version,kernel_version,db_type,db_version,number_of_workers,kube_master,kube_nodes";
+            var column = encodeURIComponent(sql);
+            var condition = encodeURIComponent("id=" + id);
+            $.ajax({
+                     url: '/api/select_rows?dbname=dartdb&table=darttest&columns=' + column + '&condition=' + condition,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#cluster-info').html($.renderTable(res));
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+        });
+    </script>
+</head>
+<body>
+    <div id="head" style="background-color:#F7BE81; width:100%; height:50px; float:center; border-radius: 5px;" align="center">
+        <p class="alignLeft"><a href="/" target="_parent">Go to Dashboard</a></p>
+        <p style="margin-right:5%; margin-top:0%">
+            <b><font size="6" color="black">Dart Cluster Information</font></b>
+        </p>
+    </div>
+    <br>
+    <div id="cluster-info" align="center">
+    </div>
+</body>
+</html>

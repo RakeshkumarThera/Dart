@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+    Name: summaryDetail.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /summaryDetail
+    Description: Show test summary detail of lastest build by project name and test component
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style media="all" type="text/css">
+        .alignCenter { text-align: center; }
+        .alignLeft { text-align: left; }
+    </style>
+    <style media="all" type="text/css">
+        .dataTable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <title>Summary Report</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#projectList").click(function () {
+                var releaseName = document.getElementById("projectList").value;
+                $.loadData(releaseName)    
+            });
+        });
+
+        $.renderTable = function(res) {
+            results = res.results
+            osHeader = results.os_header
+            osHeaderLength = Object.keys(osHeader).length
+            dbTypeHeader = results.dbtype_header
+            dbTypeHeaderLength = Object.keys(dbTypeHeader).length
+
+            tableContent = '<thead><tr>'
+            tableContent = tableContent + '<th rowspan="2">Component</th>'
+            for (i = 0; i < osHeaderLength; i++) {
+                tableContent = tableContent + '<th colspan="' + dbTypeHeaderLength  + '">' + osHeader[i] + '</th>'
+            }
+            tableContent = tableContent + '</tr>'
+            tableContent = tableContent + '<tr>'
+            for (i = 0; i < osHeaderLength; i++) {
+                for (j = 0; j < dbTypeHeaderLength; j++) {
+                    tableContent = tableContent + '<th>' + dbTypeHeader[j] + '</th>'
+                }
+            }
+            tableContent = tableContent + '</tr></thead>'
+            
+            tableContent = tableContent + '<tbody>'
+            data = results.data
+            for (i = 0; i < data.length; i++) {
+                row = data[i]
+                tableContent = tableContent + '<tr>'
+                for (j = 0; j < row.length; j++) {
+                    if (j == 0) {
+                        tableContent = tableContent + '<td>' + data[i][j] + '</td>'
+                    } else {
+                        if (data[i][j] == "") {
+                            tableContent = tableContent + '<td align="center">-</td>'
+                        } else {
+                            value = data[i][j]
+                            if (value.fail.high > 0) {
+                                tableContent = tableContent + '<td bgcolor="#fd6864" align="center">'
+                            } else if (value.fail.mid > 0) {
+                                tableContent = tableContent + '<td bgcolor="#fffe65" align="center">'
+                            } else {
+                                tableContent = tableContent + '<td bgcolor="#67fd9a" align="center">'
+                            }
+
+                            tableContent = tableContent + 'Build/Revision: ' + $.checkFieldEmpty(value.build_number) + ' / ' + $.checkFieldEmpty(value.revision) + '<br>'
+                            tableContent = tableContent + 'Total: ' + value.total.high + '/' + value.total.mid + '/' + value.total.low + '<br>'
+                            tableContent = tableContent + 'Pass: ' + value.pass.high + '/' + value.pass.mid + '/' + value.pass.low + '<br>'
+                            tableContent = tableContent + 'Fail: ' + value.fail.high + '/' + value.fail.mid + '/' + value.fail.low
+                            tableContent = tableContent + '</td>'
+                        }
+                    }
+                }
+                tableContent = tableContent + '</tr>'
+            }
+            tableContent = tableContent + '</tbody>'
+            
+            return tableContent
+        }
+
+        $.loadData = function(releaseName) {
+            releaseName = encodeURIComponent(releaseName)
+            $.ajax({
+                     url: '/api/summary_detail?dbname=dartdb&release_name=' + releaseName,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         tableContent = $.renderTable(res)
+                         if ($.fn.DataTable.isDataTable('#datatable')) {
+                             //if data table is already exist, then destroy it
+                             $("#datatable").dataTable().fnDestroy();
+                         }
+                         $('#datatable').html(tableContent)
+                         $('#datatable').dataTable({
+                             "scrollX": true,
+                             "autoWidth": false,
+                             "bRetrieve": true,
+                             "aoColumnDefs": [
+                                 { //set truncate max-width for each cell
+                                      "aTargets": ["_all"],
+                                      "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                                          $(nTd).css('max-width', '1px')
+                                          if (sData.includes("<br>")) {
+                                              sData = sData.replace(/<br>/g, "\n")
+                                          }
+
+                                          if (sData != null && sData != "-" && typeof sData == "string" &&!sData.startsWith("<a href")) {
+                                              nTd.title = sData;
+                                          } else if (sData != null && typeof sData == "string" && sData.startsWith("<a href")) {
+                                              arr = sData.split(">")
+                                              data = arr[1].split("<")
+                                              nTd.title = data[0]
+                                          }
+                                      }
+                                 }
+                              ]
+                         });
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+
+        }
+
+        $.renderForm = function(res, releaseName) {
+            /*
+                Put the data to jQuery datatable
+            */
+            var text = '';
+            var results = res.results;
+            for (i = 0; i < results.length; i++) {
+                if (releaseName == results[i].release_name) {
+                    text = text + '<option value="' + results[i].release_name + '" selected="selected">' + results[i].release_name + '</option>'
+                } else {
+                    text = text + '<option value="' + results[i].release_name + '">' + results[i].release_name + '</option>'
+                }
+            }
+
+            return text;
+        }
+
+        $.getSelectFormData = function(releaseName) {
+            condition = encodeURIComponent("release_name<>'Private' and build_number<>''")
+            $.ajax({
+                     url: '/api/select_rows?dbname=dartdb&table=darttest&columns=distinct%20release_name&condition=' + condition,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#projectList').html($.renderForm(res, releaseName));
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+        }
+
+        $(document).ready(function() {
+            releaseName = $.urlParam('release_name')
+            $.getSelectFormData(decodeURIComponent(releaseName))
+            $.loadData(decodeURIComponent(releaseName))
+        });
+    </script>
+</head>
+<body>
+    <div id="head" style="background-color:#F7BE81; width:100%; height:50px; float:center; border-radius: 5px;" align="center">
+        <b>
+            <font size="6" color="black">Dart Summary Detail Report</font>
+        </b>
+    </div>
+    <div id="release" style="background-color:orange; width:99%; float:center; border-radius: 5px; margin:2px;padding:5px;" align="left">
+        Project:&nbsp;
+        <select id="projectList" form="projectForm">
+        </select>
+    </div>
+    <div id="content" style="background-color:#F7BE81; width:100%; float:center; border-radius: 5px; margin-top:0.5%;">
+        <table id="datatable" class="cell-border" width="100%">
+        </table>
+    </div>
+</body>
+</html>

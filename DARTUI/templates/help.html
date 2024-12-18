@@ -1,0 +1,99 @@
+<!Doctype html>
+
+<html>
+<head>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.0/dojo/dojo.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title> DARTUI Help! </title>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Help <i class="fas fa-info-circle fa-sm"></i></h1>
+    <table class="table table-hover">
+    <thead>
+      <tr>
+          <th>Parameters</th>
+          <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-toggle="tooltip" data-placement="top" title="BuildName">BuildName   <i class="fas fa-cog"></i></td>
+        <td>Also called as a Milestone.This is used to upload the results into TestLink</td>
+      </tr>
+      <tr>
+        <td>Install test <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></td>
+        <td>This file contains the install tests to be executed on each cluster before individual tests are scheduled for execution</td>
+      </tr>
+      <tr>
+        <td>Health Check <i class="fas fa-ambulance"></i></td>
+        <td>This file contains the test to check the health of the cluster before any test which require a CheckHealth</td>
+      </tr>
+       <tr>
+        <td>Testsets (mandatory) <i class="fas fa-wrench"></i></td>
+        <td>This file contains a list of all the testsets and tests which are planned for execution</td>
+      </tr>
+       <tr>
+        <td>Clusters (mandatory) <i class="fas fa-cogs"></i></td>
+        <td>A string listing out all the names of the clusters</td>
+      </tr>
+      <tr>
+        <td>runLabel   <i class="fas fa-spinner"></i></td>
+        <td>This is used to display the results in the Dart Dash Board by JobName</td>
+      </tr>
+      <tr>
+        <td>releaseName <i class="fas fa-calendar-check"></i></td>
+        <td>RELEASE NAME ( The Release Name Example: GGR1 )</td>
+      </tr>
+      <tr>
+        <td>Project Name <i class="far fa-folder"></i></td>
+        <td>This is used to display the results in the Dart Dash Board by ProjectName. The ProjectName is also used to upload the results into TestLink
+             <ul>
+                <li>If the ProjectName is not specified, the scheduler assumes the run as a Private Project.</li>
+                <li>The results are not displayed in the Dart Dash Board unless you click the Private checkbox in the Dash Board.</li>
+             </ul>
+        </td>
+      </tr>
+      <tr>
+        <td>branchName <i class="fas fa-code-branch"></i></td>
+        <td>This field is used to refer the GIT branch used</td>
+      </tr>
+      <tr>
+        <td>buildNumber <i class="fab fa-jenkins"></i></td>
+        <td>This is the Jenkins Build Number. If the buildUrl is given, then the BuildNumber, RevisionNumber is automatically calculated.</td>
+      </tr>
+      <tr>
+        <td>revisionNumber   <i class="fas fa-circle-notch"></i></td>
+        <td> RevisionNumber is automatically calculated</td>
+      </tr>
+      <tr>
+        <td>dashboard <i class="fas fa-bullseye"></i></td>
+        <td>This option will upload the results into the DartDashBoard. The LOAD can have values 'Public or Private' The default is not to load the results. <br/>Example: -l 'Public'</td>
+      </tr>
+      <tr>
+        <td>retry   <i class="fas fa-sync"></i></td>
+        <td>This will retry a failed or aborted test again</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="tooltip"]').tooltip({
+    container : 'body'
+  });
+});
+</script>
+
+</div>
+</body>
+</html>

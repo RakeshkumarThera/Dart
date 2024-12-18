@@ -1,0 +1,250 @@
+<!doctype html>
+<!--
+    name: dashboard.html
+    author: alen.cheng@teradata.com
+    copyright: copyright 2007, aster
+    date: 11/01/2016
+    uri: /
+    description: bottom page of main page. used to show all the test run infomation
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style media="all" type="text/css">
+        .aligncenter { text-align: center; }
+        .red { background-color: red; }
+    </style>
+    <style media="all" type="text/css">
+        .datatable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .toolbar {
+    float:left;
+}
+    </style>
+    <title>test information</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/ellipsis.js"></script>
+    <script>
+        var gShowprivate = 0;
+        var gRunid = "";
+        var gProject = "";
+        var gShowTagTest = false;
+        var table;
+        function loadData(showprivate, showTagTest, runid, project, showdata) {
+            /*
+                get data from database. 
+                the function is called when user choose any run id, cluster, project name 
+            */
+            if (showprivate) {
+                gShowprivate = 1;
+            } else {
+                gShowprivate = 0;
+            }
+            gShowTagTest = showTagTest
+            gRunid = runid;
+            gProject = project;
+            var enddate = "";
+            var startdate = "";
+
+            var apiUrl = "/api/dashboard?private=" + gShowprivate + "&run_id=" + gRunid  + "&project=" + gProject;
+            apiUrl = apiUrl + "&show_tag=" + gShowTagTest;
+            table.ajax.url(apiUrl).load();
+        }
+
+        tagTests = function() {
+            var checkedValue = null;
+            var idStr = "";
+            var inputElements = document.getElementsByClassName('runIdCheckbox');
+            var ids = "";
+
+            for(var i = 0; i < inputElements.length; i++){
+                if(inputElements[i].checked) {
+                    if (idStr == "") {
+                        idStr = "run_id='" + inputElements[i].value + "'";
+                        ids = inputElements[i].value;
+                    } else {
+                        idStr = idStr + " or "  + "run_id='" + inputElements[i].value + "'";
+                        ids = ids + ", " + inputElements[i].value;
+                    }
+                 }
+            } 
+            
+            if (idStr == "") {
+                alert("Please choose at least one test to tag");
+            } else {
+                var formData = {dbname: "dartdb", table: "dartruninfo", updating_column: [{name: "tag", value: "true"}], condition: idStr};
+                var apiUrl = "/api/update_row";
+
+                ret = confirm('Tagging ' + ids + '. Press OK to confirm.');
+                
+                if (ret) {
+                    $.ajax({
+                        url: apiUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data : JSON.stringify(formData),
+                        success: function(res){
+                                     alert("Tag sucessful! Go to Dart Dashboard");
+                                     window.open("/", "_parent");
+                                 },
+                        error: function(req, err){ console.log('my message: ' + err); }
+                    });
+                }
+                
+            }
+        }
+
+        $(document).ready(function(){
+              table = $('#datatable').DataTable({
+                  dom: 'l<"toolbar">frtip',
+                  initComplete: function(){
+                      $("div.toolbar").html('&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="tagBnt" onclick="tagTests()">Tag Test</button>');
+                  }, 
+                  "responsive": true,
+                  "processing": true,
+                  "serverSide": true,
+		  "ajax": "/api/dashboard?private=" + gShowprivate + "&run_id=" + gRunid  + "&project=" + gProject + "&show_tag=" + gShowTagTest,
+		  "columnDefs": [{"sClass": "alignRight", "targets": "_all"}],
+                  "lengthMenu": [[15, 30, 100], [15, 30, 100]],
+                  "rowHeight": "0%",
+                  "columns": [
+                        {
+                            data: null,
+                            render: function( data, type, full, meta) {
+                                var runIdUrl = '<input class="runIdCheckbox" type="checkbox" value=';
+                                runIdUrl = runIdUrl + data["run_id"] + '>&nbsp;&nbsp;<a href="/report?run_id=';
+                                runIdUrl = runIdUrl + data["run_id"]  + '&release_name=' + data["release_name"] + '&tester=' 
+                                runIdUrl = runIdUrl + data["tester"]  + '" target="_parent">' + data["run_id"] + '</a>'
+
+                                return runIdUrl;
+                            }
+                        },
+                        {"data": "run_label", "width": "4%", "className": "dt-center"},
+                        {"data": "branch", "width": "7%", "render": $.fn.dataTable.render.ellipsis(14)},
+                        {"data": "release_name", "render": $.fn.dataTable.render.ellipsis(14)},
+                        {"data": null, "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["build_number"])}, "className": "dt-center"},
+                        {"data": null, "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["revision"])}, "className": "dt-center"},
+                        {"data": null, "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["tester"])}, "className": "dt-center"},
+                        {
+                            data: null,
+                            className: "dt-center",
+                            render: function( data, type, full, meta) {
+                                var startTime = data["start_time"]
+                                if (startTime != null) {
+                                    startTime = startTime.replace("GMT", "PDT")
+                                }
+                                if (startTime == null) {
+                                    startTime = "-";
+                                } else {
+                                    var datetime = new Date(startTime);
+                                    startTime = $.convertDateString(datetime)
+                                }
+                                return startTime 
+                            }
+                        },
+                        {"data": null, "width": "7%", "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["duration"])}, "className": "dt-center"},
+                        {"data": "num_cluster", "orderable": false, "width": "7%", "className": "dt-center"},
+                        {"data": "total", "orderable": false, "width": "3%", "className": "dt-center"},
+                        {"data": "running", "className": "alignCenter", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "waiting", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "pass", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {   
+                            "data": null, 
+                            "className": "dt-center",
+                            "orderable": false, 
+                            "width": "2%",
+                            "render": function( data, type, full, meta) {
+                                var failCol = 0;
+                                if (data["fail"] != 0) {
+                                    failCol = '<a href="failTest?run_id=' + data["run_id"] + '&page=testset" target="_parent">' + data["fail"] + '</a>';
+                                }
+
+                                return failCol;
+                             }
+                        }, 
+                        {"data": "abort", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "skip", "orderable": false, "width": "2%", "className": "dt-center"}
+                  ],
+                  "aaSorting": [[0,'desc']],
+                  "aoColumnDefs": [
+                      {
+                          "aTargets": ["_all"],
+                          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                              if (iCol == 0 || iCol == 1 || iCol == 2 || iCol == 3 || iCol == 4 || iCol == 5
+                                  || iCol == 6 || iCol == 7 || iCol == 8 || iCol == 9 || iCol == 10) {
+                                  if (oData["tag"]) {
+                                      $(nTd).css('background-color', '#E0F8E6')
+                                  }
+                              }
+
+                              if (iCol == 1 && sData == "BAT") {
+                                  $(nTd).css('background-color', '#F8EFFB')
+                              } else if (iCol == 1 && sData == "SAN") {
+                                  $(nTd).css('background-color', '#F7F2E0')
+                              } else if (iCol == 1 && sData == "WKY") {
+                                  $(nTd).css('background-color', '#EFFBFB')
+                              } else if (iCol == 1 && sData == "NGT") {
+                                  $(nTd).css('background-color', '#FBF8EF')
+                              }
+
+                              if (sData == 0 && iCol != 1) {
+                                  $(nTd).css('background-color', '#F2F2F2')
+                              }
+
+                              if (iCol == 11 && sData != 0) {
+                                  $(nTd).css('background-color', '#38fff8')
+                              } else if (iCol == 12 && sData != 0) {
+                                  $(nTd).css('background-color', '#c0c0c0')
+                              } else if (iCol == 13 && sData != 0) {
+                                  $(nTd).css('background-color', '#67fd9a')
+                              } else if (iCol == 14 && sData != 0) {
+                                  $(nTd).css('background-color', '#fd6864')
+                              } else if (iCol == 15 && sData != 0) {
+                                  $(nTd).css('background-color','#9698ed')
+                              } else if (iCol == 16 && sData != 0) {
+                                  $(nTd).css('background-color', '#fffe65')
+                              }
+                          }
+                      }
+                  ]
+              });
+             $('#datatable').css( {
+                 "font-size": "90%"
+             });
+         });
+    </script>
+</head>
+<body>
+    <div id="content" style="background-color:#F7BE81; width:100%; float:center; border-radius: 5px;">
+	 <table id="datatable" style="width:100%;" class="row-border">
+            <thead>
+              <tr>
+              <th>Run ID</th>
+              <th>Job</th>
+              <th>Branch</th>
+              <th>Project</th>
+              <th>Build</th>
+              <th>Rev</th>
+              <th>Tester</th>
+              <th>Start Time</th>
+              <th>Duration</th>
+              <th>Clusters</th>
+              <th>Total</th>
+              <th>R</th>
+              <th>W</th>
+              <th>P</th>
+              <th>F</th>
+              <th>A</th>
+              <th>S</th>
+              </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

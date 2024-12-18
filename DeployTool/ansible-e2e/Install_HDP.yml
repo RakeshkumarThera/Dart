@@ -1,0 +1,70 @@
+# Unpublished work.
+# Copyright (c) 2011-2012 by Teradata Corporation. All rights reserved.
+# TERADATA CORPORATION CONFIDENTIAL AND TRADE SECRET
+#
+# Copyright (c) 2005-2011 Aster Data Systems, Inc. All Rights Reserved.
+# For more information, please see COPYRIGHT in the top-level directory.
+#
+# Primary Owner: PankajVinod.Purandare@teradata.com
+# Secondary Owner:
+
+# Playbook to setup Aster On Hadoop cluster on a pre existing Aster cluster
+
+- name: Instantiate Hortonworks Hadoop cluster
+  hosts: "{{ hdp_cluster }}"
+  user: root
+  vars:
+      only_ambari_install: "False"
+      only_hadoop_install: "False"
+  gather_facts: False
+
+  pre_tasks:
+    - name: create poloh marker
+      file: path=/etc/polo-h state=directory mode=755
+
+    - name: Update limits.conf
+      script: files/update-limits-conf.sh
+
+    - name: Update grub.conf
+      script: files/update-grub-conf.sh
+
+    - name: Remove OpenJDK
+      yum: pkg="{{ item }}" state=removed
+      with_items:
+        - java-1.6.0-openjdk
+        - java-1.7.0-openjdk
+
+  roles:
+#    - role: java
+#      java_version: "1.8.0"
+
+    - role: kerberos_proxy_lzo_setup
+      snappy_lzo_packages:
+          - snappy
+          - snappy-devel
+          - lzo
+          - lzo-devel
+      when: only_ambari_install != "True"
+
+    - role: ambari_install
+      ambari_version: "{{ ambari_server_version | default ('2.2.2') }}"
+      ambari_server: "{{ edgenode }}"
+      when: only_hadoop_install != "True"
+
+    - role: hadoop_install
+      blueprint: "aoh_blueprint"
+      when: only_ambari_install != "True"
+
+  post_tasks:
+    - name: reboot cluster so that installation of packages takes effect
+      shell: sleep 2 && shutdown -r now
+      async: 1
+      poll: 0
+      ignore_errors: True
+
+    - name: wait for the nodes to comeup
+      wait_for: host={{ ansible_ssh_host }} port=22 state=started delay=5 timeout=100
+      connection: local
+
+    - name: start ntpd service
+      service: name=ntpd state=started

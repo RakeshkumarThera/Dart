@@ -1,0 +1,23 @@
+INFO: 2018-08-22 16:31:07,207:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-22-163107.log
+INFO: 2018-08-22 16:31:07,208:DartRunner.py:109: Current Process Id: 42243
+INFO: 2018-08-22 16:31:07,208:DartRunner.py:170: clusterList = dartpm16 
+INFO: 2018-08-22 16:31:07,208:DartRunner.py:178: dartpm16
+INFO: 2018-08-22 16:31:37,571:DartRunner.py:1984: 
+ERROR: 2018-08-22 16:31:37,571:DartRunner.py:1985: (<class 'socket.timeout'>, timeout(), <traceback object at 0x7f1be379d4d0>)
+ERROR: 2018-08-22 16:31:37,572:DartRunner.py:1986: Traceback (most recent call last):
+  File "DartRunner.py", line 1968, in loadClusterConfigs
+    cfgJson = self.updateCfgJson(cfgJson)
+  File "DartRunner.py", line 2026, in updateCfgJson
+    stdout = self.kubeExecute(commandStr, cfgJson)
+  File "DartRunner.py", line 2007, in kubeExecute
+    stdout, stderr, status = kubeMasterCon.execCommand(commandStr, timeout=30)
+  File "/root/Dart/lib/SshConnect.py", line 59, in execCommand
+    return ( stdout.read(), stderr.read(), stdout.channel.recv_exit_status() )
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/file.py", line 193, in read
+    new_data = self._read(self._DEFAULT_BUFSIZE)
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/channel.py", line 1332, in _read
+    return self.channel.recv(size)
+  File "/usr/local/lib/python2.7/dist-packages/paramiko/channel.py", line 685, in recv
+    raise socket.timeout()
+timeout
+

@@ -1,0 +1,33 @@
+pipeline {
+    agent {
+        node {
+        label 'master-node'
+        }
+    }  
+    
+    environment {
+        ARTIFACTORY_SNAPSHOT_PROXY = 'sdartifact.td.teradata.com:7001'
+        ARTIFACTORY_QA_PROXY = 'sdartifact.td.teradata.com:7002'
+        REPO_PATH = 'asterdata/ax/docker/stage'
+        REPO_PATH_QA = 'asterdata/beehive/drops/qa'
+        DOCKER_IMAGE = 'arc'
+        REVISION = ''
+        REG_CLUSTERS = 'dart-main-sls12-03,dart-main-sls12-04,dart-main-sls12-05'
+    }
+
+    stages {
+        stage('Build') {
+        steps {
+          echo "Building the Docker Images"
+        }
+        }
+    stage("Publish"){
+        steps {
+               dir ("${env.WORKSPACE}/Dart/tools") {
+                echo "${env.WORKSPACE}"
+                echo "Success!"
+                }
+            }
+    }
+    } // End of all stages
+} // end of pipeline

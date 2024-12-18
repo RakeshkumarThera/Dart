@@ -1,0 +1,47 @@
+INFO: 2018-08-21 11:18:24,247:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-21-111824.log
+INFO: 2018-08-21 11:18:24,248:DartRunner.py:109: Current Process Id: 35881
+INFO: 2018-08-21 11:18:24,248:DartRunner.py:170: clusterList = dart-main-sls12-08 
+INFO: 2018-08-21 11:18:24,249:DartRunner.py:178: dart-main-sls12-08
+INFO: 2018-08-21 11:18:26,323:DartRunner.py:2008: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          2d
+queen     17/18     ImagePullBackOff   807        2d
+
+INFO: 2018-08-21 11:18:26,437:DartRunner.py:2037: consul
+INFO: 2018-08-21 11:18:26,437:DartRunner.py:2037: queen
+INFO: 2018-08-21 11:18:26,438:DartRunner.py:2043: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 11:18:26,977:DartRunner.py:2008: 10.25.83.70
+INFO: 2018-08-21 11:18:27,041:DartRunner.py:2045: 10.25.83.70
+INFO: 2018-08-21 11:18:27,041:DartRunner.py:2048: 10.25.83.70
+INFO: 2018-08-21 11:18:27,041:DartRunner.py:2077: ['10.25.83.70']
+INFO: 2018-08-21 11:18:27,041:DartRunner.py:2078: []
+INFO: 2018-08-21 11:18:27,041:DartRunner.py:247: /root/Dart/testset/REG_computedtable.tst
+INFO: 2018-08-21 11:18:27,042:DartRunner.py:258: Scanning File: /root/Dart/testset/REG_computedtable.tst 
+INFO: 2018-08-21 11:18:27,042:DartRunner.py:273: Reading tempRunFile : /tmp/REG_computedtable.tst
+INFO: 2018-08-21 11:18:27,308:DartRunner.py:2154: Ping on cluster dart-main-sls12-08 Successful!
+INFO: 2018-08-21 11:18:27,463:DartRunner.py:523: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-46
+INFO: 2018-08-21 11:18:27,481:DartRunner.py:1696: Done inserting the information of run 180821-46
+INFO: 2018-08-21 11:18:27,498:DartRunner.py:2665: DB Insert Success: sanityTest on Resilent Tables
+INFO: 2018-08-21 11:18:28,010:DartRunner.py:2665: DB Insert Success: ACL on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:28,521:DartRunner.py:2665: DB Insert Success: Concurrent IUD on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:29,033:DartRunner.py:2665: DB Insert Success: Race condition on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:29,543:DartRunner.py:2665: DB Insert Success: Concurrent SELECT on Resilient Tables after Aster restart
+INFO: 2018-08-21 11:18:31,047:DartRunner.py:754: Looping the Main Loop: 1
+INFO: 2018-08-21 11:18:31,147:DartRunner.py:875: The Test is skipped as there are no clusters which match the test environment!
+INFO: 2018-08-21 11:18:31,159:DartRunner.py:2570: Updated Status: SKIP on test sanityTest on Resilent Tables
+INFO: 2018-08-21 11:18:31,259:DartRunner.py:875: The Test is skipped as there are no clusters which match the test environment!
+INFO: 2018-08-21 11:18:31,270:DartRunner.py:2570: Updated Status: SKIP on test ACL on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:31,371:DartRunner.py:875: The Test is skipped as there are no clusters which match the test environment!
+INFO: 2018-08-21 11:18:31,382:DartRunner.py:2570: Updated Status: SKIP on test Concurrent IUD on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:31,482:DartRunner.py:875: The Test is skipped as there are no clusters which match the test environment!
+INFO: 2018-08-21 11:18:31,493:DartRunner.py:2570: Updated Status: SKIP on test Race condition on Resilent Tables after Aster restart
+INFO: 2018-08-21 11:18:31,593:DartRunner.py:875: The Test is skipped as there are no clusters which match the test environment!
+INFO: 2018-08-21 11:18:31,604:DartRunner.py:2570: Updated Status: SKIP on test Concurrent SELECT on Resilient Tables after Aster restart
+INFO: 2018-08-21 11:18:31,605:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-21 11:18:31,605:DartRunner.py:1131: {'dart-main-sls12-08': 'free'}
+INFO: 2018-08-21 11:18:41,615:DartRunner.py:1134: Done with initiating all the tests!
+INFO: 2018-08-21 11:18:41,615:DartRunner.py:1207: All the tests have been executed!
+INFO: 2018-08-21 11:18:41,639:DartRunner.py:1309: {'dart-main-sls12-08': 'free'}
+INFO: 2018-08-21 11:18:42,101:DartRunner.py:2962: DartRunner Final Results!
+INFO: 2018-08-21 11:18:42,101:DartRunner.py:2963:         TESTSET       TESTNAME    STATUS TOTALTIME           STARTTIME             ENDTIME
+INFO: 2018-08-21 11:18:42,101:DartRunner.py:2968: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-46
+INFO: 2018-08-21 11:18:42,101:DartRunner.py:1347: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-46

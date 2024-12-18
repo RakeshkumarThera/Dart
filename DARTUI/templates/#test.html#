@@ -1,0 +1,293 @@
+<!Doctype html>
+
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/dojo/1.13.0/dojo/dojo.js"></script>
+    <script type="text/javascript">  // To assign run command functionality
+     function cmd(){
+               // message1 = "python DartRunner.py -c"+" "+ document.form1.display.value +" "+ document.form1.display2.value +" "+"-- buildName"+document.form1.Build.value+"--"+" "+ document.form1.Install.value;
+                var data = JSON.stringify(display1());
+                $.ajax({
+                    type: "POST",
+                    url: "/cmd",
+                    data: data,
+                });
+            }
+
+     </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <title> DartUI </title>
+  <script>
+    $(document).ready(function () {
+        $.getJSON('/conn',function (result) {
+            var keys = Object.keys(result);
+            for(let i = 0; i < keys.length;i++) {
+                {#Json_Data.push(result[keys[i]]);#}
+                 var opt = '<option>' + result[keys[i]] + '</option>';
+                 $('#sel').append(opt);
+            }
+        })
+    })
+
+      $(document).ready(function () {
+        $.getJSON('/conn1',function (result) {
+            var keys = Object.keys(result);
+            for(let i = 0; i < keys.length;i++) {
+                {#Json_Data.push(result[keys[i]]);#}
+                 var opt = '<option>' + result[keys[i]] + '</option>';
+                 $('#sel1').append(opt);
+            }
+        })
+    })
+
+</script>
+    <script LANGUAGE="JavaScript" type="text/javascript">
+        function display1() {
+        // DispWin = window.open('','NewWin', 'toolbar=no,status=no,width=300,height=200');
+            message = "cd/root/Dart; python DartRunner.py -c"+" "+ document.form1.display.value +" "+ document.form1.display2.value +" "+"-- buildName "+document.form1.Build.value+"--";
+         // message = "ls";
+        // DispWin.document.write(message);
+            $('#cmdDisplay1').html(message); // To Show the Dart Command after generated
+            $('#cmdDisplay1').show();
+
+            return message;
+        }
+    </script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div><a href="#" class="navbar-brand"> <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="jumbotron">
+	  <header>
+          <img src="/static/css/images/teradata-logo.png" alt="TERADATA" height="100px">
+	  <h2>DartU!</h2>
+      </header><!--header end-->
+    </div>
+</div>
+
+
+
+<div class="container">
+<section>
+        <div><!--main div start-->
+            <h2>Tester Selections  <!--<i class="fas fa-cog fa-spin"></i>-->
+</h2>
+            <p>Select as per requirement & GO!</p>
+			<form name="form1" method="post">
+                  <p><label for="Build">BuildName :</label>
+					  <select id="Build">
+                          <option value="beehive-ci-pipline-main">beehive-ci-pipline-main</option>>
+                      </select>
+				  </p>
+{#                           <label for="ctf">Installtst :</label>#}
+{#                           <select multiple="multiple" name = "Install" id="sel"></select>#}
+
+                <div class="row">
+                    <p><label for="Cluster1">test set :</label></p>
+                    <div class="col-md-6">
+                        <select multiple="multiple" id='sel' class="col-md-5" style="height: 70px;width: 300px;border-radius: 10px;padding: 5px;">
+{#                            <option value="ffr2nightly.tst">ffr2nightly.tst</option>#}
+{#                            <option value="HealthCheckDocker.tst">HealthCheckDocker.tst</option>#}
+{#                            <option value="NoInstall.tst">NoInstall.tst</option>#}
+{#                            <option value="qwerty.tst">qwerty.tst</option>#}
+{#                            <option value="asdffggh.tst">asdffggh.tst</option>#}
+{#                            <option value="zxcvb.tst">zxcvb.tst</option>#}
+{#                            <option value="poiuytr.tst">poiuytr.tst</option>#}
+{#                            <option value="HealthCheckDocker.tst">HealthCheckDocker.tst</option>#}
+{#                            <option value="NoInstall.tst">NoInstall.tst</option>#}
+{#                            <option value="qwerty.tst">qwerty.tst</option>#}
+{#                            <option value="asdffggh.tst">asdffggh.tst</option>#}
+{#                            <option value="zxcvb.tst">zxcvb.tst</option>#}
+                        </select>
+                     </div>
+
+                 <div class="col-md-6">
+                        <textarea style="height: 70px;width: 300px;border-radius: 10px;padding: 5px;" name="display2" id="display2" placeholder="Selected list for test sets" cols="20" rows="4" readonly></textarea>
+                 </div>
+                 </div>
+
+
+
+                <div class="row">
+                    <p><label for="Cluster1">Clusters :</label></p>
+                <div class="col-md-6">
+                <select multiple="multiple" id='sel1' class="col-md-5" style="height: 70px;width: 300px;border-radius: 10px;padding: 5px;">
+{#                       <option value="dart-main-sls12-01">dart-main-sls12-01</option>#}
+{#                       <option value="dart-main-sls12-02">dart-main-sls12-02</option>#}
+{#                       <option value="dart-main-sls12-03">dart-main-sls12-03</option>#}
+{#                       <option value="dart-main-sls12-04">dart-main-sls12-04</option>#}
+{#                       <option value="dart-main-sls12-05">dart-main-sls12-05</option>#}
+{#                       <option value="dart-main-sls12-06">dart-main-sls12-06</option>#}
+{#                       <option value="dart-main-sls12-07">dart-main-sls12-07</option>#}
+{#                       <option value="dart-main-sls12-08">dart-main-sls12-08</option>#}
+{#                       <option value="dart-main-sls12-09">dart-main-sls12-09</option>#}
+{#                       <option value="dart-main-sls12-10">dart-main-sls12-10</option>#}
+{#                       <option value="dart-main-sls12-11">dart-main-sls12-11</option>#}
+{#                       <option value="dart-main-sls12-12">dart-main-sls12-12</option>#}
+                 </select>
+                </div>
+                       <div class="col-md-6">
+                                        <textarea style="height: 70px;width: 300px;border-radius: 10px;padding: 5px;" name="display" id="display" placeholder="Selected list for test sets" cols="20" rows="4" readonly></textarea>
+                       </div>
+                       </div>
+                <p><input TYPE="button" class="btn-xs btn-danger" VALUE="Generate Dart Command" onClick="display1();"></p>
+
+                <div style="margin:10px 0" id="cmdDisplay1">
+                    <textarea style="margin:5px;width:950px;height:40px;" name="cmdDisplay" id="cmdDisplay" placeholder="Dart command to be displayed" cols="20" rows="4" readonly></textarea>
+                </div>
+
+			 <input href="#" class="btn-success btn-xs" type="submit" value="Run Command" onclick="cmd();" formmethod="get">
+
+
+                <div style="margin:10px 0" id="rundisplay1">
+                    <textarea style="margin:5px;width:950px;height:40px;" name="rundisplay" id="rundisplay" placeholder="Run id to be displayed" cols="20" rows="4" readonly></textarea>
+                </div>
+            </form>
+
+                </div><!--container end-->
+</section><!--content 1 ends here-->
+</div>
+
+
+<div style="clear:both"></div>
+<footer>
+	      <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> 2018 Teradata
+</footer>
+
+<script>
+    $( document ).ready(function() {
+        $('#cmdDisplay1').hide();
+    });
+</script>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+
+
+<script>
+
+    // arguments: reference to select list, callback function (optional)
+function getSelectedOptions(sel,fn) {
+    var opts = [], opt;
+
+    // loop through options in select list
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+
+
+        // check if selected
+        if ( opt.selected ) {
+            // add to array of option elements to return from this function
+            opts.push(opt);
+
+            // invoke optional callback function if provided
+            if (fn) {
+              fn(opt);
+            }
+        }
+    }
+    $('display option[value=' + objValue + ']').attr('selected', true);
+
+    // return array containing references to selected option elements
+    return opts;
+}
+
+// example callback function (selected options passed one by one)
+function callback(opt) {
+    // display in textarea for this example
+    var display = document.getElementById('display');
+    display.innerHTML += opt.value + ', ';
+
+    // can access properties of opt, such as...
+    //alert( opt.value )
+    //alert( opt.text )
+    //alert( opt.form )
+}
+
+// anonymous function onchange for select list with id lstBox2
+document.getElementById('sel1').onchange = function(e) {
+    // get reference to display textarea
+    var display = document.getElementById('display');
+    display.innerHTML = ''; // reset
+
+    // callback fn handles selected options
+    getSelectedOptions(this, callback);
+
+    // remove ', ' at end of string
+    var str = display.innerHTML.slice(0, -2);
+    display.innerHTML = str;
+};
+
+
+
+    // arguments: reference to select list, callback function (optional)
+function getSelectedOptions1(sel, fn) {
+    var opts = [], opt;
+
+    // loop through options in select list
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+
+        // check if selected
+        if ( opt.selected ) {
+            // add to array of option elements to return from this function
+            opts.push(opt);
+
+            // invoke optional callback function if provided
+             if (fn) {
+                fn(opt);
+            }
+        }
+    }
+
+    // return array containing references to selected option elements
+    return opts;
+}
+
+// example callback function (selected options passed one by one)
+function callback1(opt) {
+    // display in textarea for this example
+    var display2 = document.getElementById('display2');
+    display2.innerHTML += opt.value + ', ';
+
+    // can access properties of opt, such as...
+    //alert( opt.value )
+    //alert( opt.text )
+    //alert( opt.form )
+}
+
+// anonymous function onchange for select list with id lstBox4
+document.getElementById('sel').onchange = function(e) {
+    // get reference to display2 textarea
+    var display2 = document.getElementById('display2');
+    display2.innerHTML = ''; // reset
+
+    // callback fn handles selected options
+    getSelectedOptions1(this, callback1);
+
+    // remove ', ' at end of string
+    var str = display2.innerHTML.slice(0, -2);
+    display2.innerHTML = str;
+};
+
+</script>
+
+{#Json data to drop down list#}
+
+</body>
+</html>

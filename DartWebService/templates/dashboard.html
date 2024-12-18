@@ -1,0 +1,411 @@
+<!doctype html>
+<!--
+    name: dashboard.html
+    author: alen.cheng@teradata.com
+    copyright: copyright 2007, aster
+    date: 11/01/2016
+    uri: /
+    description: bottom page of main page. used to show all the test run infomation
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style media="all" type="text/css">
+        .aligncenter { text-align: center; }
+        .red { background-color: red; }
+    </style>
+    <style media="all" type="text/css">
+        .yadcf-filter {
+            width: 90px;
+        }
+
+        .yadcf-filter-date {
+            width: 70px;
+        }
+
+        .datatable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .toolbar {
+            float:left;
+        }
+    </style>
+    <title>test information</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"></link>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.2.2/css/select.dataTables.min.css"></link>
+    <link rel="stylesheet" type="text/css" src="static/css/jquery.dataTables.yadcf.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="static/js/ellipsis.js"></script>
+    <script type="text/javascript" src="static/js/jquery.dataTables.yadcf.js"></script>
+    <script type="text/javascript" src="utility.js"></script>
+    <script>
+        var gShowprivate = 0;
+        var gShowTagTest = false;
+        var table;
+        var checkedList = new Object();
+
+        function loadData(showprivate, showTagTest) {
+            /*
+                get data from database. 
+                the function is called when user choose any run id, cluster, project name 
+            */
+            if (showprivate) {
+                gShowprivate = 1;
+            } else {
+                gShowprivate = 0;
+            }
+            gShowTagTest = showTagTest
+
+            var apiUrl = "/api/dashboard?private=" + gShowprivate +  "&show_tag=" + gShowTagTest;
+            table.ajax.url(apiUrl).load()
+        }
+
+        tagTests = function() {
+            var checkedValue = null;
+            var idStr = "";
+            var ids = "";
+
+            if (Object.keys(checkedList).length === 0) {
+                alert("Please choose at least one test to tag");
+                return;
+            }
+
+            for (var key in checkedList) {
+                if (idStr == "") {
+                    idStr = "run_id='" + checkedList[key] + "'";
+                    ids = checkedList[key]
+                } else {
+                    idStr = idStr + " or "  + "run_id='" + checkedList[key] + "'";
+                    ids = ids + ", " + checkedList[key]
+                }   
+            }
+
+            if (idStr == "") {
+                alert("Please choose at least one test to tag");
+            } else {
+                var formData = {dbname: "dartdb", table: "dartruninfo", updating_column: [{name: "tag", value: "true"}], condition: idStr};
+                var apiUrl = "/api/update_row";
+
+                ret = confirm('Tagging ' + ids + '. Press OK to confirm.');
+
+                if (ret) {
+                    $.ajax({
+                        url: apiUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data : JSON.stringify(formData),
+                        success: function(res){
+                                     alert("Tag sucessful! Go to Dart Dashboard");
+                                     window.open("/", "_parent");
+                                 },
+                        error: function(req, err){ console.log('my message: ' + err); }
+                    });
+                }
+
+            }
+        }
+        
+	getCheckboxResult = function(){
+            var checkedValue = null; 
+	    var idStr = '';
+
+            if (Object.keys(checkedList).length === 0) {
+                alert("At lease choose one test.");
+                return;
+            }
+
+            for (var key in checkedList) {
+                idStr = checkedList[key] + ',' + idStr;
+            }
+  
+            window.open('/compareResult?run_id=' + idStr.substr(0,idStr.length - 1));
+            checkedList = new Object();
+            var apiUrl = "/api/dashboard?private=" + gShowprivate +  "&show_tag=" + gShowTagTest;
+            table.ajax.url(apiUrl).load()
+        }
+
+        checkboxChecked = function(id, checked) {
+            if (checked) {
+                if (!(id in checkedList)) {
+                    checkedList[id] = id;
+                }
+            } else {
+                if (id in checkedList) {
+                    delete checkedList[id];
+                }
+            }
+        }
+        
+        
+        function onFocusText(id)
+        {
+        	var myInput = document.getElementById(id).style
+        	myInput.borderStyle="solid";
+        }
+        
+
+		function onBlurText(id, orgValue)
+        {
+                
+        	var myInput = document.getElementById(id).style
+        	myInput.borderStyle="none";
+        	var newText = document.getElementById(id).value
+        	console.log(orgValue)
+        	console.log(newText)
+        	
+        	
+        	if (orgValue != newText) {
+        		
+            	fields = id.split(':')
+            	runId = fields[1]
+            	columnName = fields[0]
+            	
+            	
+            	var idStr = " run_id ='" + runId + "'"
+        		var formData = {dbname: "dartdb", table: "dartruninfo", updating_column: [{name: columnName, value: newText}], condition: idStr};
+                var apiUrl = "/api/update_row";
+
+                ret = confirm('Commiting ' + newText + ' in the Database. Press OK to confirm.');
+
+                if (ret) {
+                    $.ajax({
+                        url: apiUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data : JSON.stringify(formData),
+                        error: function(req, err){ console.log('Error: ' + err);  }
+                    });
+                }
+            	var apiUrl = "/api/dashboard?private=" + gShowprivate +  "&show_tag=" + gShowTagTest;
+            	table.ajax.url(apiUrl).load()
+           }
+           
+        }
+
+        
+        $(document).ready(function(){
+            runid = decodeURIComponent($.urlParam("run_id")); 
+            table = $('#datatable').DataTable({
+                  dom: 'l<"toolbar">frtip',
+                  initComplete: function(){
+                      var uri = $(location).attr('pathname');
+                      if (uri == "/dashboard") {
+                          $("div.toolbar").html('&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="compareBnt" onclick="getCheckboxResult()">Compare</button>');           
+                      } else {
+                          $("div.toolbar").html('&nbsp;&nbsp;&nbsp;&nbsp;<button type="button" id="tagBnt" onclick="tagTests()">Tag Test</button>');
+                      }
+                  }, 
+                  "select": true,
+                  "responsive": true,
+                  "processing": true,
+                  "serverSide": true,
+                  "stateSave": true,
+                  "scrollX" : true,
+		  	      "ajax": "/api/dashboard?private=" + gShowprivate + "&show_tag=" + gShowTagTest,
+		  	      "columnDefs": [{"sClass": "alignRight", "targets": "_all"}],
+                  "lengthMenu": [[15, 30, 100], [15, 30, 100]],
+                  "rowHeight": "0%",
+                  "columns": [
+                        {
+                            data: null,
+                            "width" : "5%",
+                            render: function( data, type, full, meta) {
+                                var checkedStr = ""
+                                if (data["run_id"] in checkedList) {
+                                    checkedStr = "checked";
+                                }
+
+                                var comments = "-";
+                                if (data["comments"]) {
+                                    comments = data["comments"]
+                                }
+
+                                var keywords = "-";
+                                if (data["keywords"]) {
+                                    keywords = data["keywords"]
+                                }
+                                var runIdUrl = '<input class="runIdCheckbox" type="checkbox" id=' + data["run_id"]  + ' value=';
+                                runIdUrl = runIdUrl + data["run_id"] + ' ' + checkedStr + ' onclick="checkboxChecked(this.id, this.checked);">&nbsp;&nbsp;<a href="/report?run_id=';
+                                runIdUrl = runIdUrl + data["run_id"]  + '&release_name=' + data["release_name"] + '&tester=' 
+                                runIdUrl = runIdUrl + data["tester"]  + '&comments=' + comments + '&keywords=' + keywords + '" target="_parent">' + data["run_id"] + '</a>'
+                                
+                                return runIdUrl;
+                            }
+                        },
+                        {"data": "run_label", "width": "3%", "className": "dt-center"},
+                        {"data": "branch", "width" : "5%", "render": $.fn.dataTable.render.ellipsis(14)},
+                        {"data": null, "width" : "7%", "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["release"])}, "className": "dt-center"},
+                        {"data": "release_name", "width" : "7%", "render": $.fn.dataTable.render.ellipsis(14)},
+                        {"data": "revision", "render": $.fn.dataTable.render.ellipsis(6), "className": "dt-center"},
+                        {"data": "tester", "render": $.fn.dataTable.render.ellipsis(10), "className": "dt-center"},
+                        {
+                            data: null,
+                            className: "dt-center",
+                            render: function( data, type, full, meta) {
+                                var startTime = data["start_time"]
+                                if (startTime != null) {
+                                    startTime = startTime.replace("GMT", "PDT")
+                                }
+                                if (startTime == null) {
+                                    startTime = "-";
+                                } else {
+                                    var datetime = new Date(startTime);
+                                    startTime = $.convertDateString(datetime)
+                                }
+                                return startTime 
+                            }
+                        },
+                        {"data": null,  "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["duration"])}, "className": "dt-center"},
+                        {"data": "num_cluster", "orderable": false, "width": "7%", "className": "dt-center"},
+                        {"data": "jira", "orderable": false, "width": "3%", "className": "dt-center"},
+                        {"data": "total", "orderable": false, "width": "3%", "className": "dt-center"},
+                        {"data": "running", "className": "alignCenter", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "waiting", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "pass", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {   
+                            "data": null, 
+                            "className": "dt-center",
+                            "orderable": false, 
+                            "width": "2%",
+                            "render": function( data, type, full, meta) {
+                                var failCol = 0;
+                                if (data["fail"] != 0) {
+                                    failCol = '<a href="failTest?run_id=' + data["run_id"] + '&page=testset" target="_parent">' + data["fail"] + '</a>';
+                                }
+
+                                return failCol;
+                             }
+                        }, 
+                        {"data": "abort", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": "skip", "orderable": false, "width": "2%", "className": "dt-center"},
+                        {"data": null, "render": function( data, type, full, meta) {return $.checkFieldEmpty(data["build_number"])}, "className": "dt-center"},
+                        {"data": null,
+                         "width" : "5%",
+                         "render": function(data, type, full, meta) {
+                         	  var orgVal = $.checkFieldEmpty(data["keywords"])
+                              var keywordsUrl = '<input class="keywords" id=keywords:' + data["run_id"] + ' type="input" style="border:none" onfocus="onFocusText(this.id);" '
+                              keywordsUrl = keywordsUrl + ' onblur="onBlurText(this.id, \'' + orgVal + '\');" '  + ' value=';
+                              keywordsUrl = keywordsUrl + "\'" + $.checkFieldEmpty(data["keywords"]) + "\'" +  '>'
+                              return keywordsUrl
+                          }
+                        },
+                        {"data": null,
+                          "width" : "20%",
+                         "render": function(data, type, full, meta) {
+                         	  var orgVal = $.checkFieldEmpty(data["comments"]);
+                              var commentsUrl = '<input class="comments" id=comments:' + data["run_id"] + ' type="input" style="border:none; width:100%" onfocus="onFocusText(this.id);" '
+                              commentsUrl = commentsUrl + ' onblur="onBlurText(this.id, \'' + orgVal + '\');" '  + ' value=';
+                              commentsUrl = commentsUrl + "\'" + $.checkFieldEmpty(data["comments"]) + "\'" +  '>'
+                              return commentsUrl
+                          }
+                        }
+                        
+                  ],
+                  "aaSorting": [[0,'desc']],
+                  "aoColumnDefs": [
+                      {
+                          "aTargets": ["_all"],
+                          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                              if (iCol == 0 || iCol == 1 || iCol == 2 || iCol == 3 || iCol == 4 || iCol == 5
+                                  || iCol == 6 || iCol == 7 || iCol == 8 || iCol == 9 || iCol == 10 || iCol == 11) {
+                                  if (oData["tag"]) {
+                                      $(nTd).css('background-color', '#A9E2F3')
+                                  }
+                              }
+
+                              if (iCol == 1 && sData == "BAT") {
+                                  $(nTd).css('background-color', '#F8EFFB')
+                              } else if (iCol == 1 && sData == "SAN") {
+                                  $(nTd).css('background-color', '#F7F2E0')
+                              } else if (iCol == 1 && sData == "WKY") {
+                                  $(nTd).css('background-color', '#EFFBFB')
+                              } else if (iCol == 1 && sData == "NGT") {
+                                  $(nTd).css('background-color', '#FBF8EF')
+                              }
+
+                              if (iCol == 12 || iCol == 13 || iCol == 14 || iCol == 15 || iCol == 16 || iCol == 17) {
+                                  $(nTd).css('background-color', '#F2F2F2')
+                              }
+
+                              if (iCol == 12 && sData != 0) {
+                                  $(nTd).css('background-color', '#38fff8')
+                              } else if (iCol == 13 && sData != 0) {
+                                  $(nTd).css('background-color', '#c0c0c0')
+                              } else if (iCol == 14 && sData != 0) {
+                                  $(nTd).css('background-color', '#67fd9a')
+                              } else if (iCol == 15 && oData["fail"] != 0) {
+                                  $(nTd).css('background-color', '#fd6864')
+                              } else if (iCol == 16 && sData != 0) {
+                                  $(nTd).css('background-color','#9698ed')
+                              } else if (iCol == 17 && sData != 0) {
+                                  $(nTd).css('background-color', '#fffe65')
+                              }
+                          }
+                      }
+                  ]
+              });
+             $('#datatable').css( {
+                 "font-size": "90%"
+             });
+            
+            yadcf.init(table, [
+                {
+                    column_number: 0,
+                    filter_default_label: "*"
+                },
+                {
+                    column_number: 2,
+                    filter_default_label: "*"
+                },
+                {
+                    column_number: 3,
+                    filter_default_label: "*"
+                },
+                {
+                    column_number: 4,
+                    filter_default_label: "*"
+                }
+             ]);
+
+            if (runid) {
+                table.search(runid).draw();
+            }
+         });
+    </script>
+</head>
+<body>
+    <div id="content" style="background-color:#F7BE81; width:100%; float:center; border-radius: 5px;">
+	 <table id="datatable" width="125%" class="row-border">
+            <thead>
+              <tr>
+              <th>Run ID</th>
+              <th>Job</th>
+              <th>Branch</th>
+              <th>Release</th>
+              <th>Project</th>
+              <th>Rev</th>
+              <th>Tester</th>
+              <th>Start Time</th>
+              <th>Duration</th>
+              <th>Clusters</th>
+              <th>Jira</th>
+              <th>Total</th>
+              <th>R</th>
+              <th>W</th>
+              <th>P</th>
+              <th>F</th>
+              <th>A</th>
+              <th>S</th>
+              <th>Build</th>
+			  <th>Keywords</th>
+              <th>Comments</th>     
+              </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

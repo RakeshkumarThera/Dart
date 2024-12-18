@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+    Name: failTestNav.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /failTest
+    Description: Top page of failTest page
+                 Show select boxes to allowed user to select failed test by Run ID
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>failTestNav</title>
+    <style media="all" type="text/css">
+        .alignLeft { float: left; }
+        .alignCenter { float: center; }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="/utility.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function () {
+            $("#runIdList").click(function () {
+                var runId = document.getElementById("runIdList").value;
+                window.parent.document.getElementById('failTestBottom').contentWindow.loadData(runId);
+                $.getSelectFormData(runId);
+            });
+        }); 
+
+        $.renderForm = function(res, runId) {
+            /*
+                Put the data to jQuery datatable
+            */
+            /*
+                Put the data to jQuery datatable
+            */
+            var text = '';
+            var results = res.results;
+            for (i = 0; i < results.length; i++) {
+                if (runId == results[i].run_id) {
+                    text = text + '<option value="' + results[i].run_id + '" selected="selected">' + results[i].run_id + '</option>'
+                } else {
+                    text = text + '<option value="' + results[i].run_id + '">' + results[i].run_id + '</option>'
+                }
+            }
+
+            return text; 
+        }
+
+        $.getSelectFormData = function(runId) {
+            /*
+                Get all of Run ID and Cluster from server
+            */
+            condition = encodeURIComponent("status='FAIL' order by run_id desc")
+            $.ajax({
+                     url: '/api/select_rows?dbname=dartdb&table=darttest&columns=distinct%20run_id&condition=' + condition,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#runIdList').html($.renderForm(res, runId));
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+        }
+
+        $(document).ready(function(){
+            runid = decodeURIComponent($.urlParam("run_id"))
+            $.getSelectFormData(runid);
+        });
+    </script>
+</head>
+<body>
+    <div id="head" style="background-color:#F7BE81; width:100%; height:50px; float:center; border-radius: 5px;" align="center">
+        <p class="alignLeft"><a href="/" target="_parent">Go to Dashboard</a></p>
+        <p style="margin-right:5%; margin-top:0%">
+            <b><font size="6" color="black">Dart Failed Test Report</font></b>
+        </p>
+    </div>
+    <div id="nav-div" style="background-color:orange; width:99%; float:center; border-radius: 5px; margin:2px;padding:5px;" align="left">
+        Run ID:&nbsp;
+        <select id="runIdList" form="runIdForm">
+        </select>
+    </div>
+</body>
+</html>
+

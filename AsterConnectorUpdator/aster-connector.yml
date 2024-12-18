@@ -1,0 +1,8 @@
+##################################
+# Task: configure Aster connector
+##################################
+
+- name: configure and update Aster connector on [localhost]
+  hosts: localhost
+  roles:
+     - { role: aster-connector }

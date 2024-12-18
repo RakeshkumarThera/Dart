@@ -1,0 +1,78 @@
+INFO: 2018-08-21 10:55:46,389:Dart.py:120: Logfile is /root/Dart/log/Dart-NullTest-180821-43-105546.log
+INFO: 2018-08-21 10:55:46,917:Dart.py:390: NAME      READY     STATUS    RESTARTS   AGE
+consul    1/1       Running   0          4d
+
+INFO: 2018-08-21 10:55:46,917:Dart.py:418: consul
+INFO: 2018-08-21 10:55:46,917:Dart.py:460: []
+INFO: 2018-08-21 10:55:46,918:Dart.py:461: []
+INFO: 2018-08-21 10:55:46,918:Dart.py:299: Test Set: SqlTests 
+INFO: 2018-08-21 10:55:46,918:Dart.py:313: Running Testset: SqlTests
+INFO: 2018-08-21 10:55:46,918:Dart.py:319:         Running Test: NullTest on Cluster dartexe
+INFO: 2018-08-21 10:55:46,919:Dart.py:322: [u'NullTest', {u'OWNER': u'divya.sivanandan', 'testSet': u'SqlTests', 'testPlan': None, 'tester': 'root', 'projectName': 'MLEngine', 'buildNumber': '', 'buildName': 'beehive-ci-pipeline-main', u'USER': u'beehive', u'TIMEOUT': 800, u'PASSWORD': u'beehive', 'id': 1526725, u'CATEGORY': u'positive', u'EXPECTEDOUT': u'testsrc/queen/sql/test_sql/expectedQueryResults/null.out', u'NAME': u'NullTest', 'timeScale': 1, u'DATABASE': u'beehive', 'reTryCnt': 0, u'COMPONENT': u'queen/sql/test_sql', u'PRIORITY': u'2', 'runId': u'180821-43', u'TEMPLATE': u'True', u'ACTPARAMS': u'-a', 'release': 'GGR3', u'QUERY': u'testsrc/queen/sql/test_sql/input/null.sql', 'branchName': '', u'TYPE': u'SQL', 'testId': 1}, 0]
+INFO: 2018-08-21 10:55:46,924:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-21 10:55:46,924:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-21 10:55:46,924:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-21 10:55:46,924:TestBase.py:45:           OWNER : divya.sivanandan 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           testSet : SqlTests 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           testPlan : None 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           tester : root 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           projectName : MLEngine 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-21 10:55:46,925:TestBase.py:45:           buildNumber :  
+INFO: 2018-08-21 10:55:46,926:TestBase.py:45:           buildName : beehive-ci-pipeline-main 
+INFO: 2018-08-21 10:55:46,926:TestBase.py:45:           USER : beehive 
+INFO: 2018-08-21 10:55:46,926:TestBase.py:45:           TIMEOUT : 800 
+INFO: 2018-08-21 10:55:46,926:TestBase.py:45:           filePath : queen/sql/test_sql 
+INFO: 2018-08-21 10:55:46,926:TestBase.py:45:           PASSWORD : beehive 
+INFO: 2018-08-21 10:55:46,927:TestBase.py:45:           id : 1526725 
+INFO: 2018-08-21 10:55:46,927:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-21 10:55:46,927:TestBase.py:45:           EXPECTEDOUT : testsrc/queen/sql/test_sql/expectedQueryResults/null.out 
+INFO: 2018-08-21 10:55:46,927:TestBase.py:45:           NAME : NullTest 
+INFO: 2018-08-21 10:55:46,927:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-21 10:55:46,928:TestBase.py:45:           DATABASE : beehive 
+INFO: 2018-08-21 10:55:46,928:TestBase.py:45:           reTryCnt : 0 
+INFO: 2018-08-21 10:55:46,928:TestBase.py:45:           COMPONENT : queen/sql/test_sql 
+INFO: 2018-08-21 10:55:46,928:TestBase.py:45:           PRIORITY : 2 
+INFO: 2018-08-21 10:55:46,928:TestBase.py:45:           logTimestamp : 2018-08-21-105546 
+INFO: 2018-08-21 10:55:46,929:TestBase.py:45:           runId : 180821-43 
+INFO: 2018-08-21 10:55:46,929:TestBase.py:45:           TEMPLATE : True 
+INFO: 2018-08-21 10:55:46,929:TestBase.py:45:           ACTPARAMS : -a 
+INFO: 2018-08-21 10:55:46,929:TestBase.py:45:           release : GGR3 
+INFO: 2018-08-21 10:55:46,929:TestBase.py:45:           QUERY : testsrc/queen/sql/test_sql/input/null.sql 
+INFO: 2018-08-21 10:55:46,930:TestBase.py:45:           branchName :  
+INFO: 2018-08-21 10:55:46,930:TestBase.py:45:           TYPE : SQL 
+INFO: 2018-08-21 10:55:46,930:TestBase.py:45:           testId : 1 
+INFO: 2018-08-21 10:55:46,931:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-21 10:55:46,947:Kubernetes.py:82: Executing command [10.25.80.32]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-21 10:55:47,433:TestBase.py:170: NAME      READY     STATUS    RESTARTS   AGE
+consul    1/1       Running   0          4d
+
+INFO: 2018-08-21 10:55:47,433:Kubernetes.py:82: Executing command [10.25.80.32]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+ERROR: 2018-08-21 10:55:47,860:Dart.py:772: list index out of range
+ERROR: 2018-08-21 10:55:47,860:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-21 10:55:47,860:Dart.py:774: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7f38d61eb050>)
+ERROR: 2018-08-21 10:55:47,862:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 758, in runTest
+    result = testInstance.run()
+  File "/root/Dart/lib/SqlRun.py", line 61, in run
+    actParams, diffParams)
+  File "/root/Dart/lib/TestBase.py", line 545, in excSqlFileAndCompareOutput
+    queenNode = self.queenNames[0]
+IndexError: list index out of range
+
+INFO: 2018-08-21 10:55:47,862:Dart.py:781: The test NullTest has FAILED
+ERROR: 2018-08-21 10:55:47,862:Dart.py:325: list index out of range
+ERROR: 2018-08-21 10:55:47,863:Dart.py:327: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7f38d51af0e0>)
+ERROR: 2018-08-21 10:55:47,863:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 758, in runTest
+    result = testInstance.run()
+  File "/root/Dart/lib/SqlRun.py", line 61, in run
+    actParams, diffParams)
+  File "/root/Dart/lib/TestBase.py", line 545, in excSqlFileAndCompareOutput
+    queenNode = self.queenNames[0]
+IndexError: list index out of range
+
+INFO: 2018-08-21 10:55:47,864:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-21 10:55:47,864:Dart.py:334: Test Set : SqlTests Total Execution Time: 0 

@@ -1,0 +1,101 @@
+INFO: 2018-08-15 15:49:16,936:Dart.py:120: Logfile is /root/Dart/log/Dart-AsterInstallOnK8s-180815-131-154916.log
+INFO: 2018-08-15 15:49:17,687:Dart.py:390: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:17,687:Dart.py:418: consul
+INFO: 2018-08-15 15:49:17,687:Dart.py:418: queen
+INFO: 2018-08-15 15:49:17,687:Dart.py:424: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:18,223:Dart.py:390: 10.25.83.50
+INFO: 2018-08-15 15:49:18,223:Dart.py:426: 10.25.83.50
+INFO: 2018-08-15 15:49:18,223:Dart.py:429: 10.25.83.50
+INFO: 2018-08-15 15:49:18,223:Dart.py:418: worker1
+INFO: 2018-08-15 15:49:18,223:Dart.py:424: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:18,784:Dart.py:390: 10.25.83.52
+INFO: 2018-08-15 15:49:18,784:Dart.py:426: 10.25.83.52
+INFO: 2018-08-15 15:49:18,784:Dart.py:429: 10.25.83.52
+INFO: 2018-08-15 15:49:18,785:Dart.py:418: worker2
+INFO: 2018-08-15 15:49:18,785:Dart.py:424: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:19,511:Dart.py:390: 10.25.83.53
+INFO: 2018-08-15 15:49:19,511:Dart.py:426: 10.25.83.53
+INFO: 2018-08-15 15:49:19,511:Dart.py:429: 10.25.83.53
+INFO: 2018-08-15 15:49:19,511:Dart.py:418: worker3
+INFO: 2018-08-15 15:49:19,511:Dart.py:424: kubectl get -o template po worker3 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:21,051:Dart.py:390: 10.25.83.51
+INFO: 2018-08-15 15:49:21,052:Dart.py:426: 10.25.83.51
+INFO: 2018-08-15 15:49:21,052:Dart.py:429: 10.25.83.51
+INFO: 2018-08-15 15:49:21,052:Dart.py:460: ['10.25.83.50']
+INFO: 2018-08-15 15:49:21,053:Dart.py:461: ['10.25.83.52', '10.25.83.53', '10.25.83.51']
+INFO: 2018-08-15 15:49:21,053:Dart.py:299: Test Set: Install 
+INFO: 2018-08-15 15:49:21,053:Dart.py:313: Running Testset: Install
+INFO: 2018-08-15 15:49:21,053:Dart.py:319:         Running Test: AsterInstallOnK8s on Cluster dart-main-sls12-03
+INFO: 2018-08-15 15:49:21,053:Dart.py:322: [u'AsterInstallOnK8s', {u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'WORKERPOD_COUNT': 2, 'testId': 1, u'TIMEOUT': 7200, u'localRegistry': u'False', 'id': 1511262, u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'dockerRepoHost': u'sdartifact.td.teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'OWNER': u'naveen.williams', u'PARTITIONS_PER_WORKERPOD': 2, 'runId': u'180815-131'}, 0]
+INFO: 2018-08-15 15:49:21,083:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-15 15:49:21,083:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-15 15:49:21,084:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           deleteDockerImages : True 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           testSet : Install 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           filePath : devops_installer/docker 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           dockerRepoUser : da230151 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           dockerRepoPassword : APB4dyNjaZ5Dr6gRKDoy8vGDcQt 
+INFO: 2018-08-15 15:49:21,084:TestBase.py:45:           WORKERPOD_COUNT : 2 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           testId : 1 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           TIMEOUT : 7200 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           localRegistry : False 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           id : 1511262 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           dockerRepoPath : asterdata/beehive/drops/ci/08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:21,085:TestBase.py:45:           NAME : AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           dockerRepoEmail : da230151@teradata.com 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           dockerRepoHost : sdartifact.td.teradata.com 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           COMPONENT : devops_installer/docker 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           dockerRepoTag : 08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           PRIORITY : 1 
+INFO: 2018-08-15 15:49:21,086:TestBase.py:45:           logTimestamp : 2018-08-15-154921 
+INFO: 2018-08-15 15:49:21,087:TestBase.py:45:           LOCATION : devops_installer/docker/AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:21,087:TestBase.py:45:           OWNER : naveen.williams 
+INFO: 2018-08-15 15:49:21,087:TestBase.py:45:           PARTITIONS_PER_WORKERPOD : 2 
+INFO: 2018-08-15 15:49:21,087:TestBase.py:45:           runId : 180815-131 
+INFO: 2018-08-15 15:49:21,087:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-15 15:49:21,116:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-15 15:49:21,899:TestBase.py:170: NAME      READY     STATUS    RESTARTS   AGE
+consul    1/1       Running   0          17m
+queen     15/18     Error     15         16m
+worker1   7/7       Running   0          9m
+worker2   7/7       Running   0          9m
+worker3   7/7       Running   0          9m
+
+INFO: 2018-08-15 15:49:21,899:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+ERROR: 2018-08-15 15:49:22,501:Dart.py:772: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:22,501:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-15 15:49:22,501:Dart.py:774: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7fa3154b5ef0>)
+ERROR: 2018-08-15 15:49:22,502:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:22,502:Dart.py:781: The test AsterInstallOnK8s has FAILED
+ERROR: 2018-08-15 15:49:22,502:Dart.py:325: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:22,503:Dart.py:327: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7fa314460050>)
+ERROR: 2018-08-15 15:49:22,503:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:22,503:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-15 15:49:22,503:Dart.py:334: Test Set : Install Total Execution Time: 1 

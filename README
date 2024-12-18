@@ -1,0 +1,3 @@
+Steps to Run a test
+1. source dart.env
+2. python Dart.py -c <cluster_config> -t <test_list>

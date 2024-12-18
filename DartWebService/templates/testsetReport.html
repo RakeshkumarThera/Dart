@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--
+    Name: testsetReport.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /testsetReport
+    Description: Show test by Test set or Test suite
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dart Test Report</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            runid = decodeURIComponent($.urlParam("run_id"))
+            page = decodeURIComponent($.urlParam("page"))
+            $("#navTestset").attr("src", "navTestset?run_id=" + runid + "&page=" + page)
+            $("#groupByTestset").attr("src", "groupByTestset?run_id=" + runid + "&page=" + page)
+        });
+    </script>
+</head>
+<frameset id="test_frame" rows="90,*" frameborder="0" framespacing="0">
+<frame id="navTestset" src="navTestset" name="titlebar" scrolling="no"></frame>
+<frame id="groupByTestset" src="groupByTestset" name="mainframe"></frame>
+</script>
+</frameset> 
+</html>
+

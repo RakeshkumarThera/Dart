@@ -1,0 +1,40 @@
+- name: Uninstall HDP
+  hosts: "{{ hdp_cluster }}"
+  user: root
+  sudo: True
+  vars:
+      only_ambari_uninstall: "False" 
+      only_hadoop_uninstall: "False" 
+  vars_files:
+      - uninstall_hdp_variables.yml
+  gather_facts: True
+  pre_tasks:
+      #########################################################################
+      # Get the package installer for the OS                                  #
+      #########################################################################
+      - name: Register package installer for the system.
+        set_fact: package_uninstall_cmd="yum -y"
+        when: ansible_distribution == "CentOS" or 
+              ansible_distribution == "RedHat" or
+              ansible_distribution == "Oracle"
+
+      - name: Register package installer for the system.
+        set_fact: package_uninstall_cmd="zypper"
+        when: ansible_distribution == "SLES" 
+
+      - name: Register package installer for the system.
+        set_fact: package_uninstall_cmd="apt-get -y"
+        when: ansible_distribution == "Ubuntu" or 
+              ansible_distribution == "Debian"
+
+  roles:
+#      - role: kerberos_uninstall
+#        installCmd: "{{ package_uninstall_cmd }}"
+
+      - role: hadoop_uninstall
+        installCmd: "{{ package_uninstall_cmd }}"
+        when: only_ambari_uninstall != "True"
+
+      - role: ambari_uninstall
+        installCmd: "{{ package_uninstall_cmd }}"
+        when: only_hadoop_uninstall != "True"

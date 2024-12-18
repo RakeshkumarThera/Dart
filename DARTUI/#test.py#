@@ -1,0 +1,71 @@
+from flask import Flask, render_template, jsonify, request
+from flask_restful import Resource, Api
+from Database_Connection import *
+import subprocess,psycopg2,wtforms,sqlalchemy
+import os, time
+from pprint import pprint
+from subprocess import check_output
+
+app = Flask(__name__)
+api = Api(app)
+
+@app.route('/')
+def dui():
+    return render_template("test.html")
+
+@app.route('/cmd', methods=['POST', 'GET'])
+#def cmd():
+ #   text = request.get_json()
+    #process = subprocess.Popen(text['command'], stderr=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+    #stderr,stdout = process.communicate(
+    #print(stdout,stderr))
+    #process = subprocess.Popen(text['command'], shell=True, stdout=subprocess.PIPE)
+  #  proc = subprocess.Popen("ls -rt1 | tail -1",shell=True, cwd="/root/Dart/log")
+   # return jsonify(text)
+def execCmdLocal(cmd):
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE,
+                                shell=True )
+            
+    stdout, stderr = proc.communicate()
+    status = proc.poll()
+        
+    if status != 0:
+         print("Failed to execute command %s" % cmd)
+    return status, stdout, stderr
+
+time.sleep(1)
+cmdStr = 'cd /root/Dart/log; ls -rt DartRunner*.log | tail -1 '
+ret = execCmdLocal(cmdStr)
+#pprint(ret)
+logName = ret[1].strip()
+print('The DartRunner Log generated is: %s'%logName)
+with open(logName, "r") as fd:
+    for line in fd:
+        if 'runId' in line:
+         runId = line.split()[-1]
+         print('Run Id: %s'%runId)
+        break;
+
+@app.route('/conn', methods=['GET','POST'])
+def test1():
+    test1=test()
+    return jsonify(test1)
+
+@app.route('/conn1', methods=['GET','POST'])
+def Clusters1():
+    Clusters1=Clusters()
+    return jsonify(Clusters1)
+
+@app.route('/conn2', methods=['GET','POST'])
+def HealthCheck1():
+    HealthCheck1=HealthCheck()
+    return jsonify(HealthCheck1)
+
+@app.route('/conn3', methods=['GET','POST'])
+def Install1():
+    Install1=Install()
+    return jsonify(Install1)
+
+if __name__ == '__main__':
+  app.run(host='0.0.0.0', port=8080)

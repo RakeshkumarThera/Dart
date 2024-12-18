@@ -1,0 +1,426 @@
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+172.16.106.223 - - [08/Aug/2018 13:19:45] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:19:46] "GET /HealthCheck_Install HTTP/1.1" 200 -
+[2018-08-08 13:19:46,171] ERROR in app: Exception on /clusters [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 171, in clusters
+    clusters = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/config/'
+[2018-08-08 13:19:46,172] ERROR in app: Exception on /install [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 186, in InstallTests
+    install = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+172.16.106.223 - - [08/Aug/2018 13:19:46] "GET /install HTTP/1.1" 500 -
+[2018-08-08 13:19:46,173] ERROR in app: Exception on /testset [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 156, in testset
+    tests = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+172.16.106.223 - - [08/Aug/2018 13:19:46] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:19:46] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:19:48] "GET / HTTP/1.1" 200 -
+[2018-08-08 13:19:48,447] ERROR in app: Exception on /install [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 186, in InstallTests
+    install = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+172.16.106.223 - - [08/Aug/2018 13:19:48] "GET /install HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:19:48] "GET /HealthCheck_Install HTTP/1.1" 200 -
+[2018-08-08 13:19:48,462] ERROR in app: Exception on /testset [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 156, in testset
+    tests = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+[2018-08-08 13:19:48,463] ERROR in app: Exception on /clusters [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 171, in clusters
+    clusters = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/config/'
+172.16.106.223 - - [08/Aug/2018 13:19:48] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:19:48] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:19:53] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:19:53] "GET /HealthCheck_Install HTTP/1.1" 200 -
+[2018-08-08 13:19:53,901] ERROR in app: Exception on /testset [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 156, in testset
+    tests = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+172.16.106.223 - - [08/Aug/2018 13:19:53] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 500 -
+[2018-08-08 13:19:53,903] ERROR in app: Exception on /install [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 186, in InstallTests
+    install = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/'
+172.16.106.223 - - [08/Aug/2018 13:19:53] "GET /install HTTP/1.1" 500 -
+[2018-08-08 13:19:53,904] ERROR in app: Exception on /clusters [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 171, in clusters
+    clusters = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/config/'
+172.16.106.223 - - [08/Aug/2018 13:19:53] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 500 -
+[2018-08-08 13:20:03,900] ERROR in app: Exception on /gitpull [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 220, in GitPull
+    os.chdir( path )
+OSError: [Errno 2] No such file or directory: '/root/Dart/'
+172.16.106.223 - - [08/Aug/2018 13:20:03] "GET /gitpull HTTP/1.1" 500 -
+172.16.106.223 - - [08/Aug/2018 13:20:05] "GET /help HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:43] "GET /history HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:44] "GET /conn_history?draw=1&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1533759878871 HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:50] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:50] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:50] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:50] "GET /install HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:23:50] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+172.16.106.223 - - [08/Aug/2018 13:28:04] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:28:04] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:28:04] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:28:04] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:28:04] "GET /install HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:49:02] "GET /history HTTP/1.1" 200 -
+172.16.106.223 - - [08/Aug/2018 13:49:02] "GET /conn_history?draw=1&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1533761397740 HTTP/1.1" 200 -
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+172.16.106.223 - - [09/Aug/2018 09:26:18] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [09/Aug/2018 09:26:19] "GET /static/css/images/teradata-logo.png HTTP/1.1" 304 -
+172.16.106.223 - - [09/Aug/2018 09:26:19] "GET /static/css/style.css HTTP/1.1" 304 -
+172.16.106.223 - - [09/Aug/2018 09:26:19] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.16.106.223 - - [09/Aug/2018 09:26:20] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.16.106.223 - - [09/Aug/2018 09:26:20] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.16.106.223 - - [09/Aug/2018 09:26:20] "GET /install HTTP/1.1" 200 -
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+172.20.21.122 - - [10/Aug/2018 17:44:46] "GET / HTTP/1.1" 200 -
+172.20.21.122 - - [10/Aug/2018 17:44:47] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.21.122 - - [10/Aug/2018 17:44:47] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.21.122 - - [10/Aug/2018 17:44:47] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.21.122 - - [10/Aug/2018 17:44:47] "GET /install HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:31] "GET / HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:32] "GET /static/css/style.css HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:32] "GET /static/css/images/teradata-logo.png HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:33] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:33] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:33] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:07:34] "GET /install HTTP/1.1" 200 -
+[2018-08-11 22:25:39,870] ERROR in app: Exception on /testset [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 156, in testset
+    tests = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/REG'
+172.20.18.66 - - [11/Aug/2018 22:25:39] "GET /testset?path=/root/Dart/testset/REG HTTP/1.1" 500 -
+[2018-08-11 22:25:42,788] ERROR in app: Exception on /testset [GET]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask_restful/__init__.py", line 273, in error_router
+    return original_handler(e)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/usr/local/lib/python2.7/dist-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "test.py", line 156, in testset
+    tests = os.listdir(path)
+OSError: [Errno 2] No such file or directory: '/root/Dart/testset/REG'
+172.20.18.66 - - [11/Aug/2018 22:25:42] "GET /testset?path=/root/Dart/testset/REG HTTP/1.1" 500 -
+172.20.18.66 - - [11/Aug/2018 22:25:58] "GET /testset?path=/root/Dart/testset/spark HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:25:59] "GET /testset?path=/root/Dart/testset/spark HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:07] "GET /postgitpulltime HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:10] "GET /gitpull HTTP/1.1" 200 -
+From https://github.td.teradata.com/aster/Dart
+   379ea61..37ec51d  master     -> origin/master
+   b4a1203..a8876c8  ANLY-6522  -> origin/ANLY-6522
+   80514d3..ce87f29  ELE-753-lazy-non-driver -> origin/ELE-753-lazy-non-driver
+   d6e0073..ca917b8  ELE-760_regen -> origin/ELE-760_regen
+   e8aa00a..9578738  MISC-609   -> origin/MISC-609
+ * [new branch]      gp186005-patch-1-fixlarstst -> origin/gp186005-patch-1-fixlarstst
+ * [new branch]      installchange -> origin/installchange
+Updating 379ea61..37ec51d
+Fast-forward
+ testset/REG_GGR3_TDAP.tst                          |  20 +-
+ .../LARS/test_LARS_testclause.tst                  |   6 +-
+ .../clustering/KMeans/test-td_kmeans-negative.R    |  62 +-
+ .../clustering/KMeans/test-td_kmeans-positive.R    |  77 +++
+ .../test-td_decision_forest-negative.R             | 159 +++--
+ .../test-td_decision_forest-positive.R             |  51 ++
+ .../test-td_decision_forest_evaluator-negative.R   |  16 +-
+ .../test-td_decision_forest_evaluator-positive.R   |  11 +-
+ .../ta.single.tree.drive0_test_negative_1.R        | 124 ++--
+ .../ta.single.tree.drive0_test_negative_2.R        |  46 +-
+ .../ta.single.tree.drive0_test_positive_1.R        | 117 +++-
+ .../ta.single.tree.drive0_test_positive_2.R        |  51 +-
+ .../GLM/test-td_glm-negative.R                     |  86 +--
+ .../GLM/test-td_glm-positive.R                     |  51 ++
+ .../svm_sparse/td_svm_sparse_train_test_negative.R | 105 ++--
+ .../svm_sparse/td_svm_sparse_train_test_positive.R |  76 +++
+ .../td_naivebayes_textclassifier0_test_negative.R  |  48 +-
+ .../td_naivebayestextclassifier1_test_negative.R   |  75 ++-
+ .../td_naivebayestextclassifier2_test_positive.R   |  76 +++
+ testsrc/Promethium_UserManagement/CheckSchema.py   |  11 +-
+ testsrc/Promethium_UserManagement/CheckScript.py   |  26 +-
+ .../Promethium_UserManagement/DropUserSemantics.py |  28 +-
+ .../Promethium_UserManagement/InvocationPoints.py  |  38 +-
+ testsrc/Promethium_UserManagement/Logging.py       |  74 +--
+ .../Promethium_UserManagement/LoggingPasswords.py  |  28 +-
+ testsrc/Promethium_UserManagement/Performance.py   |  43 +-
+ .../UserManagementSetup.py                         |   2 +-
+ .../Promethium_UserManagement/VerifyUsernames.py   |  54 +-
+ testsrc/Promethium_UserManagement/lib/UMCommon.py  | 162 ++++--
+ .../expectedQueryResults/vwap.results.queryResults |   6 +
+ .../vwap_arg_parser.results.queryResults           |   7 +
+ .../vwap_arg_parser_negative.results.queryResults  |   1 +
+ testsrc/analytic/statistics/vwap/input/vwap.sql    |   6 +-
+ .../statistics/vwap/input/vwap_arg_checker.sql     |   2 +-
+ .../statistics/vwap/input/vwap_arg_parser.sql      |  41 +-
+ .../vwap/input/vwap_arg_parser_negative.sql        |  30 +-
+ .../VWAP/expectedQueryResults/VWAP_1.results       |  20 +-
+ .../src/examples/VWAP/input/VWAP_1.sql             |   4 +-
+ .../VWAP/setup-cleanup/stock_vol_setup.sql         |   3 -
+ .../expectedQueryResults/vwap0_test_clause.sqlout  | 202 +++----
+ .../vwap0_test_clause_values.sqlout                | 189 +++---
+ .../vwap0_test_datatype.sqlout                     | 210 ++++---
+ .../vwap0_test_db_object.sqlout                    | 154 ++---
+ .../PROMETHIUM/SQL/input/vwap0_test_clause.sql     |  16 +-
+ .../SQL/input/vwap0_test_clause_values.sql         |  35 +-
+ .../PROMETHIUM/SQL/input/vwap0_test_datatype.sql   | 304 ++++------
+ .../PROMETHIUM/SQL/input/vwap0_test_db_object.sql  |  12 +-
+ .../VWAP/PROMETHIUM/pytest/test_VWAP_dbobjects.py  |  22 +-
+ .../VWAP/PROMETHIUM/pytest/test_VWAP_testclause.py |  36 +-
+ .../PROMETHIUM/pytest/test_VWAP_testdatatype.py    | 642 +++++++++++----------
+ .../VWAP/PROMETHIUM/pytest/test_VWAP_testvalues.py |  42 +-
+ 51 files changed, 2177 insertions(+), 1530 deletions(-)
+172.20.18.66 - - [11/Aug/2018 22:49:34] "GET / HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:35] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:36] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:36] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.18.66 - - [11/Aug/2018 22:49:36] "GET /install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:11] "GET / HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:12] "GET /static/css/style.css HTTP/1.1" 304 -
+172.20.20.235 - - [12/Aug/2018 19:07:12] "GET /static/css/images/teradata-logo.png HTTP/1.1" 304 -
+172.20.20.235 - - [12/Aug/2018 19:07:13] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:13] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:13] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:13] "GET /install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:13] "GET /favicon.ico HTTP/1.1" 404 -
+172.20.20.235 - - [12/Aug/2018 19:07:20] "GET /help HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:26] "GET /history HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:27] "GET /conn_history?draw=1&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102392 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:29] "GET /conn_history?draw=2&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=10&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102393 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:31] "GET /conn_history?draw=3&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=20&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102394 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:32] "GET /conn_history?draw=4&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=30&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102395 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:36] "GET /conn_history?draw=5&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=20&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102396 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:37] "GET /conn_history?draw=6&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=10&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102397 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:40] "GET /conn_history?draw=7&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534126102398 HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:07:49] "GET /postgitpulltime HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:13:43] "GET /branchName_revisionNumber HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:16:56] "GET /branchName_revisionNumber HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:00] "GET / HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:01] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:01] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:01] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:01] "GET /install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:25] "GET / HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:26] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:26] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:26] "GET /HealthCheck_Install HTTP/1.1" 200 -
+172.20.20.235 - - [12/Aug/2018 19:17:26] "GET /install HTTP/1.1" 200 -
+/usr/local/lib/python2.7/dist-packages/psycopg2/__init__.py:144: UserWarning: The psycopg2 wheel package will be renamed from release 2.8; in order to keep installing from binary please use "pip install psycopg2-binary" instead. For details see: <http://initd.org/psycopg/docs/install.html#binary-install-from-pypi>.
+  """)
+ * Serving Flask app "test" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: off
+ * Running on http://0.0.0.0:8080/ (Press CTRL+C to quit)
+172.20.19.210 - - [19/Aug/2018 12:43:11] "GET / HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:11] "GET /static/css/style.css HTTP/1.1" 304 -
+172.20.19.210 - - [19/Aug/2018 12:43:12] "GET /static/js/utility.js HTTP/1.1" 304 -
+172.20.19.210 - - [19/Aug/2018 12:43:12] "GET /static/css/images/teradata-logo.png HTTP/1.1" 304 -
+172.20.19.210 - - [19/Aug/2018 12:43:13] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:13] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:13] "GET /data HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:13] "GET /install HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:32] "GET /history HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:32] "GET /conn_history?draw=1&columns%5B0%5D%5Bdata%5D=&columns%5B0%5D%5Bname%5D=&columns%5B0%5D%5Bsearchable%5D=true&columns%5B0%5D%5Borderable%5D=true&columns%5B0%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B0%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B1%5D%5Bdata%5D=user&columns%5B1%5D%5Bname%5D=&columns%5B1%5D%5Bsearchable%5D=true&columns%5B1%5D%5Borderable%5D=true&columns%5B1%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B1%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B2%5D%5Bdata%5D=date&columns%5B2%5D%5Bname%5D=&columns%5B2%5D%5Bsearchable%5D=true&columns%5B2%5D%5Borderable%5D=true&columns%5B2%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B2%5D%5Bsearch%5D%5Bregex%5D=false&columns%5B3%5D%5Bdata%5D=&columns%5B3%5D%5Bname%5D=&columns%5B3%5D%5Bsearchable%5D=true&columns%5B3%5D%5Borderable%5D=true&columns%5B3%5D%5Bsearch%5D%5Bvalue%5D=&columns%5B3%5D%5Bsearch%5D%5Bregex%5D=false&order%5B0%5D%5Bcolumn%5D=0&order%5B0%5D%5Bdir%5D=desc&start=0&length=10&search%5Bvalue%5D=&search%5Bregex%5D=false&_=1534707849924 HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:35] "GET /?command=python%20DartRunner.py%20-c%20dart-main-sls12-03%20-t%20OneTest.tst%20-k%20HealthCheckDocker.tst%20-i%20AsterInstallOnK8sUpdated.est%20--releaseName%20GGR3%20-p%20MLEngine%20%20--revisionNumber%2008.00.00.01-806f9cc5%20--branchName%20main%20--buildName%20beehive-ci-pipeline-main%20%20%20-l%20Private%20%20--keywords%20DartExe HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:37] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:37] "GET /data HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:37] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:37] "GET /install HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:57] "GET / HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:58] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:58] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:59] "GET /data HTTP/1.1" 200 -
+172.20.19.210 - - [19/Aug/2018 12:43:59] "GET /install HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:43] "GET / HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:43] "GET /static/css/style.css HTTP/1.1" 304 -
+172.16.106.223 - - [20/Aug/2018 09:33:43] "GET /static/js/utility.js HTTP/1.1" 304 -
+172.16.106.223 - - [20/Aug/2018 09:33:43] "GET /static/css/images/teradata-logo.png HTTP/1.1" 304 -
+172.16.106.223 - - [20/Aug/2018 09:33:44] "GET /testset?path=/root/Dart/testset/ HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:45] "GET /clusters?path=/root/Dart/config/ HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:45] "GET /install HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:45] "GET /data HTTP/1.1" 200 -
+172.16.106.223 - - [20/Aug/2018 09:33:45] "GET /favicon.ico HTTP/1.1" 404 -

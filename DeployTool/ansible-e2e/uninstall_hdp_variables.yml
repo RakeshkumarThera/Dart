@@ -1,0 +1,233 @@
+CURL_PUT: "curl -u admin:admin -i -H \"X-Requested-By:ambari\" -X PUT"
+CURL_GET: "curl -u admin:admin -i -H \"X-Requested-by:ambari\" -X GET"
+CURL_DELETE: "curl -u admin:admin -i -H \"X-Requested-by:ambari\" -X DELETE"
+REST_API_AMBARI_URL: "http://{{ ambari_server }}:{{ ambari_server_port | default(8080) }}/api/v1/clusters/{{ hdp_cluster }}"
+REQUEST_STOP_COMPONENTS_PART1: "{\"RequestInfo\":{\"context\":\"Stop "
+REQUEST_STOP_COMPONENTS_PART2: " Components\"},\"Body\":{\"HostRoles\":{\"state\":\"INSTALLED\"}}}"
+REQUEST_STOP_SERVICE_PART1: "{\"RequestInfo\":{\"context\":\"Stop "
+REQUEST_STOP_SERVICE_PART2: " Service\"},\"Body\":{\"ServiceInfo\":{\"state\":\"INSTALLED\"}}}"
+HOST_COMPONENT_URL: "{{ REST_API_AMBARI_URL }}/hosts/{{ inventory_hostname }}/host_components"
+SERVICE_URL: "{{ REST_API_AMBARI_URL }}/services"
+
+HADOOP_SERVICES:
+    - AMBARI_METRICS
+    - FALCON
+    - FLUME
+    - HBASE
+    - HDFS
+    - HIVE
+    - KERBEROS
+    - MAHOUT
+    - MAPREDUCE2
+    - OOZIE
+    - PIG
+    - SLIDER
+    - SPARK
+    - SQOOP
+    - TEZ
+    - YARN
+    - ZOOKEEPER
+
+HADOOP_SERVICE_COMPONENTS:
+    - { SERVICE_NAME: 'AMBARI_METRICS', COMPONENT_NAME: 'METRICS_COLLECTOR' }
+    - { SERVICE_NAME: 'AMBARI_METRICS', COMPONENT_NAME: 'METRICS_MONITOR' }
+    - { SERVICE_NAME: 'FALCON', COMPONENT_NAME: 'FALCON_CLIENT' }
+    - { SERVICE_NAME: 'FALCON', COMPONENT_NAME: 'FALCON_SERVER' }
+    - { SERVICE_NAME: 'FLUME', COMPONENT_NAME: 'FLUME_HANDLER' }
+    - { SERVICE_NAME: 'HBASE', COMPONENT_NAME: 'HBASE_CLIENT' }
+    - { SERVICE_NAME: 'HBASE', COMPONENT_NAME: 'HBASE_MASTER' }
+    - { SERVICE_NAME: 'HBASE', COMPONENT_NAME: 'HBASE_REGIONSERVER' }
+    - { SERVICE_NAME: 'HDFS', COMPONENT_NAME: 'DATANODE' }
+    - { SERVICE_NAME: 'HDFS', COMPONENT_NAME: 'HDFS_CLIENT' }
+    - { SERVICE_NAME: 'HDFS', COMPONENT_NAME: 'NAMENODE' }
+    - { SERVICE_NAME: 'HDFS', COMPONENT_NAME: 'SECONDARY_NAMENODE' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'HCAT' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'HIVE_CLIENT' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'HIVE_METASTORE' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'HIVE_SERVER' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'MYSQL_SERVER' }
+    - { SERVICE_NAME: 'HIVE', COMPONENT_NAME: 'WEBHCAT_SERVER' }
+    - { SERVICE_NAME: 'KERBEROS', COMPONENT_NAME: 'KERBEROS_CLIENT' }
+    - { SERVICE_NAME: 'MAHOUT', COMPONENT_NAME: 'MAHOUT' }
+    - { SERVICE_NAME: 'MAPREDUCE2', COMPONENT_NAME: 'HISTORYSERVER' }
+    - { SERVICE_NAME: 'MAPREDUCE2', COMPONENT_NAME: 'MAPREDUCE2_CLIENT' }
+    - { SERVICE_NAME: 'OOZIE', COMPONENT_NAME: 'OOZIE_CLIENT' }
+    - { SERVICE_NAME: 'OOZIE', COMPONENT_NAME: 'OOZIE_SERVER' }
+    - { SERVICE_NAME: 'PIG', COMPONENT_NAME: 'PIG' }
+    - { SERVICE_NAME: 'SLIDER', COMPONENT_NAME: 'SLIDER' }
+    - { SERVICE_NAME: 'SPARK', COMPONENT_NAME: 'SPARK_CLIENT' }
+    - { SERVICE_NAME: 'SPARK', COMPONENT_NAME: 'SPARK_JOBHISTORYSERVER' }
+    - { SERVICE_NAME: 'SPARK', COMPONENT_NAME: 'SPARK_THRIFTSERVER' }
+    - { SERVICE_NAME: 'SQOOP', COMPONENT_NAME: 'SQOOP' }
+    - { SERVICE_NAME: 'TEZ', COMPONENT_NAME: 'TEZ_CLIENT' }
+    - { SERVICE_NAME: 'YARN', COMPONENT_NAME: 'APP_TIMELINE_SERVER' }
+    - { SERVICE_NAME: 'YARN', COMPONENT_NAME: 'NODEMANAGER' }
+    - { SERVICE_NAME: 'YARN', COMPONENT_NAME: 'YARN' }
+    - { SERVICE_NAME: 'YARN', COMPONENT_NAME: 'RESOURCEMANAGER' }
+    - { SERVICE_NAME: 'YARN', COMPONENT_NAME: 'YARN_CLIENT' }
+    - { SERVICE_NAME: 'ZOOKEEPER', COMPONENT_NAME: 'ZOOKEEPER_CLIENT' }
+    - { SERVICE_NAME: 'ZOOKEEPER', COMPONENT_NAME: 'ZOOKEEPER_SERVER' }
+
+HADOOP_PACKAGES:
+    - accumulo
+    - extjs-2.2-1
+    - falcon
+    - flume
+    - hadoop
+    - hadooplzo
+    - hbase
+    - hive
+    - kafka
+    - knox
+    - mahout
+    - mysql-connector-java-5.0.8-1
+    - oozie
+    - phoenix
+    - pig
+    - ranger
+    - snappy
+    - slider
+    - spark
+    - sqoop
+    - storm
+    - tez
+    - zookeeper
+
+snappy_lzo_packages:
+    - snappy
+    - snappy-devel
+    - lzo
+    - lzo-devel
+
+remove_ambari_server_folders:
+    - /var/lib/ambari-server
+    - /var/run/ambari-server
+    - /usr/lib/ambari-server
+    - /etc/ambari-server
+    - /var/log/ambari-server 
+    - /usr/lib/python2.6/site-packages/ambari-server
+
+remove_ambari_agent_folders:
+    - /var/lib/ambari-agent
+    - /var/run/ambari-agent 
+    - /usr/lib/ambari-agent
+    - /etc/ambari-agent
+    - /var/log/ambari-agent
+    - /usr/lib/python2.6/site-packages/ambari-agent
+
+remove_log_folders:
+    - /var/log/ambari-metrics-collector
+    - /var/log/ambari-metrics-monitor
+    - /var/log/falcon
+    - /var/log/flume
+    - /var/log/hadoop
+    - /var/log/hadoop-mapreduce
+    - /var/log/hadoop-yarn
+    - /var/log/hbase
+    - /var/log/hive
+    - /var/log/hive-hcatalog
+    - /var/log/knox
+    - /var/log/oozie
+    - /var/log/spark
+    - /var/log/sqoop
+    - /var/log/webhcat
+    - /var/log/zookeeper
+
+remove_hadoop_dirs:
+    - /usr/hdp
+    - /usr/bin/hadoop
+    - /tmp/hadoop
+    - /var/hadoop
+    - /hadoop/*
+    - /local/opt/hadoop
+    - /usr/bin/oozie
+    - /usr/share/HDP-oozie
+    - /usr/bin/falcon
+
+remove_config_dirs:
+    - /etc/ambari-metrics-collector
+    - /etc/ambari-metrics-monitor
+    - /etc/falcon
+    - /etc/flume
+    - /etc/hadoop
+    - /etc/hadoop-httpfs
+    - /etc/hbase
+    - /etc/hive
+    - /etc/hive-hcatalog
+    - /etc/hive-webhcat
+    - /etc/knox
+    - /etc/mahout
+    - /etc/oozie
+    - /etc/phoenix
+    - /etc/pig
+    - /etc/slider
+    - /etc/spark
+    - /etc/sqoop
+    - /etc/tez
+    - /etc/zookeeper
+    - /etc/conf/hadoop
+    - /etc/conf/hbase
+    - /etc/conf/oozie
+    - /etc/conf/phoenix
+    - /etc/conf/hive
+    - /etc/conf/zookeeper
+    - /etc/conf/flume
+    - /etc/conf/hive-hcatalog
+    - /etc/conf/tez
+    - /etc/conf/falcon
+    - /etc/conf/knox
+    - /etc/conf/hive-webhcat
+    - /etc/conf/mahout
+    - /etc/conf/pig
+    - /etc/conf/hadoop-httpfs
+
+remove_process_ids:
+    - /var/run/ambari-metrics-collector
+    - /var/run/ambari-metrics-monitor
+    - /var/run/falcon
+    - /var/run/flume
+    - /var/run/hadoop
+    - /var/run/hadoop-mapreduce
+    - /var/run/hadoop-yarn
+    - /var/run/hbase
+    - /var/run/hive
+    - /var/run/hive-hcatalog
+    - /var/run/knox
+    - /var/run/oozie
+    - /var/run/spark
+    - /var/run/sqoop
+    - /var/run/webhcat
+    - /var/run/zookeeper
+
+remove_zookeper_db_files:
+    - /local/home/zookeeper/*
+
+remove_library_folders:
+    - /var/lib/ambari-metrics-collector
+    - /usr/lib/flume
+    - /var/lib/hadoop-hdfs
+    - /var/lib/hadoop-mapreduce
+    - /var/lib/hadoop-yarn
+    - /var/lib/flume
+    - /var/lib/knox
+    - /var/lib/spark
+    - /usr/lib/storm
+    - /var/lib/oozie
+ 
+remove_temp_folder:
+    - /tmp/hadoop-hdfs
+    - /tmp/hbase-hbase
+    - /tmp/hive
+    - /tmp/hsperfdata_ams
+    - /tmp/hsperfdata_falcon
+    - /tmp/hsperfdata_hbase
+    - /tmp/hsperfdata_hcat
+    - /tmp/hsperfdata_hdfs
+    - /tmp/hsperfdata_hive
+    - /tmp/hsperfdata_mapred
+    - /tmp/hsperfdata_oozie
+    - /tmp/hsperfdata_root
+    - /tmp/hsperfdata_spark
+    - /tmp/hsperfdata_yarn
+    - /tmp/hsperfdata_zookeeper
+    - /var/tmp/oozie

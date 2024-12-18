@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<!--
+    Name: failTestBottom.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /failTest
+    Description: Bottom page of failed testcase page. 
+                 Used to show all failed test information by testcase owner
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style media="all" type="text/css">
+        .alignCenter { text-align: center; }
+        .alignLeft { text-align: left; }
+    </style>
+    <style media="all" type="text/css">
+        .dataTable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <title>Test Information</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script>
+        var runid = ""
+        var testCount = []
+
+        function loadData(runId) {
+            /*
+                Query data from database
+            */
+            var column = "distinct testcase,priority,owner,id,jira_number"
+            var condition = "status='FAIL' and run_id='" + runId + "'"
+
+            column = encodeURIComponent(column)
+            condition = encodeURIComponent(condition)
+            var apiUrl = "/api/select_rows?dbname=dartdb&table=darttest" + "&columns=" + column + "&condition=" + condition
+            $.ajax({
+                     url: apiUrl,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#datatable').dataTable().fnClearTable();
+                         if (res.results.length != 0) {
+                             $('#datatable').dataTable().fnAddData($.renderTable(res))
+                         }
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+
+        }
+
+        function onFocusText(id) {
+            var myInput = document.getElementById(id).style;
+            myInput.borderStyle="solid";
+        }
+
+        function onBlurText(id, orgValue) {
+            var myInput = document.getElementById(id).style
+            myInput.borderStyle="none";
+            var newText = document.getElementById(id).value
+
+            if (orgValue != newText) {
+                fields = id.split(':')
+                rowId = fields[1]
+                columnName = fields[0]
+
+
+                var idStr = " id ='" + rowId + "'"
+                var formData = {dbname: "dartdb", table: "darttest", updating_column: [{name: columnName, value: newText}], condition: idStr};
+                var apiUrl = "/api/update_row";
+
+                ret = confirm('Commiting ' + newText + ' in the Database. Press OK to confirm.');
+                
+                if (ret) {
+                    $.ajax({
+                        url: apiUrl,
+                        type: 'POST',
+                        dataType: 'json',
+                        contentType: 'application/json',
+                        data : JSON.stringify(formData),
+                        success: function(res){ location.reload(); },
+                        error: function(req, err){ console.log('Error: ' + err);  }
+                    });
+                }
+            }
+        }
+
+        $.renderTable = function(res) {
+             /*
+                 Put data to jQuery datatable
+             */
+             var data = []
+             var results = res.results 
+             for (i = 0; i < results.length; i++) {
+                 var orgVal = $.checkFieldEmpty(results[i].jira_number);
+                 var jiraNumber = $.checkFieldEmpty(results[i].jira_number);
+                 var jiraUrl = '<input class="jira_number" id=jira_number:' + results[i].id + ' type="input" style="border:none" onfocus="onFocusText(this.id);" '
+                 jiraUrl = jiraUrl + ' onblur="onBlurText(this.id, \'' + orgVal + '\');" '  + ' value=';
+                 jiraUrl = jiraUrl + "\'" + jiraNumber + "\'" +  '>';
+
+                 if (jiraNumber != "-" && jiraNumber != "") {
+                     var jiraNumberArr = jiraNumber.split(",");
+                     var jql = "jql=";
+                     for (j = 0; j < jiraNumberArr.length; j++) {
+                         if (j == 0) {
+                             jql = jql + "%20KEY%20%3D%20" + jiraNumberArr[j].trim() + "%20"
+                         } else {
+                             jql = jql + "OR%20KEY%3D" + jiraNumberArr[j].trim() + "%20"
+                         }
+                     }
+                     console.log("jql = " + jql);
+                     var url = "https://jira.td.teradata.com/jira/browse/"+ jiraNumberArr[0].trim() + "?" + jql;
+                     jiraUrl = jiraUrl + '&nbsp;&nbsp;<input id="jira" type="button" onclick="window.open(\'' + url  + '\', \'_blank\');"  value="JIRA" style="float right;"/>';
+                 }
+                 var tmp = ["",
+                            '<a href="report/test?id=' + results[i].id  + '" target="_parent">' + results[i].testcase + '</a>',
+                            $.checkFieldEmpty(results[i].priority),
+                            $.checkFieldEmpty(results[i].owner),
+                            jiraUrl]
+                 data.push(tmp)
+             }
+
+             return data;
+         }
+
+         $(document).ready(function(){
+              runid = $.urlParam('run_id')
+              loadData(runid)
+              $('#datatable').dataTable({
+                  "aoColumnDefs": [
+                      {"sWidth": "5%", "bSortable": false, "aTargets": [0], "sClass": "alignCenter"},
+                      {"aTargets": [1], "sClass": "alignLeft"},
+                      {"aTargets": [2], "sClass": "alignCenter"},
+                      {"aTargets": [3], "sClass": "alignCenter"},
+                      {"sWidth": "30%", "aTargets": [4], "sClass": "alignCenter"},
+                      { //set truncate max-width for each cell
+                          "aTargets": [1, 2, 3, 4],
+                          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                              $(nTd).css('max-width', '1px')
+                              if (sData != null && sData != "-" && typeof sData == "string" &&!sData.startsWith("<a href")) {
+                                   nTd.title = sData;
+                              } else if (sData != null && typeof sData == "string" && sData.startsWith("<a href")) {
+                                  arr = sData.split(">")
+                                  data = arr[1].split("<")
+                                  nTd.title = data[0]
+                              }
+                          }
+                      },
+                  ],
+                  "fnDrawCallback": function ( oSettings ) {
+                    /* Need to redo the counters if filtered or sorted */
+                    if ( oSettings.bSorted || oSettings.bFiltered ) {
+                        for ( var i=0, iLen=oSettings.aiDisplay.length ; i<iLen ; i++ ) {
+                            $('td:eq(0)', oSettings.aoData[ oSettings.aiDisplay[i] ].nTr ).html( i+1 );
+                        }
+                    }
+                },
+                "aaSorting": [[3, 'asc']]
+              });
+             $('#datatable').css( {
+                 "font-size": "90%"
+             });
+         });
+    </script>
+</head>
+<body>
+    <div id="content" style="background-color:#F7BE81; width:100%; float:center; border-radius: 5px;">
+            <table id="datatable" class="row-border" width="100%">
+            <thead>
+              <tr>
+              <th>Seq</th>
+              <th>Test Name</th>
+              <th>Priority</th>
+              <th>Owner</th>
+              <th>Jira</th>
+              </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

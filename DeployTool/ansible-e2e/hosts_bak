@@ -1,0 +1,7 @@
+[dart-ax-red68-07]
+asterdart0031.labs.teradata.com ansible_ssh_pass=aster4data ansible_ssh_host=10.25.80.31
+asterdart0032.labs.teradata.com ansible_ssh_pass=aster4data ansible_ssh_host=10.25.80.32
+asterdart0033.labs.teradata.com ansible_ssh_pass=aster4data ansible_ssh_host=10.25.80.33
+asterdart0034.labs.teradata.com ansible_ssh_pass=aster4data ansible_ssh_host=10.25.80.34
+asterdart0035.labs.teradata.com ansible_ssh_pass=aster4data ansible_ssh_host=10.25.80.35
+

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<!--
+    Name: tagNav.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 07/25/2017
+    Uri: /
+    Description: Top page of tag page
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Navbar</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script>
+        var showTagTest = false;
+        var showPrivate = false;
+        var showData = 2 // 1: show lastest 3 days tests    2: show lastest 7 days tests    3: show all
+        $(document).ready(function () {
+            $("#runIdList").change(function () {
+                var runId = document.getElementById("runIdList").value;
+                var project = document.getElementById("projectList").value;
+                window.parent.document.getElementById('tagBottom').contentWindow.loadData(showPrivate, showTagTest, runId, project, showData);
+            });
+        }); 
+
+        $(document).ready(function () {
+            $("#projectList").change(function () {
+                var project = document.getElementById("projectList").value;
+                var runId = document.getElementById("runIdList").value;
+                window.parent.document.getElementById('tagBottom').contentWindow.loadData(showPrivate, showTagTest, runId, project, showData);
+            });
+        });
+
+        $(document).ready(function() {
+            $('#showPrivate').change(function() {
+                if ($('#showPrivate').is(':checked') == true) {
+                    showPrivate = true
+                } else {
+                    showPrivate = false
+                }
+
+                window.parent.document.getElementById('tagBottom').contentWindow.loadData(showPrivate, showTagTest, "", "", showData);
+                $.getSelectFormData("run_id", "runIdList");
+                $.getSelectFormData("release_name", "projectList");
+            });
+
+            $('#showTagTest').change(function() {
+                if ($('#showTagTest').is(':checked') == true) {
+                    showTagTest = true
+                } else {
+                    showTagTest = false
+                }
+
+                window.parent.document.getElementById('tagBottom').contentWindow.loadData(showPrivate, showTagTest, "", "", showData);
+                $.getSelectFormData("run_id", "runIdList");
+                $.getSelectFormData("release_name", "projectList");
+            });
+        });
+
+        $.renderForm = function(res, formId) {
+            var text = '<option value="">*</option>';
+            var results = res.results;
+            for (i = 0; i < results.length; i++) {
+                if (formId == "clusterList") { 
+                    if (results[i].cluster_name == null) {
+                        continue
+                    }
+                    text = text + '<option value="' + results[i].cluster_name + '">' + results[i].cluster_name + '</option>'
+                } else if (formId == "runIdList") {
+                    text = text + '<option value="' + results[i].run_id + '">' + results[i].run_id + '</option>'
+                } else {
+                    if (results[i].release_name == null) {
+                        continue
+                    }
+                    text = text + '<option value="' + results[i].release_name + '">' + results[i].release_name + '</option>'
+                }
+            }
+
+            return text;
+        }
+
+        $.getSelectFormData = function(item, formId) {
+            var column = encodeURIComponent("DISTINCT " + item);
+            var command = ""
+
+            if (!showPrivate) {
+                command = encodeURIComponent("WHERE release_name<>'Private'")
+            }
+            /*
+            var endDate = $.getCurrentDate()
+            var startDate = "";
+            if (showData == 1) {
+                startDate = $.getStartDate(endDate, 3)
+                if (command != "") {
+                    command = command + encodeURIComponent(" AND")
+                } else {
+                    command = command + encodeURIComponent(" WHERE")
+                }
+                command = command + encodeURIComponent(" start_time BETWEEN '" + startDate + "'::date and '" + endDate + "'::date")
+            } else if (showData == 2) {
+                startDate = $.getStartDate(endDate, 7)
+                if (command != "") {
+                    command = command + encodeURIComponent(" AND")
+                } else {
+                    command = command + encodeURIComponent(" WHERE")
+                }
+                command = command + encodeURIComponent(" start_time BETWEEN '" + startDate + "'::date and '" + endDate + "'::date")
+            }
+            */
+            if (item == "run_id") {
+                  command = command + encodeURIComponent(" ORDER BY run_id DESC");
+            }
+            $.ajax({
+                     url: '/api/select_rows?dbname=dartdb&table=darttest&columns=' + column + "&command=" + command,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#' + formId).html($.renderForm(res, formId));
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+        }
+
+        $(document).ready(function(){
+            /*
+                Query all of Run ID and Project name
+            */
+            //$.getSelectFormData("cluster_name", "clusterList");
+            $.getSelectFormData("run_id", "runIdList");
+            $.getSelectFormData("release_name", "projectList");
+            /*
+            $('input:radio[name=show_data]').change(function () {
+                d = this.value
+                if (d == "three_day") {
+                    showData = 1;
+                } else if (d == "seven_day") { 
+                    showData = 2;
+                } else {
+                    showData = 3;
+                }
+
+                window.parent.document.getElementById('tagBottom').contentWindow.loadData(showPrivate, showTagTest, "", "", showData);
+                $.getSelectFormData("run_id", "runIdList");
+                $.getSelectFormData("release_name", "projectList");
+            });
+            */
+        });
+    </script>
+</head>
+<body>
+    <div id="head" style="background-color:#F7BE81; width:100%; height:50px; float:center; border-radius: 5px;" align="center">
+        <b>
+            <font size="6" color="black">Tag Admin Page</font>
+        </b>
+    </div>
+    <div id="nav-div" style="background-color:orange; width:99%; float:center; border-radius: 5px; margin:2px;padding:5px;" align="left">
+        Run ID:&nbsp;
+        <select id="runIdList" form="runIdForm">
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        Project:&nbsp;
+        <select id="projectList" form="projectForm">
+        </select>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" id="showPrivate">&nbsp;Show Private Project</input>
+        &nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="checkbox" id="showTagTest">&nbsp;<font style="background-color: #E0F8F7">Show Tags on Top</font></input>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <!--<input type="radio" name="show_data" value="three_day" checked>&nbsp;Show Three Days</input>-->
+        <!--<input type="radio" name="show_data" value="seven_day" checked>&nbsp;Show Seven Days</input>-->
+        <!--<input type="radio" name="show_data" value="all">&nbsp;Show All</input>-->
+
+        <table align="right">
+            <tr>
+                <th><font style="background-color: #38fff8">R</font><font>un</font></th><td>&nbsp;&nbsp;</td>
+                <th><font style="background-color: #c0c0c0">W</font><font>ait</font></th><td>&nbsp;</td>
+                <th><font style="background-color: #67fd9a">P</font><font>ass</font></th><td>&nbsp;</td>
+                <th><font style="background-color: #fd6864">F</font><font>ail</font></th><td>&nbsp;</td>
+                <th><font style="background-color: #9698ed">A</font><font>bort</font></th><td>&nbsp;</td>
+                <th><font style="background-color: #fffe65">S</font><font>kip</font></th><td>&nbsp;</td>
+            </tr>
+        </table>
+        <!--<input id="summaryReport" type="button" onclick="window.open('/summaryReport', '_parent');"  value="Summary Report" style="float: right;"/>-->
+    </div>
+</body>
+</html>
+

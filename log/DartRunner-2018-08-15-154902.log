@@ -1,0 +1,398 @@
+INFO: 2018-08-15 15:49:02,010:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-15-154902.log
+INFO: 2018-08-15 15:49:02,010:DartRunner.py:109: Current Process Id: 8084
+INFO: 2018-08-15 15:49:02,011:DartRunner.py:170: clusterList = dart-main-sls12-03 
+INFO: 2018-08-15 15:49:02,011:DartRunner.py:178: dart-main-sls12-03
+INFO: 2018-08-15 15:49:02,195:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-15-154902.log
+INFO: 2018-08-15 15:49:02,195:DartRunner.py:109: Current Process Id: 8095
+INFO: 2018-08-15 15:49:02,195:DartRunner.py:170: clusterList = dart-main-sls12-03 
+INFO: 2018-08-15 15:49:02,196:DartRunner.py:178: dart-main-sls12-03
+INFO: 2018-08-15 15:49:03,338:DartRunner.py:2008: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:03,368:DartRunner.py:2008: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:03,452:DartRunner.py:2037: consul
+INFO: 2018-08-15 15:49:03,452:DartRunner.py:2037: queen
+INFO: 2018-08-15 15:49:03,452:DartRunner.py:2043: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:03,482:DartRunner.py:2037: consul
+INFO: 2018-08-15 15:49:03,483:DartRunner.py:2037: queen
+INFO: 2018-08-15 15:49:03,483:DartRunner.py:2043: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:04,304:DartRunner.py:2008: 10.25.83.50
+INFO: 2018-08-15 15:49:04,353:DartRunner.py:2008: 10.25.83.50
+INFO: 2018-08-15 15:49:04,418:DartRunner.py:2045: 10.25.83.50
+INFO: 2018-08-15 15:49:04,419:DartRunner.py:2048: 10.25.83.50
+INFO: 2018-08-15 15:49:04,419:DartRunner.py:2037: worker1
+INFO: 2018-08-15 15:49:04,419:DartRunner.py:2043: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:04,466:DartRunner.py:2045: 10.25.83.50
+INFO: 2018-08-15 15:49:04,467:DartRunner.py:2048: 10.25.83.50
+INFO: 2018-08-15 15:49:04,467:DartRunner.py:2037: worker1
+INFO: 2018-08-15 15:49:04,467:DartRunner.py:2043: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:04,899:DartRunner.py:2008: 10.25.83.52
+INFO: 2018-08-15 15:49:04,899:DartRunner.py:2008: 10.25.83.52
+INFO: 2018-08-15 15:49:04,963:DartRunner.py:2045: 10.25.83.52
+INFO: 2018-08-15 15:49:04,963:DartRunner.py:2048: 10.25.83.52
+INFO: 2018-08-15 15:49:04,963:DartRunner.py:2037: worker2
+INFO: 2018-08-15 15:49:04,963:DartRunner.py:2043: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:05,013:DartRunner.py:2045: 10.25.83.52
+INFO: 2018-08-15 15:49:05,013:DartRunner.py:2048: 10.25.83.52
+INFO: 2018-08-15 15:49:05,013:DartRunner.py:2037: worker2
+INFO: 2018-08-15 15:49:05,014:DartRunner.py:2043: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:05,401:DartRunner.py:2008: 10.25.83.53
+INFO: 2018-08-15 15:49:05,517:DartRunner.py:2008: 10.25.83.53
+INFO: 2018-08-15 15:49:05,518:DartRunner.py:2045: 10.25.83.53
+INFO: 2018-08-15 15:49:05,518:DartRunner.py:2048: 10.25.83.53
+INFO: 2018-08-15 15:49:05,519:DartRunner.py:2037: worker3
+INFO: 2018-08-15 15:49:05,519:DartRunner.py:2043: kubectl get -o template po worker3 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:05,631:DartRunner.py:2045: 10.25.83.53
+INFO: 2018-08-15 15:49:05,631:DartRunner.py:2048: 10.25.83.53
+INFO: 2018-08-15 15:49:05,631:DartRunner.py:2037: worker3
+INFO: 2018-08-15 15:49:05,632:DartRunner.py:2043: kubectl get -o template po worker3 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:06,115:DartRunner.py:2008: 10.25.83.51
+INFO: 2018-08-15 15:49:06,151:DartRunner.py:2008: 10.25.83.51
+INFO: 2018-08-15 15:49:06,229:DartRunner.py:2045: 10.25.83.51
+INFO: 2018-08-15 15:49:06,229:DartRunner.py:2048: 10.25.83.51
+INFO: 2018-08-15 15:49:06,229:DartRunner.py:2077: ['10.25.83.50']
+INFO: 2018-08-15 15:49:06,229:DartRunner.py:2078: ['10.25.83.52', '10.25.83.53', '10.25.83.51']
+INFO: 2018-08-15 15:49:06,230:DartRunner.py:247: /root/Dart/testset/OneTest.tst
+INFO: 2018-08-15 15:49:06,230:DartRunner.py:258: Scanning File: /root/Dart/testset/OneTest.tst 
+INFO: 2018-08-15 15:49:06,230:DartRunner.py:273: Reading tempRunFile : /tmp/OneTest.tst
+INFO: 2018-08-15 15:49:06,231:DartRunner.py:2944: DockerHealth: ClusterHealthdevops_installer/docker/ClusterHealth                     
+INFO: 2018-08-15 15:49:06,231:DartRunner.py:361: OrderedDict([(u'Install', [OrderedDict([(u'NAME', u'AsterInstallOnK8s'), (u'TIMEOUT', 7200), (u'LOCATION', u'devops_installer/docker/AsterInstallOnK8s'), (u'WORKERPOD_COUNT', 2), (u'PARTITIONS_PER_WORKERPOD', 2), (u'localRegistry', u'False'), (u'deleteDockerImages', u'True'), (u'dockerRepoPath', u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5'), (u'dockerRepoTag', u'08.00.00.01-806f9cc5'), (u'dockerRepoUser', u'da230151'), (u'dockerRepoPassword', u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt'), (u'dockerRepoEmail', u'da230151@teradata.com'), (u'dockerRepoHost', u'sdartifact.td.teradata.com'), (u'OWNER', u'naveen.williams'), (u'CATEGORY', u'positive'), (u'PRIORITY', u'1'), (u'COMPONENT', u'devops_installer/docker')])])])
+INFO: 2018-08-15 15:49:06,265:DartRunner.py:2045: 10.25.83.51
+INFO: 2018-08-15 15:49:06,265:DartRunner.py:2048: 10.25.83.51
+INFO: 2018-08-15 15:49:06,265:DartRunner.py:2077: ['10.25.83.50']
+INFO: 2018-08-15 15:49:06,265:DartRunner.py:2078: ['10.25.83.52', '10.25.83.53', '10.25.83.51']
+INFO: 2018-08-15 15:49:06,265:DartRunner.py:247: /root/Dart/testset/OneTest.tst
+INFO: 2018-08-15 15:49:06,266:DartRunner.py:258: Scanning File: /root/Dart/testset/OneTest.tst 
+INFO: 2018-08-15 15:49:06,266:DartRunner.py:273: Reading tempRunFile : /tmp/OneTest.tst
+INFO: 2018-08-15 15:49:06,267:DartRunner.py:2944: DockerHealth: ClusterHealthdevops_installer/docker/ClusterHealth                     
+INFO: 2018-08-15 15:49:06,267:DartRunner.py:361: OrderedDict([(u'Install', [OrderedDict([(u'NAME', u'AsterInstallOnK8s'), (u'TIMEOUT', 7200), (u'LOCATION', u'devops_installer/docker/AsterInstallOnK8s'), (u'WORKERPOD_COUNT', 2), (u'PARTITIONS_PER_WORKERPOD', 2), (u'localRegistry', u'False'), (u'deleteDockerImages', u'True'), (u'dockerRepoPath', u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5'), (u'dockerRepoTag', u'08.00.00.01-806f9cc5'), (u'dockerRepoUser', u'da230151'), (u'dockerRepoPassword', u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt'), (u'dockerRepoEmail', u'da230151@teradata.com'), (u'dockerRepoHost', u'sdartifact.td.teradata.com'), (u'OWNER', u'naveen.williams'), (u'CATEGORY', u'positive'), (u'PRIORITY', u'1'), (u'COMPONENT', u'devops_installer/docker')])])])
+INFO: 2018-08-15 15:49:06,504:DartRunner.py:2154: Ping on cluster dart-main-sls12-03 Successful!
+INFO: 2018-08-15 15:49:06,557:DartRunner.py:2154: Ping on cluster dart-main-sls12-03 Successful!
+INFO: 2018-08-15 15:49:06,684:DartRunner.py:523: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-124
+INFO: 2018-08-15 15:49:06,706:DartRunner.py:1696: Done inserting the information of run 180815-124
+INFO: 2018-08-15 15:49:06,723:DartRunner.py:2665: DB Insert Success: AsterInstallOnK8s
+INFO: 2018-08-15 15:49:06,739:DartRunner.py:523: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-125
+INFO: 2018-08-15 15:49:06,760:DartRunner.py:1696: Done inserting the information of run 180815-125
+INFO: 2018-08-15 15:49:06,781:DartRunner.py:2665: DB Insert Success: AsterInstallOnK8s
+INFO: 2018-08-15 15:49:10,226:DartRunner.py:663: 
+Running Install Test: AsterInstallOnK8s on Cluster: dart-main-sls12-03 Thread Count: 1  
+
+INFO: 2018-08-15 15:49:10,252:DartRunner.py:2665: DB Insert Success: NullTest
+INFO: 2018-08-15 15:49:10,252:DartRunner.py:2555: Updated cluster: dart-main-sls12-03 for test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:10,283:DartRunner.py:663: 
+Running Install Test: AsterInstallOnK8s on Cluster: dart-main-sls12-03 Thread Count: 1  
+
+INFO: 2018-08-15 15:49:10,306:DartRunner.py:2665: DB Insert Success: NullTest
+INFO: 2018-08-15 15:49:10,318:DartRunner.py:2555: Updated cluster: dart-main-sls12-03 for test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:10,965:DartRunner.py:2873: getHadoopVersion stdout = 
+INFO: 2018-08-15 15:49:10,965:DartRunner.py:2874: getHadoopVersion stderr = bash: hadoop: command not found
+
+INFO: 2018-08-15 15:49:10,965:DartRunner.py:2875: getHadoopVersion status = 127
+INFO: 2018-08-15 15:49:10,965:DartRunner.py:2884: hdversion = None
+INFO: 2018-08-15 15:49:10,965:DartRunner.py:2846: The cluster is without Hadoop, change db_version to Aster
+INFO: 2018-08-15 15:49:10,986:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:10,986:DartRunner.py:2588: {'db_version': 'Aster', 'db_type': 'Classic', 'build_info': ''}
+INFO: 2018-08-15 15:49:10,986:DartRunner.py:2214: Updating the status to Running in the database: AsterInstallOnK8s!
+INFO: 2018-08-15 15:49:11,001:DartRunner.py:2873: getHadoopVersion stdout = 
+INFO: 2018-08-15 15:49:11,001:DartRunner.py:2874: getHadoopVersion stderr = bash: hadoop: command not found
+
+INFO: 2018-08-15 15:49:11,001:DartRunner.py:2875: getHadoopVersion status = 127
+INFO: 2018-08-15 15:49:11,002:DartRunner.py:2884: hdversion = None
+INFO: 2018-08-15 15:49:11,002:DartRunner.py:2846: The cluster is without Hadoop, change db_version to Aster
+INFO: 2018-08-15 15:49:11,008:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:11,008:DartRunner.py:2588: {'status': 'RUNNING', 'start_time': '2018-08-15 15:49:10'}
+INFO: 2018-08-15 15:49:11,009:Dart.py:120: Logfile is /root/Dart/log/Dart-AsterInstallOnK8s-180815-124-154911.log
+INFO: 2018-08-15 15:49:11,021:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:11,021:DartRunner.py:2588: {'db_version': 'Aster', 'db_type': 'Classic', 'build_info': ''}
+INFO: 2018-08-15 15:49:11,021:DartRunner.py:2214: Updating the status to Running in the database: AsterInstallOnK8s!
+INFO: 2018-08-15 15:49:11,040:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:11,041:DartRunner.py:2588: {'status': 'RUNNING', 'start_time': '2018-08-15 15:49:10'}
+INFO: 2018-08-15 15:49:11,041:Dart.py:120: Logfile is /root/Dart/log/Dart-AsterInstallOnK8s-180815-125-154911.log
+INFO: 2018-08-15 15:49:11,754:DartRunner.py:754: Looping the Main Loop: 1
+INFO: 2018-08-15 15:49:11,754:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-15 15:49:11,754:DartRunner.py:1131: {'dart-main-sls12-03': 'install'}
+INFO: 2018-08-15 15:49:11,808:DartRunner.py:754: Looping the Main Loop: 1
+INFO: 2018-08-15 15:49:11,808:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-15 15:49:11,808:DartRunner.py:1131: {'dart-main-sls12-03': 'install'}
+INFO: 2018-08-15 15:49:11,980:Dart.py:390: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:11,980:Dart.py:418: consul
+INFO: 2018-08-15 15:49:11,980:Dart.py:418: queen
+INFO: 2018-08-15 15:49:11,980:Dart.py:424: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:11,996:Dart.py:390: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:11,996:Dart.py:418: consul
+INFO: 2018-08-15 15:49:11,996:Dart.py:418: queen
+INFO: 2018-08-15 15:49:11,997:Dart.py:424: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:12,398:Dart.py:390: 10.25.83.50
+INFO: 2018-08-15 15:49:12,398:Dart.py:426: 10.25.83.50
+INFO: 2018-08-15 15:49:12,398:Dart.py:429: 10.25.83.50
+INFO: 2018-08-15 15:49:12,398:Dart.py:418: worker1
+INFO: 2018-08-15 15:49:12,398:Dart.py:424: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:12,428:Dart.py:390: 10.25.83.50
+INFO: 2018-08-15 15:49:12,428:Dart.py:426: 10.25.83.50
+INFO: 2018-08-15 15:49:12,428:Dart.py:429: 10.25.83.50
+INFO: 2018-08-15 15:49:12,428:Dart.py:418: worker1
+INFO: 2018-08-15 15:49:12,428:Dart.py:424: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:13,034:Dart.py:390: 10.25.83.52
+INFO: 2018-08-15 15:49:13,034:Dart.py:426: 10.25.83.52
+INFO: 2018-08-15 15:49:13,035:Dart.py:429: 10.25.83.52
+INFO: 2018-08-15 15:49:13,035:Dart.py:418: worker2
+INFO: 2018-08-15 15:49:13,035:Dart.py:424: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:13,180:Dart.py:390: 10.25.83.52
+INFO: 2018-08-15 15:49:13,180:Dart.py:426: 10.25.83.52
+INFO: 2018-08-15 15:49:13,180:Dart.py:429: 10.25.83.52
+INFO: 2018-08-15 15:49:13,181:Dart.py:418: worker2
+INFO: 2018-08-15 15:49:13,181:Dart.py:424: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:14,105:Dart.py:390: 10.25.83.53
+INFO: 2018-08-15 15:49:14,105:Dart.py:426: 10.25.83.53
+INFO: 2018-08-15 15:49:14,106:Dart.py:429: 10.25.83.53
+INFO: 2018-08-15 15:49:14,106:Dart.py:418: worker3
+INFO: 2018-08-15 15:49:14,106:Dart.py:424: kubectl get -o template po worker3 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:14,269:Dart.py:390: 10.25.83.53
+INFO: 2018-08-15 15:49:14,269:Dart.py:426: 10.25.83.53
+INFO: 2018-08-15 15:49:14,269:Dart.py:429: 10.25.83.53
+INFO: 2018-08-15 15:49:14,270:Dart.py:418: worker3
+INFO: 2018-08-15 15:49:14,270:Dart.py:424: kubectl get -o template po worker3 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 15:49:15,159:Dart.py:390: 10.25.83.51
+INFO: 2018-08-15 15:49:15,159:Dart.py:426: 10.25.83.51
+INFO: 2018-08-15 15:49:15,159:Dart.py:429: 10.25.83.51
+INFO: 2018-08-15 15:49:15,159:Dart.py:460: ['10.25.83.50']
+INFO: 2018-08-15 15:49:15,160:Dart.py:461: ['10.25.83.52', '10.25.83.53', '10.25.83.51']
+INFO: 2018-08-15 15:49:15,161:Dart.py:299: Test Set: Install 
+INFO: 2018-08-15 15:49:15,161:Dart.py:313: Running Testset: Install
+INFO: 2018-08-15 15:49:15,161:Dart.py:319:         Running Test: AsterInstallOnK8s on Cluster dart-main-sls12-03
+INFO: 2018-08-15 15:49:15,161:Dart.py:322: [u'AsterInstallOnK8s', {u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'WORKERPOD_COUNT': 2, 'testId': 1, u'TIMEOUT': 7200, u'localRegistry': u'False', 'id': 1511252, u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'dockerRepoHost': u'sdartifact.td.teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'OWNER': u'naveen.williams', u'PARTITIONS_PER_WORKERPOD': 2, 'runId': u'180815-124'}, 0]
+INFO: 2018-08-15 15:49:15,195:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,195:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-15 15:49:15,195:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,195:TestBase.py:45:           deleteDockerImages : True 
+INFO: 2018-08-15 15:49:15,196:TestBase.py:45:           testSet : Install 
+INFO: 2018-08-15 15:49:15,196:TestBase.py:45:           filePath : devops_installer/docker 
+INFO: 2018-08-15 15:49:15,196:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-15 15:49:15,196:TestBase.py:45:           dockerRepoUser : da230151 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           dockerRepoPassword : APB4dyNjaZ5Dr6gRKDoy8vGDcQt 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           WORKERPOD_COUNT : 2 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           testId : 1 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           TIMEOUT : 7200 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           localRegistry : False 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           id : 1511252 
+INFO: 2018-08-15 15:49:15,197:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-15 15:49:15,198:TestBase.py:45:           dockerRepoPath : asterdata/beehive/drops/ci/08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:15,198:TestBase.py:45:           NAME : AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:15,198:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-15 15:49:15,199:TestBase.py:45:           dockerRepoEmail : da230151@teradata.com 
+INFO: 2018-08-15 15:49:15,199:TestBase.py:45:           dockerRepoHost : sdartifact.td.teradata.com 
+INFO: 2018-08-15 15:49:15,200:TestBase.py:45:           COMPONENT : devops_installer/docker 
+INFO: 2018-08-15 15:49:15,201:TestBase.py:45:           dockerRepoTag : 08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:15,201:TestBase.py:45:           PRIORITY : 1 
+INFO: 2018-08-15 15:49:15,201:TestBase.py:45:           logTimestamp : 2018-08-15-154915 
+INFO: 2018-08-15 15:49:15,201:TestBase.py:45:           LOCATION : devops_installer/docker/AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:15,201:TestBase.py:45:           OWNER : naveen.williams 
+INFO: 2018-08-15 15:49:15,202:TestBase.py:45:           PARTITIONS_PER_WORKERPOD : 2 
+INFO: 2018-08-15 15:49:15,202:TestBase.py:45:           runId : 180815-124 
+INFO: 2018-08-15 15:49:15,202:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,237:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-15 15:49:15,369:Dart.py:390: 10.25.83.51
+INFO: 2018-08-15 15:49:15,370:Dart.py:426: 10.25.83.51
+INFO: 2018-08-15 15:49:15,370:Dart.py:429: 10.25.83.51
+INFO: 2018-08-15 15:49:15,370:Dart.py:460: ['10.25.83.50']
+INFO: 2018-08-15 15:49:15,370:Dart.py:461: ['10.25.83.52', '10.25.83.53', '10.25.83.51']
+INFO: 2018-08-15 15:49:15,370:Dart.py:299: Test Set: Install 
+INFO: 2018-08-15 15:49:15,370:Dart.py:313: Running Testset: Install
+INFO: 2018-08-15 15:49:15,371:Dart.py:319:         Running Test: AsterInstallOnK8s on Cluster dart-main-sls12-03
+INFO: 2018-08-15 15:49:15,371:Dart.py:322: [u'AsterInstallOnK8s', {u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'WORKERPOD_COUNT': 2, 'testId': 1, u'TIMEOUT': 7200, u'localRegistry': u'False', 'id': 1511253, u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'dockerRepoHost': u'sdartifact.td.teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'OWNER': u'naveen.williams', u'PARTITIONS_PER_WORKERPOD': 2, 'runId': u'180815-125'}, 0]
+INFO: 2018-08-15 15:49:15,403:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,403:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-15 15:49:15,404:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,404:TestBase.py:45:           deleteDockerImages : True 
+INFO: 2018-08-15 15:49:15,404:TestBase.py:45:           testSet : Install 
+INFO: 2018-08-15 15:49:15,404:TestBase.py:45:           filePath : devops_installer/docker 
+INFO: 2018-08-15 15:49:15,404:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-15 15:49:15,404:TestBase.py:45:           dockerRepoUser : da230151 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           dockerRepoPassword : APB4dyNjaZ5Dr6gRKDoy8vGDcQt 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           WORKERPOD_COUNT : 2 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           testId : 1 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           TIMEOUT : 7200 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           localRegistry : False 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           id : 1511253 
+INFO: 2018-08-15 15:49:15,405:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-15 15:49:15,406:TestBase.py:45:           dockerRepoPath : asterdata/beehive/drops/ci/08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:15,406:TestBase.py:45:           NAME : AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:15,406:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-15 15:49:15,406:TestBase.py:45:           dockerRepoEmail : da230151@teradata.com 
+INFO: 2018-08-15 15:49:15,410:TestBase.py:45:           dockerRepoHost : sdartifact.td.teradata.com 
+INFO: 2018-08-15 15:49:15,410:TestBase.py:45:           COMPONENT : devops_installer/docker 
+INFO: 2018-08-15 15:49:15,410:TestBase.py:45:           dockerRepoTag : 08.00.00.01-806f9cc5 
+INFO: 2018-08-15 15:49:15,410:TestBase.py:45:           PRIORITY : 1 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:45:           logTimestamp : 2018-08-15-154915 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:45:           LOCATION : devops_installer/docker/AsterInstallOnK8s 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:45:           OWNER : naveen.williams 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:45:           PARTITIONS_PER_WORKERPOD : 2 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:45:           runId : 180815-125 
+INFO: 2018-08-15 15:49:15,413:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-15 15:49:15,445:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-15 15:49:16,450:TestBase.py:170: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:16,450:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+INFO: 2018-08-15 15:49:16,643:TestBase.py:170: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          17m
+queen     16/18     CrashLoopBackOff   15         16m
+worker1   7/7       Running            0          9m
+worker2   7/7       Running            0          9m
+worker3   7/7       Running            0          9m
+
+INFO: 2018-08-15 15:49:16,644:Kubernetes.py:82: Executing command [10.25.83.50]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+ERROR: 2018-08-15 15:49:17,043:Dart.py:772: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:17,044:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-15 15:49:17,044:Dart.py:774: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7f91d4058ef0>)
+ERROR: 2018-08-15 15:49:17,045:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:17,045:Dart.py:781: The test AsterInstallOnK8s has FAILED
+ERROR: 2018-08-15 15:49:17,045:Dart.py:325: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:17,046:Dart.py:327: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7f91cc27c050>)
+ERROR: 2018-08-15 15:49:17,046:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:17,046:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-15 15:49:17,046:Dart.py:334: Test Set : Install Total Execution Time: 1 
+INFO: 2018-08-15 15:49:17,060:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,060:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:01', 'log_location': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', 'end_time': '2018-08-15 15:49:17'}
+INFO: 2018-08-15 15:49:17,394:DartRunner.py:2647: Successfully uploaded the Dart Test Log: dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log
+INFO: 2018-08-15 15:49:17,403:DartDBConnect.py:127: Running the sql:
+INFO: 2018-08-15 15:49:17,404:DartDBConnect.py:128: SELECT retry_logs from darttest WHERE id=1511252;
+INFO: 2018-08-15 15:49:17,405:DartDBConnect.py:132: Select Return Value ========
+INFO: 2018-08-15 15:49:17,405:DartDBConnect.py:133: [(None,)]
+INFO: 2018-08-15 15:49:17,406:DartRunner.py:2629: Select Success: (None,) test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,406:DartRunner.py:2630: [(None,)]
+INFO: 2018-08-15 15:49:17,406:DartRunner.py:2332: RETRY LOG STRING =====
+INFO: 2018-08-15 15:49:17,406:DartRunner.py:2333: None
+ERROR: 2018-08-15 15:49:17,411:Dart.py:772: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:17,412:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-15 15:49:17,412:Dart.py:774: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7ff8ac0afe18>)
+ERROR: 2018-08-15 15:49:17,412:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:17,413:Dart.py:781: The test AsterInstallOnK8s has FAILED
+ERROR: 2018-08-15 15:49:17,413:Dart.py:325: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-15 15:49:17,414:Dart.py:327: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7ff8ac054f38>)
+ERROR: 2018-08-15 15:49:17,414:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/AsterInstallOnK8s.py", line 46, in __init__
+    KubernetesTestBase.__init__(self, cfgJson, testParams)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 26, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-15 15:49:17,414:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-15 15:49:17,414:Dart.py:334: Test Set : Install Total Execution Time: 2 
+INFO: 2018-08-15 15:49:17,416:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,416:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:01', 'log_location': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', 'end_time': '2018-08-15 15:49:17', 'retry_logs': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log'}
+INFO: 2018-08-15 15:49:17,416:DartRunner.py:2727: Attempting to get the Kernel and os information from the Cluster
+INFO: 2018-08-15 15:49:17,427:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,428:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:02', 'log_location': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', 'end_time': '2018-08-15 15:49:17'}
+INFO: 2018-08-15 15:49:17,905:DartRunner.py:2647: Successfully uploaded the Dart Test Log: dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log
+INFO: 2018-08-15 15:49:17,922:DartDBConnect.py:127: Running the sql:
+INFO: 2018-08-15 15:49:17,922:DartDBConnect.py:128: SELECT retry_logs from darttest WHERE id=1511253;
+INFO: 2018-08-15 15:49:17,925:DartDBConnect.py:132: Select Return Value ========
+INFO: 2018-08-15 15:49:17,925:DartDBConnect.py:133: [(None,)]
+INFO: 2018-08-15 15:49:17,925:DartRunner.py:2629: Select Success: (None,) test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,926:DartRunner.py:2630: [(None,)]
+INFO: 2018-08-15 15:49:17,926:DartRunner.py:2332: RETRY LOG STRING =====
+INFO: 2018-08-15 15:49:17,926:DartRunner.py:2333: None
+INFO: 2018-08-15 15:49:17,945:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:17,945:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:02', 'log_location': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', 'end_time': '2018-08-15 15:49:17', 'retry_logs': u'/root/DartLogs/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log'}
+INFO: 2018-08-15 15:49:17,945:DartRunner.py:2727: Attempting to get the Kernel and os information from the Cluster
+INFO: 2018-08-15 15:49:18,627:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:18,627:DartRunner.py:2588: {'kernel_version': '4.4.121-92.80-default', 'os_version': '', 'revision': '08.00.00.01-806f9cc5'}
+INFO: 2018-08-15 15:49:19,111:DartRunner.py:2587: Updated Status: On test AsterInstallOnK8s
+INFO: 2018-08-15 15:49:19,111:DartRunner.py:2588: {'kernel_version': '4.4.121-92.80-default', 'os_version': '', 'revision': '08.00.00.01-806f9cc5'}
+INFO: 2018-08-15 15:49:22,765:DartRunner.py:754: Looping the Main Loop: 2
+INFO: 2018-08-15 15:49:22,765:DartRunner.py:988: Return Value:
+INFO: 2018-08-15 15:49:22,765:DartRunner.py:2958:         InstallAsterInstallOnK8s     False         1 2018-08-15 15:49:15 2018-08-15 15:49:17
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1647: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1648: returnValue = {'test': {u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'TIMEOUT': 7200, 'id': 1511252, u'dockerRepoHost': u'sdartifact.td.teradata.com', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'PARTITIONS_PER_WORKERPOD': 2, u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'WORKERPOD_COUNT': 2, 'testId': 1, u'localRegistry': u'False', u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', 'runId': u'180815-124', u'OWNER': u'naveen.williams'}, 'clusterName': 'dart-main-sls12-03', 'totalTime': 6, 'testName': u'AsterInstallOnK8s', 'testResults': OrderedDict([('Install', [[u'AsterInstallOnK8s', 1, False, '2018-08-15 15:49:15', '2018-08-15 15:49:17', u'/root/Dart/log/devops_installer/docker/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', u'dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log']])])}
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1649: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:994: Thread Count Went Down 0 
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1001: The TestName: AsterInstallOnK8s has been released from the Job Queue
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1007: {'TIMEOUT': 7200, 'THREAD': <Process(Process-1, stopped)>, 'CLUSTER': 'dart-main-sls12-03', 'STARTTIME': 1534373350, 'TEST': {u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'WORKERPOD_COUNT': 2, 'testId': 1, u'TIMEOUT': 7200, u'localRegistry': u'False', 'id': 1511252, u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'dockerRepoHost': u'sdartifact.td.teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'OWNER': u'naveen.williams', u'PARTITIONS_PER_WORKERPOD': 2, 'runId': u'180815-124'}, 'ENDTIME': 1534373362}
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1015: The test AsterInstallOnK8s returned back with the following result: False
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-15 15:49:22,766:DartRunner.py:1131: {'dart-main-sls12-03': 'stale'}
+INFO: 2018-08-15 15:49:22,818:DartRunner.py:754: Looping the Main Loop: 2
+INFO: 2018-08-15 15:49:22,818:DartRunner.py:988: Return Value:
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:2958:         InstallAsterInstallOnK8s     False         2 2018-08-15 15:49:15 2018-08-15 15:49:17
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:1647: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:1648: returnValue = {'test': {u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'TIMEOUT': 7200, 'id': 1511253, u'dockerRepoHost': u'sdartifact.td.teradata.com', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'PARTITIONS_PER_WORKERPOD': 2, u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'WORKERPOD_COUNT': 2, 'testId': 1, u'localRegistry': u'False', u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', 'runId': u'180815-125', u'OWNER': u'naveen.williams'}, 'clusterName': 'dart-main-sls12-03', 'totalTime': 7, 'testName': u'AsterInstallOnK8s', 'testResults': OrderedDict([('Install', [[u'AsterInstallOnK8s', 2, False, '2018-08-15 15:49:15', '2018-08-15 15:49:17', u'/root/Dart/log/devops_installer/docker/dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log', u'dart-main-sls12-03_AsterInstallOnK8s_2018-08-15-154915.log']])])}
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:1649: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:994: Thread Count Went Down 0 
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:1001: The TestName: AsterInstallOnK8s has been released from the Job Queue
+INFO: 2018-08-15 15:49:22,819:DartRunner.py:1007: {'TIMEOUT': 7200, 'THREAD': <Process(Process-1, stopped)>, 'CLUSTER': 'dart-main-sls12-03', 'STARTTIME': 1534373350, 'TEST': {u'deleteDockerImages': u'True', 'testSet': 'Install', u'dockerRepoUser': u'da230151', u'dockerRepoPassword': u'APB4dyNjaZ5Dr6gRKDoy8vGDcQt', u'WORKERPOD_COUNT': 2, 'testId': 1, u'TIMEOUT': 7200, u'localRegistry': u'False', 'id': 1511253, u'CATEGORY': u'positive', u'dockerRepoPath': u'asterdata/beehive/drops/ci/08.00.00.01-806f9cc5', u'NAME': u'AsterInstallOnK8s', 'timeScale': 1, u'dockerRepoEmail': u'da230151@teradata.com', u'dockerRepoHost': u'sdartifact.td.teradata.com', u'COMPONENT': u'devops_installer/docker', u'dockerRepoTag': u'08.00.00.01-806f9cc5', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/AsterInstallOnK8s', u'OWNER': u'naveen.williams', u'PARTITIONS_PER_WORKERPOD': 2, 'runId': u'180815-125'}, 'ENDTIME': 1534373362}
+INFO: 2018-08-15 15:49:22,820:DartRunner.py:1015: The test AsterInstallOnK8s returned back with the following result: False
+INFO: 2018-08-15 15:49:22,820:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-15 15:49:22,820:DartRunner.py:1131: {'dart-main-sls12-03': 'stale'}
+INFO: 2018-08-15 15:49:32,774:DartRunner.py:1134: Done with initiating all the tests!
+INFO: 2018-08-15 15:49:32,775:DartRunner.py:1207: All the tests have been executed!
+INFO: 2018-08-15 15:49:32,819:DartRunner.py:1309: {'dart-main-sls12-03': 'stale'}
+INFO: 2018-08-15 15:49:32,830:DartRunner.py:1134: Done with initiating all the tests!
+INFO: 2018-08-15 15:49:32,830:DartRunner.py:1207: All the tests have been executed!
+INFO: 2018-08-15 15:49:32,869:DartRunner.py:1309: {'dart-main-sls12-03': 'stale'}
+INFO: 2018-08-15 15:49:33,386:DartRunner.py:2962: DartRunner Final Results!
+INFO: 2018-08-15 15:49:33,386:DartRunner.py:2963:         TESTSET       TESTNAME    STATUS TOTALTIME           STARTTIME             ENDTIME
+INFO: 2018-08-15 15:49:33,386:DartRunner.py:2958:         InstallAsterInstallOnK8s     False         1 2018-08-15 15:49:15 2018-08-15 15:49:17
+INFO: 2018-08-15 15:49:33,387:DartRunner.py:2968: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-124
+INFO: 2018-08-15 15:49:33,387:DartRunner.py:1347: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-124
+INFO: 2018-08-15 15:49:33,409:DartRunner.py:2962: DartRunner Final Results!
+INFO: 2018-08-15 15:49:33,409:DartRunner.py:2963:         TESTSET       TESTNAME    STATUS TOTALTIME           STARTTIME             ENDTIME
+INFO: 2018-08-15 15:49:33,409:DartRunner.py:2958:         InstallAsterInstallOnK8s     False         2 2018-08-15 15:49:15 2018-08-15 15:49:17
+INFO: 2018-08-15 15:49:33,409:DartRunner.py:2968: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-125
+INFO: 2018-08-15 15:49:33,410:DartRunner.py:1347: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-125

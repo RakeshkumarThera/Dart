@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--
+    Name: testInfo.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /report
+    Description: Bottom page of report page. 
+                 Used to show all test information an status of test run
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <style media="all" type="text/css">
+        .alignCenter { text-align: center; }
+        .alignLeft { text-align: left; }
+    </style>
+    <style media="all" type="text/css">
+        .dataTable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    </style>
+    <title>Test Information</title>
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css"></link>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+    <script>
+        var runid = ""
+        var testCount = []
+
+        function loadData(cluster, runId, project) {
+            /*
+                Query data from database
+            */
+            var column = "id,type,revision,test_seq,run_id,release_name,testcase,testset,build_name,tester,start_time,end_time,execution_time,cluster_name,owner,priority,status,retry_count"
+            var table = ""
+            var condition = ""
+            if (runId != "" || runId != 0) {
+                column = column + ",(select count(*) from darttest where run_id=r.run_id) as total,"
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='RUNNING') as running,"
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='WAITING') as waiting,"
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='PASS') as pass," 
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='ABORT') as abort,"
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='SKIP') as skip,"
+                column = column + "(select count(*) from darttest where run_id=r.run_id and status='FAIL') as fail,"
+                column = column + "(select run_command from dartruninfo where run_id=r.run_id) as run_command "
+
+                var filter = ""
+                if (cluster != "") {
+                    filter = filter + " and cluster_name='" + cluster + "'"
+                }
+
+                if (project != "") {
+                    filter = filter + " and release_name='" + project + "'"
+                }
+
+                table = "(select * from darttest where run_id='" + runId  + "'" + filter  + ") as r"
+            } else {
+                table = "darttest"
+
+                if (cluster != "") {
+                    condition = condition + "cluster_name='" + cluster + "'"
+                }
+
+                if (project != "") {
+                    if (condition != "") {
+                        condition = condition + " and "
+                    }
+                    condition = condition + "release_name='" + project + "'"
+                }
+            }
+            
+	    console.log(condition)
+            var apiUrl = "/api/select_rows?dbname=dartdb&table=" + encodeURIComponent(table)  + "&columns=" + encodeURIComponent(column)
+            if (condition != "") {
+                apiUrl = apiUrl + "&condition=" + encodeURIComponent(condition)
+            }
+
+            $.ajax({
+                     url: apiUrl,
+                     type: 'GET',
+                     dataType: 'json',
+                     contentType: 'application/json',
+                     success: function(res){
+                         $('#datatable').dataTable().fnClearTable();
+                         if (res.results.length != 0) {
+                             $('#datatable').dataTable().fnAddData($.renderTable(res))
+                         }
+                     },
+                     error: function(req, err){ console.log('my message: ' + err); }
+             });
+
+        }
+
+        $.renderTable = function(res) {
+             /*
+                 Put data to jQuery datatable
+             */
+             var data = []
+             var results = res.results 
+             var setupTearDownCouont = 0
+             for (i = 0; i < results.length; i++) {
+                 if ((results[i].type == "Setup" && results[i].status == "WAITING") || (results[i].type == "TearDown" && results[i].status == "WAITING")) {
+                     setupTearDownCouont = setupTearDownCouont + 1
+                     continue
+                 }
+
+                 var startTime = results[i].start_time
+                 if (startTime != null) {
+                     startTime = startTime.replace("GMT", "PDT")
+                 }
+
+                 if (startTime == null) {
+                     startTime = "-";
+                 } else {
+                     var datetime = new Date(startTime);
+                     startTime = $.convertDateString(datetime)
+                 }
+
+                 var exeTime = $.checkFieldEmpty(results[i].execution_time)
+                 var revision = $.checkFieldEmpty(results[i].revision)
+                 var clusterName = results[i].cluster_name
+                 if (clusterName == null) {
+                     clusterName = "-"
+                 } else {
+                     clusterName = '<a href="report/cluster?id=' + results[i].id  + '" target="_parent">' + clusterName + '</a>'
+                 }
+
+                 var retryCount = 0;
+                 if ($.checkFieldEmpty(results[i].retry_count) != "-") {
+                     retryCount = results[i].retry_count
+                 }
+
+                 var tmp = [results[i].test_seq,
+                            '<a href="report/test?id=' + results[i].id  + '" target="_parent">' + results[i].testcase + '</a>', 
+                            results[i].testset, revision, results[i].build_name,
+                            results[i].owner, results[i].priority, retryCount, startTime, exeTime, 
+                            clusterName, 
+                            results[i].status]
+                 data.push(tmp)
+             }
+
+             testCount = []
+             testCount.push(results[0].total - setupTearDownCouont)
+             testCount.push(results[0].running)
+             testCount.push(results[0].waiting - setupTearDownCouont)
+             testCount.push(results[0].pass)
+             testCount.push(results[0].fail)
+             testCount.push(results[0].abort)
+             testCount.push(results[0].skip)
+             testCount.push(results[0].release_name)
+             testCount.push(results[0].tester)
+             testCount.push(results[0].run_command)
+
+             window.parent.document.getElementById('navbar').contentWindow.renderTestCount(testCount);
+             
+             return data;
+         }
+
+         $.alignForSorting = function(digit) {
+             for (i = 0; i < 4 - digit.length; i++) {
+                 digit = '0' + digit
+             }
+
+             return digit
+         }
+
+         jQuery.fn.dataTableExt.oSort['string-case-desc'] = function(x,y) {
+             if (x != null && y != null) {
+                 xRunId = x.split(">")
+                 x = xRunId[xRunId.length - 1]
+                 yRunId = y.split(">")
+                 y = yRunId[xRunId.length - 1]
+                 xPrefix = x.substring(0, 7)
+                 yPrefix = y.substring(0, 7)
+                 xSuffix = $.alignForSorting(x.substring(7, x.length));
+                 ySuffix = $.alignForSorting(y.substring(7, y.length));
+                 x = xPrefix + xSuffix
+                 y = yPrefix + ySuffix
+             }
+
+             return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+         };
+
+         jQuery.fn.dataTableExt.oSort['string-case-asc'] = function(x,y) {
+             return ((x > y) ?  1 : ((x < y) ? -1 : 0));
+         };
+
+         $(document).ready(function(){
+              runid = $.urlParam('run_id')
+              loadData("", runid, "")
+              $('#datatable').dataTable({
+                  "lengthMenu": [[20, 30, 100], [20, 30, 100]],
+                  "rowHeight": "0%",
+                  "aaSorting": [[0, 'asc']],
+                  "aoColumns": [
+			null,
+			null,
+			null,
+			null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null
+		  ],
+                  
+                  "aoColumnDefs": [
+                      {"sWidth": "5%", "aTargets": [0], "sClass": "alignCenter"},
+                      {"sWidth": "20%", "aTargets": [1], "sClass": "alignLeft"},
+                      {"sWidth": "10%", "aTargets": [2], "sClass": "alignCenter"},
+                      {"sWidth": "7%", "aTargets": [3], "sClass": "alignCenter"},
+                      {"sWidth": "7%", "aTargets": [4], "sClass": "alignCenter"},
+                      {"sWidth": "10%", "aTargets": [5], "sClass": "alignCenter"},
+                      {"sWidth": "3%", "aTargets": [6], "sClass": "alignCenter"},
+                      {"sWidth": "3%", "aTargets": [7], "sClass": "alignCenter"},
+                      {"sWidth": "13%", "aTargets": [8], "sClass": "alignCenter"},
+                      {"sWidth": "7%", "aTargets": [9], "sClass": "alignCenter"},
+                      {"sWidth": "7%", "aTargets": [10], "sClass": "alignCenter"},
+                      {"sWidth": "7%", "aTargets": [11], "sClass": "alignCenter"},
+                      { //set truncate max-width for each cell
+                          "aTargets": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                              $(nTd).css('max-width', '1px')
+                              if (sData != null && sData != "-" && typeof sData == "string" &&!sData.startsWith("<a href")) {
+                                   nTd.title = sData;
+                              } else if (sData != null && typeof sData == "string" && sData.startsWith("<a href")) {
+                                  arr = sData.split(">")
+                                  data = arr[1].split("<")
+                                  nTd.title = data[0]
+                              }
+                          }
+                      },
+                      {
+                          "aTargets": [11],
+                          "fnCreatedCell": function (nTd, sData, oData, iRow, iCol) {
+                              if (sData == "FAIL") {
+                                  $(nTd).css('color', '#fd6864')
+                              } else if (sData == "PASS") {
+                                  $(nTd).css('color', '#67fd9a')
+                              } else if (sData == "WAITING") {
+                                  $(nTd).css('color', '#c0c0c0')
+                              } else if (sData == "RUNNING") {
+                                  $(nTd).css('color', '#38fff8')
+                              } else if (sData == "ABORT") {
+                                  $(nTd).css('color', '#9698ed')
+                              } else if (sData == "SKIP") {
+                                  $(nTd).css('color', '#D7DF01')
+                              }
+                          }
+                      }
+                  ]
+              });
+             $('#datatable').css( {
+                 "font-size": "80%"
+             });
+         });
+    </script>
+</head>
+<body>
+    <div id="content" style="background-color:#F7BE81; width:100%; float:center; border-radius: 5px;">
+            <table id="datatable" class="row-border" width="100%">
+            <thead>
+              <tr>
+              <th>Seq</th>
+              <th>Test Name</th>
+              <th>Test Set</th>
+              <th>Revision</th>
+              <th>Milestone</th>
+              <th>Owner</th>
+              <th>Priority</th>
+              <th>Retry</th>
+              <th>Start Time</th>
+              <th>Duration</th>
+              <th>Cluster</th>
+              <th>Status</th>
+              </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>

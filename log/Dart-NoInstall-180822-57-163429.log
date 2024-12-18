@@ -1,0 +1,54 @@
+INFO: 2018-08-22 16:34:29,373:Dart.py:120: Logfile is /root/Dart/log/Dart-NoInstall-180822-57-163429.log
+INFO: 2018-08-22 16:34:30,560:Dart.py:390: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          4d
+queen     17/18     ImagePullBackOff   1155       4d
+
+INFO: 2018-08-22 16:34:30,560:Dart.py:418: consul
+INFO: 2018-08-22 16:34:30,560:Dart.py:418: queen
+INFO: 2018-08-22 16:34:30,561:Dart.py:424: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-22 16:34:31,374:Dart.py:390: 10.25.83.70
+INFO: 2018-08-22 16:34:31,376:Dart.py:426: 10.25.83.70
+INFO: 2018-08-22 16:34:31,377:Dart.py:429: 10.25.83.70
+INFO: 2018-08-22 16:34:31,377:Dart.py:460: ['10.25.83.70']
+INFO: 2018-08-22 16:34:31,377:Dart.py:461: []
+INFO: 2018-08-22 16:34:31,377:Dart.py:299: Test Set: Install 
+INFO: 2018-08-22 16:34:31,378:Dart.py:313: Running Testset: Install
+INFO: 2018-08-22 16:34:31,378:Dart.py:319:         Running Test: NoInstall on Cluster dart-main-sls12-08
+INFO: 2018-08-22 16:34:31,378:Dart.py:322: [u'NoInstall', {'testSet': u'Install', 'testPlan': None, 'tester': 'root', 'projectName': 'MLEngine', 'buildNumber': '', u'OWNER': u'naveen.williams', 'testId': 1, u'TIMEOUT': 300, 'id': 1530197, u'CATEGORY': u'positive', u'NAME': u'NoInstall', 'timeScale': 1, 'reTryCnt': 0, u'COMPONENT': u'devops_installer/docker', u'PRIORITY': u'1', u'LOCATION': u'devops_installer/docker/NoInstall', 'buildName': 'beehive-ci-pipeline-main', 'release': 'GGR3', 'branchName': 'master', 'runId': u'180822-57'}, 0]
+INFO: 2018-08-22 16:34:31,391:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-22 16:34:31,391:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-22 16:34:31,392:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           testSet : Install 
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           testPlan : None 
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           tester : root 
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           projectName : MLEngine 
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-22 16:34:31,392:TestBase.py:45:           buildNumber :  
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           OWNER : naveen.williams 
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           testId : 1 
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           TIMEOUT : 300 
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           filePath : devops_installer/docker 
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           id : 1530197 
+INFO: 2018-08-22 16:34:31,393:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-22 16:34:31,394:TestBase.py:45:           NAME : NoInstall 
+INFO: 2018-08-22 16:34:31,394:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-22 16:34:31,394:TestBase.py:45:           reTryCnt : 0 
+INFO: 2018-08-22 16:34:31,394:TestBase.py:45:           COMPONENT : devops_installer/docker 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           PRIORITY : 1 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           logTimestamp : 2018-08-22-163431 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           LOCATION : devops_installer/docker/NoInstall 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           buildName : beehive-ci-pipeline-main 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           release : GGR3 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           branchName : master 
+INFO: 2018-08-22 16:34:31,395:TestBase.py:45:           runId : 180822-57 
+INFO: 2018-08-22 16:34:31,396:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-22 16:34:31,417:Kubernetes.py:82: Executing command [10.25.83.70]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-22 16:34:32,512:TestBase.py:170: NAME      READY     STATUS             RESTARTS   AGE
+consul    1/1       Running            0          4d
+queen     17/18     ImagePullBackOff   1155       4d
+
+INFO: 2018-08-22 16:34:32,512:Kubernetes.py:82: Executing command [10.25.83.70]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+INFO: 2018-08-22 16:34:32,949:NoInstall.py:24: This is a Dummy Install!!
+INFO: 2018-08-22 16:34:32,949:Dart.py:759: Running Cleanup of the Test Instance!
+INFO: 2018-08-22 16:34:32,949:Dart.py:779: The test NoInstall was successful!
+INFO: 2018-08-22 16:34:32,950:Dart.py:334: Test Set : Install Total Execution Time: 1 

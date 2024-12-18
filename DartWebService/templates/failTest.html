@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<!--
+    Name: failTest.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /failTest
+    Description: Show failed test case by test case owner
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dart Test Report</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            /*
+                Get the url parameter and passes to top and bottom page
+            */
+            runid = decodeURIComponent($.urlParam("run_id"))
+            $("#failTestNav").attr("src", "failTestNav?run_id=" + runid)
+            $("#failTestBottom").attr("src", "failTestBottom?run_id=" + runid)
+        });
+    </script>
+</head>
+<frameset id="test_frame" rows="95,*" frameborder="0" framespacing="0">
+<frame id="failTestNav" src="failTestNav" name="titlebar" scrolling="no"></frame>
+<frame id="failTestBottom" src="failTestBottom" name="mainframe"></frame>
+</script>
+</frameset> 
+</html>
+

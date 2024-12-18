@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+    Name: report.html
+    Author: alen.cheng@teradata.com
+    Copyright: Copyright 2007, Aster
+    Date: 11/01/2016
+    Uri: /report
+    Description: Show test case information and test result
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Dart Test Report</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" type="text/javascript"></script>
+    <script src="utility.js" type="text/javascript"></script>
+    <script>
+        $(document).ready(function(){
+            /*
+                Get the url parameter and passes to top and bottom page
+            */
+            runid = decodeURIComponent($.urlParam("run_id"))
+            releaseName = decodeURIComponent($.urlParam("release_name"))
+            tester = decodeURIComponent($.urlParam("tester"))
+            comments = decodeURIComponent($.urlParam("comments"))
+            keywords = decodeURIComponent($.urlParam("keywords"))
+            $("#navbar").attr("src", "navBar?run_id=" + runid + "&release_name=" + releaseName + "&tester=" + tester + "&comments=" + comments + "&keywords=" + keywords)
+            $("#testInfo").attr("src", "testInfo?run_id=" + runid)
+        });
+    </script>
+</head>
+<frameset id="test_frame" rows="130,*" frameborder="0" framespacing="0">
+<frame id="navbar" src="navBar" name="titlebar" scrolling="no"></frame>
+<frame id="testInfo" src="testInfo" name="mainframe"></frame>
+</script>
+</frameset> 
+</html>
+

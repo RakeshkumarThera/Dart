@@ -1,0 +1,779 @@
+INFO: 2018-08-21 11:48:22,252:Dart.py:120: Logfile is /root/Dart/log/Dart-NullTest-180821-51-114822.log
+INFO: 2018-08-21 11:48:23,286:Dart.py:390: NAME      READY     STATUS    RESTARTS   AGE
+consul    1/1       Running   0          17d
+queen     16/16     Running   0          17d
+worker1   7/7       Running   0          17d
+worker2   7/7       Running   0          17d
+
+INFO: 2018-08-21 11:48:23,286:Dart.py:418: consul
+INFO: 2018-08-21 11:48:23,286:Dart.py:418: queen
+INFO: 2018-08-21 11:48:23,287:Dart.py:424: kubectl get -o template po queen --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 11:48:24,018:Dart.py:390: 10.25.82.57
+INFO: 2018-08-21 11:48:24,018:Dart.py:426: 10.25.82.57
+INFO: 2018-08-21 11:48:24,019:Dart.py:429: 10.25.82.57
+INFO: 2018-08-21 11:48:24,019:Dart.py:418: worker1
+INFO: 2018-08-21 11:48:24,019:Dart.py:424: kubectl get -o template po worker1 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 11:48:24,769:Dart.py:390: 10.25.82.58
+INFO: 2018-08-21 11:48:24,770:Dart.py:426: 10.25.82.58
+INFO: 2018-08-21 11:48:24,770:Dart.py:429: 10.25.82.58
+INFO: 2018-08-21 11:48:24,770:Dart.py:418: worker2
+INFO: 2018-08-21 11:48:24,770:Dart.py:424: kubectl get -o template po worker2 --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 11:48:25,540:Dart.py:390: 10.25.82.59
+INFO: 2018-08-21 11:48:25,540:Dart.py:426: 10.25.82.59
+INFO: 2018-08-21 11:48:25,541:Dart.py:429: 10.25.82.59
+INFO: 2018-08-21 11:48:25,541:Dart.py:460: ['10.25.82.57']
+INFO: 2018-08-21 11:48:25,541:Dart.py:461: ['10.25.82.58', '10.25.82.59']
+INFO: 2018-08-21 11:48:25,541:Dart.py:299: Test Set: SqlTests 
+INFO: 2018-08-21 11:48:25,541:Dart.py:313: Running Testset: SqlTests
+INFO: 2018-08-21 11:48:25,542:Dart.py:319:         Running Test: NullTest on Cluster dartpm3
+INFO: 2018-08-21 11:48:25,542:Dart.py:322: [u'NullTest', {u'OWNER': u'divya.sivanandan', 'testSet': u'SqlTests', 'testPlan': None, 'tester': 'root', 'projectName': 'MLEngine', 'buildNumber': '', 'buildName': 'beehive-ci-pipeline-main', u'USER': u'beehive', u'TIMEOUT': 800, u'PASSWORD': u'beehive', 'id': 1527040, u'CATEGORY': u'positive', u'EXPECTEDOUT': u'testsrc/queen/sql/test_sql/expectedQueryResults/null.out', u'NAME': u'NullTest', 'timeScale': 1, u'DATABASE': u'beehive', 'reTryCnt': 0, u'COMPONENT': u'queen/sql/test_sql', u'PRIORITY': u'2', 'runId': u'180821-51', u'TEMPLATE': u'True', u'ACTPARAMS': u'-a', 'release': 'GGR3', u'QUERY': u'testsrc/queen/sql/test_sql/input/null.sql', 'branchName': '', u'TYPE': u'SQL', 'testId': 1}, 0]
+INFO: 2018-08-21 11:48:25,547:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-21 11:48:25,548:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-21 11:48:25,548:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-21 11:48:25,548:TestBase.py:45:           OWNER : divya.sivanandan 
+INFO: 2018-08-21 11:48:25,548:TestBase.py:45:           testSet : SqlTests 
+INFO: 2018-08-21 11:48:25,548:TestBase.py:45:           testPlan : None 
+INFO: 2018-08-21 11:48:25,548:TestBase.py:45:           tester : root 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           projectName : MLEngine 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           buildNumber :  
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           buildName : beehive-ci-pipeline-main 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           USER : beehive 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           TIMEOUT : 800 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           filePath : queen/sql/test_sql 
+INFO: 2018-08-21 11:48:25,549:TestBase.py:45:           PASSWORD : beehive 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           id : 1527040 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           EXPECTEDOUT : testsrc/queen/sql/test_sql/expectedQueryResults/null.out 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           NAME : NullTest 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-21 11:48:25,550:TestBase.py:45:           DATABASE : beehive 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           reTryCnt : 0 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           COMPONENT : queen/sql/test_sql 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           PRIORITY : 2 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           logTimestamp : 2018-08-21-114825 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           runId : 180821-51 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           TEMPLATE : True 
+INFO: 2018-08-21 11:48:25,551:TestBase.py:45:           ACTPARAMS : -a 
+INFO: 2018-08-21 11:48:25,552:TestBase.py:45:           release : GGR3 
+INFO: 2018-08-21 11:48:25,552:TestBase.py:45:           QUERY : testsrc/queen/sql/test_sql/input/null.sql 
+INFO: 2018-08-21 11:48:25,552:TestBase.py:45:           branchName :  
+INFO: 2018-08-21 11:48:25,552:TestBase.py:45:           TYPE : SQL 
+INFO: 2018-08-21 11:48:25,552:TestBase.py:45:           testId : 1 
+INFO: 2018-08-21 11:48:25,552:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-21 11:48:25,587:Kubernetes.py:82: Executing command [asterdart0557.labs.teradata.com]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-21 11:48:26,499:TestBase.py:170: NAME      READY     STATUS    RESTARTS   AGE
+consul    1/1       Running   0          17d
+queen     16/16     Running   0          17d
+worker1   7/7       Running   0          17d
+worker2   7/7       Running   0          17d
+
+INFO: 2018-08-21 11:48:26,500:Kubernetes.py:82: Executing command [asterdart0557.labs.teradata.com]: kubectl get svc queenexec-service -o json jsonpath={.spec.Ports} -n cloud-aster
+INFO: 2018-08-21 11:48:27,981:TestBase.py:619: Generated output file on queen node: /tmp/null.out.generated
+INFO: 2018-08-21 11:48:27,981:TestBase.py:623: act command: /home/beehive/clients/act -U beehive -w beehive  -d beehive -a -p 30002  -f /tmp/null.sql > /tmp/null.out.generated 2>&1
+INFO: 2018-08-21 11:48:27,982:TestBase.py:196: Running Command: /home/beehive/clients/act -U beehive -w beehive  -d beehive -a -p 30002  -f /tmp/null.sql > /tmp/null.out.generated 2>&1
+INFO: 2018-08-21 11:48:28,388:TestBase.py:626: 
+INFO: 2018-08-21 11:48:28,388:TestBase.py:633: diff command Used: diff -u /tmp/null.out /tmp/null.out.generated 
+INFO: 2018-08-21 11:48:28,388:TestBase.py:196: Running Command: diff -u /tmp/null.out /tmp/null.out.generated 
+INFO: 2018-08-21 11:48:28,810:TestBase.py:636: --- /tmp/null.out	2018-08-21 11:49:13.018576446 -0700
++++ /tmp/null.out.generated	2018-08-21 11:49:13.318582669 -0700
+@@ -1,344 +1 @@
+-CREATE FACT TABLE T1 (A INT,B INT,NAME VARCHAR(30),PARTITION KEY(A));
+-CREATE TABLE
+-INSERT INTO T1 VALUES ( ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,'THIS IS TEST100'),(76 ,NULL,'THIS IS TEST'),(112 ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,,'THIS IS TEST4'),(NULL ,21,NULL),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7'),(9 ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,NULL),(76 ,NULL,'THIS IS TEST'),(NULL ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,44,'THIS IS TEST4'),(NULL ,21,'THIS IS TEST121'),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7'),(9 ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,NULL),(76 ,NULL,'THIS IS TEST'),(111 ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,44,'THIS IS TEST4'),(NULL ,21,'THIS IS TEST121'),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7');
+-INSERT 0 36
+-SELECT * FROM T1 ORDER BY A DESC NULLS FIRST,B DESC NULLS FIRST,NAME DESC NULLS FIRST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-     |     | THIS IS TEST9
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST1
+-     |  11 | 
+-     |  11 | 
+-     |  11 | THIS IS TEST100
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 112 |     | THIS IS TEST9
+- 111 |     | THIS IS TEST9
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  55 |     | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC   NULLS FIRST,B ASC NULLS FIRST,NAME ASC NULLS FIRST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-     |     | THIS IS TEST9
+-     |  11 | 
+-     |  11 | 
+-     |  11 | THIS IS TEST100
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | THIS IS TEST1
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-  55 |     | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+- 111 |     | THIS IS TEST9
+- 112 |     | THIS IS TEST9
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A DESC NULLS LAST,B DESC NULLS LAST,NAME DESC NULLS LAST;
+-  a  |  b  |      name       
+------+-----+-----------------
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 112 |     | THIS IS TEST9
+- 111 |     | THIS IS TEST9
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |     | THIS IS TEST4
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST1
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  11 | THIS IS TEST100
+-     |  11 | 
+-     |  11 | 
+-     |     | THIS IS TEST9
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC NULLS LAST,B ASC NULLS LAST,NAME ASC NULLS LAST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |     | THIS IS TEST4
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+- 111 |     | THIS IS TEST9
+- 112 |     | THIS IS TEST9
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+-     |  11 | THIS IS TEST100
+-     |  11 | 
+-     |  11 | 
+-     |  21 | THIS IS TEST1
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |     | THIS IS TEST9
+-(36 rows)
+-
+-ALTER TABLE T1 ADD C INT;
+-ALTER TABLE
+-UPDATE T1 SET C = 99 WHERE NAME = 'THIS IS TEST2';
+-UPDATE 3
+-UPDATE T1 SET C = NULL WHERE NAME = 'THIS IS TEST9';
+-UPDATE 3
+-UPDATE T1 SET C = 919 WHERE NAME = 'THIS IS TEST4';
+-UPDATE 3
+-UPDATE T1 SET C = NULL WHERE NAME = 'THIS IS TEST17';
+-UPDATE 3
+-SELECT * FROM T1 ORDER BY A DESC NULLS FIRST,B DESC NULLS FIRST,NAME DESC NULLS FIRST,C DESC NULLS FIRST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-     |     | THIS IS TEST9   |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  11 | THIS IS TEST100 |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 112 |     | THIS IS TEST9   |    
+- 111 |     | THIS IS TEST9   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  55 |     | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC   NULLS FIRST,B ASC NULLS FIRST,NAME ASC NULLS FIRST,C ASC NULLS FIRST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-     |     | THIS IS TEST9   |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  11 | THIS IS TEST100 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  55 |     | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 111 |     | THIS IS TEST9   |    
+- 112 |     | THIS IS TEST9   |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A DESC NULLS LAST,B DESC NULLS LAST,NAME DESC NULLS LAST,C DESC NULLS LAST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 112 |     | THIS IS TEST9   |    
+- 111 |     | THIS IS TEST9   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |     | THIS IS TEST4   | 919
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  11 | THIS IS TEST100 |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |     | THIS IS TEST9   |    
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC NULLS LAST,B ASC NULLS LAST,NAME ASC NULLS LAST,C ASC NULLS LAST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |     | THIS IS TEST4   | 919
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 111 |     | THIS IS TEST9   |    
+- 112 |     | THIS IS TEST9   |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+-     |  11 | THIS IS TEST100 |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |     | THIS IS TEST9   |    
+-(36 rows)
+-
+-DROP TABLE T1;
+-DROP
++bash: /home/beehive/clients/act: No such file or directory
+
+ERROR: 2018-08-21 11:48:28,812:TestBase.py:639: Diff in output
+ --- /tmp/null.out	2018-08-21 11:49:13.018576446 -0700
++++ /tmp/null.out.generated	2018-08-21 11:49:13.318582669 -0700
+@@ -1,344 +1 @@
+-CREATE FACT TABLE T1 (A INT,B INT,NAME VARCHAR(30),PARTITION KEY(A));
+-CREATE TABLE
+-INSERT INTO T1 VALUES ( ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,'THIS IS TEST100'),(76 ,NULL,'THIS IS TEST'),(112 ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,,'THIS IS TEST4'),(NULL ,21,NULL),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7'),(9 ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,NULL),(76 ,NULL,'THIS IS TEST'),(NULL ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,44,'THIS IS TEST4'),(NULL ,21,'THIS IS TEST121'),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7'),(9 ,21,'THIS IS TEST1'),(19 ,2,null),(187 ,NULL,'THIS IS TEST2'),(NULL ,11,NULL),(76 ,NULL,'THIS IS TEST'),(111 ,NULL,'THIS IS TEST9'),(101 ,96,NULL),(55 ,44,'THIS IS TEST4'),(NULL ,21,'THIS IS TEST121'),(9 ,NULL,'THIS IS TEST17'),(NULL ,21,NULL),(91 ,121,'THIS IS TEST7');
+-INSERT 0 36
+-SELECT * FROM T1 ORDER BY A DESC NULLS FIRST,B DESC NULLS FIRST,NAME DESC NULLS FIRST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-     |     | THIS IS TEST9
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST1
+-     |  11 | 
+-     |  11 | 
+-     |  11 | THIS IS TEST100
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 112 |     | THIS IS TEST9
+- 111 |     | THIS IS TEST9
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  55 |     | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC   NULLS FIRST,B ASC NULLS FIRST,NAME ASC NULLS FIRST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-     |     | THIS IS TEST9
+-     |  11 | 
+-     |  11 | 
+-     |  11 | THIS IS TEST100
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | THIS IS TEST1
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-  55 |     | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+- 111 |     | THIS IS TEST9
+- 112 |     | THIS IS TEST9
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A DESC NULLS LAST,B DESC NULLS LAST,NAME DESC NULLS LAST;
+-  a  |  b  |      name       
+------+-----+-----------------
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 112 |     | THIS IS TEST9
+- 111 |     | THIS IS TEST9
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |     | THIS IS TEST4
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST1
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  11 | THIS IS TEST100
+-     |  11 | 
+-     |  11 | 
+-     |     | THIS IS TEST9
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC NULLS LAST,B ASC NULLS LAST,NAME ASC NULLS LAST;
+-  a  |  b  |      name       
+------+-----+-----------------
+-   9 |  21 | THIS IS TEST1
+-   9 |  21 | THIS IS TEST1
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-   9 |     | THIS IS TEST17
+-  19 |   2 | 
+-  19 |   2 | 
+-  19 |   2 | 
+-  55 |  44 | THIS IS TEST4
+-  55 |  44 | THIS IS TEST4
+-  55 |     | THIS IS TEST4
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  76 |     | THIS IS TEST
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+-  91 | 121 | THIS IS TEST7
+- 101 |  96 | 
+- 101 |  96 | 
+- 101 |  96 | 
+- 111 |     | THIS IS TEST9
+- 112 |     | THIS IS TEST9
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+- 187 |     | THIS IS TEST2
+-     |  11 | THIS IS TEST100
+-     |  11 | 
+-     |  11 | 
+-     |  21 | THIS IS TEST1
+-     |  21 | THIS IS TEST121
+-     |  21 | THIS IS TEST121
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |  21 | 
+-     |     | THIS IS TEST9
+-(36 rows)
+-
+-ALTER TABLE T1 ADD C INT;
+-ALTER TABLE
+-UPDATE T1 SET C = 99 WHERE NAME = 'THIS IS TEST2';
+-UPDATE 3
+-UPDATE T1 SET C = NULL WHERE NAME = 'THIS IS TEST9';
+-UPDATE 3
+-UPDATE T1 SET C = 919 WHERE NAME = 'THIS IS TEST4';
+-UPDATE 3
+-UPDATE T1 SET C = NULL WHERE NAME = 'THIS IS TEST17';
+-UPDATE 3
+-SELECT * FROM T1 ORDER BY A DESC NULLS FIRST,B DESC NULLS FIRST,NAME DESC NULLS FIRST,C DESC NULLS FIRST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-     |     | THIS IS TEST9   |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  11 | THIS IS TEST100 |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 112 |     | THIS IS TEST9   |    
+- 111 |     | THIS IS TEST9   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  55 |     | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC   NULLS FIRST,B ASC NULLS FIRST,NAME ASC NULLS FIRST,C ASC NULLS FIRST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-     |     | THIS IS TEST9   |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  11 | THIS IS TEST100 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  55 |     | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 111 |     | THIS IS TEST9   |    
+- 112 |     | THIS IS TEST9   |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A DESC NULLS LAST,B DESC NULLS LAST,NAME DESC NULLS LAST,C DESC NULLS LAST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 112 |     | THIS IS TEST9   |    
+- 111 |     | THIS IS TEST9   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |     | THIS IS TEST4   | 919
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  11 | THIS IS TEST100 |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |     | THIS IS TEST9   |    
+-(36 rows)
+-
+-SELECT * FROM T1 ORDER BY A ASC NULLS LAST,B ASC NULLS LAST,NAME ASC NULLS LAST,C ASC NULLS LAST;
+-  a  |  b  |      name       |  c  
+------+-----+-----------------+-----
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |  21 | THIS IS TEST1   |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-   9 |     | THIS IS TEST17  |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  19 |   2 |                 |    
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |  44 | THIS IS TEST4   | 919
+-  55 |     | THIS IS TEST4   | 919
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  76 |     | THIS IS TEST    |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+-  91 | 121 | THIS IS TEST7   |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 101 |  96 |                 |    
+- 111 |     | THIS IS TEST9   |    
+- 112 |     | THIS IS TEST9   |    
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+- 187 |     | THIS IS TEST2   |  99
+-     |  11 | THIS IS TEST100 |    
+-     |  11 |                 |    
+-     |  11 |                 |    
+-     |  21 | THIS IS TEST1   |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 | THIS IS TEST121 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |  21 |                 |    
+-     |     | THIS IS TEST9   |    
+-(36 rows)
+-
+-DROP TABLE T1;
+-DROP
++bash: /home/beehive/clients/act: No such file or directory
+
+INFO: 2018-08-21 11:48:28,814:Dart.py:759: Running Cleanup of the Test Instance!
+INFO: 2018-08-21 11:48:28,815:Dart.py:781: The test NullTest has FAILED
+INFO: 2018-08-21 11:48:28,815:Dart.py:334: Test Set : SqlTests Total Execution Time: 3 

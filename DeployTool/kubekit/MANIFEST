@@ -1,0 +1,120 @@
+---
+releases:
+  1.2.2: 
+    previous-version: 1.2.1
+    kubernetes-version: 1.10.2
+    dependencies: 
+      core:
+        healthz: 
+          version: 1.2
+          name: exechealthz
+          src: gcr.io/google_containers/exechealthz-amd64:1.2
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/exechealthz-amd64-1.2.tar.xz
+          checksum: 503e158c3f65ed7399f54010571c7c977ade7fe59010695f48d9650d83488c0a
+          checksum_type: sha256
+        dnsmasq: 
+          version: 1.4.1
+          name: kube-dnsmasq
+          src: gcr.io/google_containers/kube-dnsmasq-amd64:1.4.1
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/kube-dnsmasq-amd64-1.4.1.tar.xz
+          checksum: 6732224a130aec34784396ecfa3472c7997162f94274f316d9ecd48607b0dc84
+          checksum_type: sha256
+        dnsmasq-metrics: 
+          version: 1.0.1
+          name: dnsmasq-metrics
+          src: gcr.io/google_containers/dnsmasq-metrics-amd64:1.0.1
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/dnsmasq-metrics-amd64-1.0.1.tar.xz
+          checksum: 6453b3ee4f5455657133ada25c858ba695d2f90db69f3e8e69b3d9a2f6392a66
+          checksum_type: sha256
+        pause: 
+          version: 1.0
+          name: pause
+          src: gcr.io/google_containers/pause:1.0
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/pause-1.0.tar.xz
+          checksum: a78c2d6208eff9b672de43f880093100050983047b7b0afe0217d3656e1b0d5f
+          checksum_type: sha256
+        ingress-controller: 
+          version: 0.9.0-beta.15
+          name: nginx-ingress-controller
+          src: gcr.io/google_containers/nginx-ingress-controller:0.9.0-beta.15
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/nginx-ingress-controller-0.9.0-beta.15.tar.xz
+          checksum: 1c64bc6dfb7ddbe4a0a9fce7f5c521aa13e7836c3b90601897b763add8494a41
+          checksum_type: sha256
+        default-backend: 
+          version: 1.0
+          name: default-backend
+          src: gcr.io/google_containers/defaultbackend:1.0
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/defaultbackend-1.0.tar.xz
+          checksum: ee3aa1187023d0197e3277833f19d9ef7df26cee805fef32663e06c7412239f9
+          checksum_type: sha256
+        calico-node: 
+          version: v2.6.3-15-g0986c6cd
+          name: calico-node
+          src: quay.io/calico/node:v2.6.3-15-g0986c6cd
+          prebake-path: /opt/teradata/kubekit-core/quay.io/calico/node-v2.6.3-15-g0986c6cd.tar.xz
+          checksum: 1ed569ee8c7d9018c0d1f1553590b1563fa4ee9dc5a4e5835b2206bee328091e
+          checksum_type: sha256
+        calico-cni: 
+          version: v1.11.1
+          name: calico-cni
+          src: quay.io/calico/cni:v1.11.1
+          prebake-path: /opt/teradata/kubekit-core/quay.io/calico/cni-v1.11.1.tar.xz
+          checksum: 689aa8f21f0136ace690a274eae530b23d1c8ffb9a9664330f881008d65036d2
+          checksum_type: sha256
+        flannel: 
+          version: v0.9.1-amd64
+          name: flannel
+          src: quay.io/coreos/flannel:v0.9.1-amd64
+          prebake-path: /opt/teradata/kubekit-core/quay.io/coreos/flannel-v0.9.1-amd64.tar.xz
+          checksum: 056cf57fd3bbe7264c0be1a3b34ec2e289b33e51c70f332f4e88aa83970ad891
+          checksum_type: sha256
+        kubedns: 
+          version: v1.9
+          name: kubedns
+          src: gcr.io/google_containers/kubedns-amd64:1.9
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/kubedns-amd64-1.9.tar.xz
+          checksum: 3d3d67f519300af646e00adcf860b2f380d35ed4364e550d74002dadace20ead
+          checksum_type: sha256
+        registry: 
+          version: v2.5.2
+          name: docker-registry
+          src: docker.io/registry:2.5.2
+          prebake-path: /opt/teradata/kubekit-core/docker.io/registry-2.5.2.tar.xz
+          checksum: 3b4e477a15db95a9ec145caa2633f4928ef0946044e39328ff06bfabe1270e20
+          checksum_type: sha256
+        heapster: 
+          version: v1.5.3
+          name: heapster
+          src: k8s.gcr.io/heapster-amd64:v1.5.3
+          prebake-path: /opt/teradata/kubekit-core/k8s.gcr.io/heapster-amd64-v1.5.3.tar.xz
+          checksum: fc33c690a3a446de5abc24b048b88050810a58b9e4477fa763a43d7df029301a
+          checksum_type: sha256
+        heapster-nanny: 
+          version: 1.7
+          name: heapster-nanny
+          src: gcr.io/google_containers/addon-resizer:1.7
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/addon-resizer-1.7.tar.xz
+          checksum: 97485e7168ee127c4fd42fc248b56a50dfbd5db878335c0bd190663c0cad16bc
+          checksum_type: sha256
+        kubernetes-dashboard:
+          version: v1.8.3
+          name: kubernetes-dashboard
+          src: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.8.3
+          prebake-path: /opt/teradata/kubekit-core/gcr.io/google_containers/kubernetes-dashboard-amd64-v1.8.3.tar.xz
+          checksum: dc4026c1b595435ef5527ca598e1e9c4343076926d7d62b365c44831395adbd0
+          checksum_type: sha256
+        kube-state-metrics:
+          version: v1.1.0
+          name: kube-state-metrics
+          src: gcr.io/google_containers/kube-state-metrics:v1.1.0
+          prebake-path: /opt/teradata/kubekit-addon/gcr.io/google_containers/kube-state-metrics-v1.1.0.tar.xz
+          checksum: 53416b3d560a1b821b7e302460a387fef887ce72206c3ccbf82fd9e2d1f71fd9
+          checksum_type: sha256
+        rook-ceph:
+          version: v0.7.0-217.ge2e5871
+          name: rook-ceph
+          src: docker.io/rook/ceph:v0.7.0-217.ge2e5871
+          # path should be updated after 1.2.x
+          prebake-path: /opt/teradata/kubekit-addon/docker.io/rook/ceph.tar.xz
+          checksum: 92989b5b861e02821151750107b32bdd2bb62df232ed53c5fd8b5ca8df7ce663
+          checksum_type: sha256

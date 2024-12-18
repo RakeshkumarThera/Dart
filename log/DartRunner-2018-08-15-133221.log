@@ -1,0 +1,192 @@
+INFO: 2018-08-15 13:32:21,840:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-15-133221.log
+INFO: 2018-08-15 13:32:21,840:DartRunner.py:109: Current Process Id: 5393
+INFO: 2018-08-15 13:32:21,841:DartRunner.py:170: clusterList = dartexe 
+INFO: 2018-08-15 13:32:21,841:DartRunner.py:178: dartexe
+INFO: 2018-08-15 13:32:22,305:DartRunner.py:2008: No resources found.
+
+INFO: 2018-08-15 13:32:22,419:DartRunner.py:2037: No
+INFO: 2018-08-15 13:32:22,420:DartRunner.py:2043: kubectl get -o template po No --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 13:32:22,916:DartRunner.py:2008: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-15 13:32:22,981:DartRunner.py:2045: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-15 13:32:22,981:DartRunner.py:2048: Error from server (NotFound): namespaces "cloud-aster" not found
+INFO: 2018-08-15 13:32:22,981:DartRunner.py:2070: Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com
+INFO: 2018-08-15 13:32:22,981:DartRunner.py:2077: []
+INFO: 2018-08-15 13:32:22,981:DartRunner.py:2078: [u'Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com']
+INFO: 2018-08-15 13:32:22,982:DartRunner.py:247: /root/Dart/testset/OneTest.tst
+INFO: 2018-08-15 13:32:22,982:DartRunner.py:258: Scanning File: /root/Dart/testset/OneTest.tst 
+INFO: 2018-08-15 13:32:22,982:DartRunner.py:273: Reading tempRunFile : /tmp/OneTest.tst
+INFO: 2018-08-15 13:32:23,213:DartRunner.py:2154: Ping on cluster dartexe Successful!
+INFO: 2018-08-15 13:32:23,391:DartRunner.py:523: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-59
+INFO: 2018-08-15 13:32:23,409:DartRunner.py:1696: Done inserting the information of run 180815-59
+INFO: 2018-08-15 13:32:23,426:DartRunner.py:2665: DB Insert Success: NullTest
+INFO: 2018-08-15 13:32:24,928:DartRunner.py:754: Looping the Main Loop: 1
+INFO: 2018-08-15 13:32:25,031:DartRunner.py:1916: Running CheckHealth on cluster dartexe
+INFO: 2018-08-15 13:32:27,032:DartRunner.py:941: Running Setup for the TestSet
+INFO: 2018-08-15 13:32:27,032:DartRunner.py:964: {'dartexe': 'busy'}
+INFO: 2018-08-15 13:32:27,033:DartRunner.py:965: {'dartexe': u'NullTest'}
+INFO: 2018-08-15 13:32:27,033:DartRunner.py:975: 
+Running Test: NullTest on Cluster: dartexe Thread Count: 1  
+
+INFO: 2018-08-15 13:32:27,034:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-15 13:32:27,035:DartRunner.py:1131: {'dartexe': 'busy'}
+INFO: 2018-08-15 13:32:27,056:DartRunner.py:2555: Updated cluster: dartexe for test NullTest
+ERROR: 2018-08-15 13:32:27,057:DartRunner.py:2918: Unable to run the command cat /home/beehive/bin/.build | grep 'BUILD_VERSION'
+ERROR: 2018-08-15 13:32:27,057:DartRunner.py:2919: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc2ecfacb0>)
+ERROR: 2018-08-15 13:32:27,058:DartRunner.py:2920: Traceback (most recent call last):
+  File "DartRunner.py", line 2908, in runCommandOnQueen
+    queenNode = queenNodes[0]
+IndexError: list index out of range
+
+ERROR: 2018-08-15 13:32:27,058:DartRunner.py:2918: Unable to run the command hadoop version
+ERROR: 2018-08-15 13:32:27,058:DartRunner.py:2919: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc2ecfacb0>)
+ERROR: 2018-08-15 13:32:27,058:DartRunner.py:2920: Traceback (most recent call last):
+  File "DartRunner.py", line 2908, in runCommandOnQueen
+    queenNode = queenNodes[0]
+IndexError: list index out of range
+
+INFO: 2018-08-15 13:32:27,059:DartRunner.py:2873: getHadoopVersion stdout = None
+INFO: 2018-08-15 13:32:27,059:DartRunner.py:2874: getHadoopVersion stderr = None
+INFO: 2018-08-15 13:32:27,059:DartRunner.py:2875: getHadoopVersion status = 1
+INFO: 2018-08-15 13:32:27,059:DartRunner.py:2884: hdversion = None
+INFO: 2018-08-15 13:32:27,059:DartRunner.py:2846: The cluster is without Hadoop, change db_version to Aster
+INFO: 2018-08-15 13:32:27,077:DartRunner.py:2587: Updated Status: On test NullTest
+INFO: 2018-08-15 13:32:27,077:DartRunner.py:2588: {'db_version': 'Aster', 'db_type': 'Classic', 'build_info': ''}
+INFO: 2018-08-15 13:32:27,078:DartRunner.py:2214: Updating the status to Running in the database: NullTest!
+INFO: 2018-08-15 13:32:27,096:DartRunner.py:2587: Updated Status: On test NullTest
+INFO: 2018-08-15 13:32:27,096:DartRunner.py:2588: {'status': 'RUNNING', 'start_time': '2018-08-15 13:32:27'}
+INFO: 2018-08-15 13:32:27,097:Dart.py:120: Logfile is /root/Dart/log/Dart-NullTest-180815-59-133227.log
+INFO: 2018-08-15 13:32:27,529:Dart.py:390: No resources found.
+
+INFO: 2018-08-15 13:32:27,530:Dart.py:418: No
+INFO: 2018-08-15 13:32:27,530:Dart.py:424: kubectl get -o template po No --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-15 13:32:28,027:Dart.py:390: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-15 13:32:28,027:Dart.py:426: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-15 13:32:28,028:Dart.py:429: Error from server (NotFound): namespaces "cloud-aster" not found
+INFO: 2018-08-15 13:32:28,028:Dart.py:453: Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com
+INFO: 2018-08-15 13:32:28,028:Dart.py:460: []
+INFO: 2018-08-15 13:32:28,028:Dart.py:461: [u'Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com']
+INFO: 2018-08-15 13:32:28,028:Dart.py:299: Test Set: SqlTests 
+INFO: 2018-08-15 13:32:28,029:Dart.py:313: Running Testset: SqlTests
+INFO: 2018-08-15 13:32:28,029:Dart.py:319:         Running Test: NullTest on Cluster dartexe
+INFO: 2018-08-15 13:32:28,029:Dart.py:322: [u'NullTest', {u'OWNER': u'divya.sivanandan', 'testSet': u'SqlTests', 'testPlan': None, 'tester': 'root', 'projectName': 'MLEngine', 'buildNumber': '', 'buildName': 'beehive-ci-pipeline-main', u'USER': u'beehive', u'TIMEOUT': 800, u'PASSWORD': u'beehive', 'id': 1511118, u'CATEGORY': u'positive', u'EXPECTEDOUT': u'testsrc/queen/sql/test_sql/expectedQueryResults/null.out', u'NAME': u'NullTest', 'timeScale': 1, u'DATABASE': u'beehive', 'reTryCnt': 0, u'COMPONENT': u'queen/sql/test_sql', u'PRIORITY': u'2', 'runId': u'180815-59', u'TEMPLATE': u'True', u'ACTPARAMS': u'-a', 'release': 'GGR3', u'QUERY': u'testsrc/queen/sql/test_sql/input/null.sql', 'branchName': '', u'TYPE': u'SQL', 'testId': 1}, 0]
+INFO: 2018-08-15 13:32:28,033:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-15 13:32:28,033:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-15 13:32:28,033:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-15 13:32:28,033:TestBase.py:45:           OWNER : divya.sivanandan 
+INFO: 2018-08-15 13:32:28,033:TestBase.py:45:           testSet : SqlTests 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           testPlan : None 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           tester : root 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           projectName : MLEngine 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           buildNumber :  
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           buildName : beehive-ci-pipeline-main 
+INFO: 2018-08-15 13:32:28,034:TestBase.py:45:           USER : beehive 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           TIMEOUT : 800 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           filePath : queen/sql/test_sql 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           PASSWORD : beehive 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           id : 1511118 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           EXPECTEDOUT : testsrc/queen/sql/test_sql/expectedQueryResults/null.out 
+INFO: 2018-08-15 13:32:28,035:TestBase.py:45:           NAME : NullTest 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           DATABASE : beehive 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           reTryCnt : 0 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           COMPONENT : queen/sql/test_sql 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           PRIORITY : 2 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           logTimestamp : 2018-08-15-133228 
+INFO: 2018-08-15 13:32:28,036:TestBase.py:45:           runId : 180815-59 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           TEMPLATE : True 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           ACTPARAMS : -a 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           release : GGR3 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           QUERY : testsrc/queen/sql/test_sql/input/null.sql 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           branchName :  
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           TYPE : SQL 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:45:           testId : 1 
+INFO: 2018-08-15 13:32:28,037:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-15 13:32:28,052:Kubernetes.py:82: Executing command [10.25.80.32]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-15 13:32:28,529:TestBase.py:170: 
+INFO: 2018-08-15 13:32:28,529:TestBase.py:172: No Aster cluster installed on this vms. Returns default values
+ERROR: 2018-08-15 13:32:28,529:Dart.py:772: list index out of range
+ERROR: 2018-08-15 13:32:28,530:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-15 13:32:28,530:Dart.py:774: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc26fb9830>)
+ERROR: 2018-08-15 13:32:28,531:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 758, in runTest
+    result = testInstance.run()
+  File "/root/Dart/lib/SqlRun.py", line 61, in run
+    actParams, diffParams)
+  File "/root/Dart/lib/TestBase.py", line 545, in excSqlFileAndCompareOutput
+    queenNode = self.queenNames[0]
+IndexError: list index out of range
+
+INFO: 2018-08-15 13:32:28,531:Dart.py:781: The test NullTest has FAILED
+ERROR: 2018-08-15 13:32:28,532:Dart.py:325: list index out of range
+ERROR: 2018-08-15 13:32:28,532:Dart.py:327: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc26778830>)
+ERROR: 2018-08-15 13:32:28,532:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 758, in runTest
+    result = testInstance.run()
+  File "/root/Dart/lib/SqlRun.py", line 61, in run
+    actParams, diffParams)
+  File "/root/Dart/lib/TestBase.py", line 545, in excSqlFileAndCompareOutput
+    queenNode = self.queenNames[0]
+IndexError: list index out of range
+
+INFO: 2018-08-15 13:32:28,533:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-15 13:32:28,533:Dart.py:334: Test Set : SqlTests Total Execution Time: 0 
+INFO: 2018-08-15 13:32:28,556:DartRunner.py:2587: Updated Status: On test NullTest
+INFO: 2018-08-15 13:32:28,556:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:00', 'log_location': u'/root/DartLogs/dart-main-sls12-05_NullTest_2018-08-15-133228.log', 'end_time': '2018-08-15 13:32:28'}
+INFO: 2018-08-15 13:32:29,030:DartRunner.py:2647: Successfully uploaded the Dart Test Log: dart-main-sls12-05_NullTest_2018-08-15-133228.log
+INFO: 2018-08-15 13:32:29,042:DartDBConnect.py:127: Running the sql:
+INFO: 2018-08-15 13:32:29,043:DartDBConnect.py:128: SELECT retry_logs from darttest WHERE id=1511118;
+INFO: 2018-08-15 13:32:29,045:DartDBConnect.py:132: Select Return Value ========
+INFO: 2018-08-15 13:32:29,046:DartDBConnect.py:133: [(None,)]
+INFO: 2018-08-15 13:32:29,046:DartRunner.py:2629: Select Success: (None,) test NullTest
+INFO: 2018-08-15 13:32:29,046:DartRunner.py:2630: [(None,)]
+INFO: 2018-08-15 13:32:29,046:DartRunner.py:2332: RETRY LOG STRING =====
+INFO: 2018-08-15 13:32:29,046:DartRunner.py:2333: None
+INFO: 2018-08-15 13:32:29,064:DartRunner.py:2587: Updated Status: On test NullTest
+INFO: 2018-08-15 13:32:29,064:DartRunner.py:2588: {'status': 'FAIL', 'execution_time': '00:00:00', 'log_location': u'/root/DartLogs/dart-main-sls12-05_NullTest_2018-08-15-133228.log', 'retry_count': 0, 'end_time': '2018-08-15 13:32:28', 'retry_logs': u'/root/DartLogs/dart-main-sls12-05_NullTest_2018-08-15-133228.log'}
+INFO: 2018-08-15 13:32:29,065:DartRunner.py:2727: Attempting to get the Kernel and os information from the Cluster
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2918: Unable to run the command lsb_release -a
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2919: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc26783710>)
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2920: Traceback (most recent call last):
+  File "DartRunner.py", line 2908, in runCommandOnQueen
+    queenNode = queenNodes[0]
+IndexError: list index out of range
+
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2716: Can't get kernel or os information from cluster
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2918: Unable to run the command cat /home/beehive/bin/.build | grep 'BUILD_VERSION'
+ERROR: 2018-08-15 13:32:29,065:DartRunner.py:2919: (<type 'exceptions.IndexError'>, IndexError('list index out of range',), <traceback object at 0x7fcc26783248>)
+ERROR: 2018-08-15 13:32:29,066:DartRunner.py:2920: Traceback (most recent call last):
+  File "DartRunner.py", line 2908, in runCommandOnQueen
+    queenNode = queenNodes[0]
+IndexError: list index out of range
+
+INFO: 2018-08-15 13:32:29,084:DartRunner.py:2587: Updated Status: On test NullTest
+INFO: 2018-08-15 13:32:29,084:DartRunner.py:2588: {'revision': ''}
+INFO: 2018-08-15 13:32:37,045:DartRunner.py:1134: Done with initiating all the tests!
+INFO: 2018-08-15 13:32:37,046:DartRunner.py:1209: Some tests are still running! Waiting for 10 seconds!
+INFO: 2018-08-15 13:32:47,056:DartRunner.py:1213: Return Value:
+INFO: 2018-08-15 13:32:47,057:DartRunner.py:2958:        SqlTests       NullTest     False         0 2018-08-15 13:32:28 2018-08-15 13:32:28
+INFO: 2018-08-15 13:32:47,057:DartRunner.py:1647: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 13:32:47,057:DartRunner.py:1648: returnValue = {'test': OrderedDict([(u'NAME', u'NullTest'), (u'TYPE', u'SQL'), (u'QUERY', u'testsrc/queen/sql/test_sql/input/null.sql'), (u'EXPECTEDOUT', u'testsrc/queen/sql/test_sql/expectedQueryResults/null.out'), (u'TIMEOUT', 800), (u'PRIORITY', u'2'), (u'TEMPLATE', u'True'), (u'OWNER', u'divya.sivanandan'), (u'CATEGORY', u'positive'), (u'COMPONENT', u'queen/sql/test_sql'), (u'USER', u'beehive'), (u'PASSWORD', u'beehive'), (u'DATABASE', u'beehive'), (u'ACTPARAMS', u'-a'), ('runId', u'180815-59'), ('testSet', u'SqlTests'), ('testId', 1), ('timeScale', 1), ('projectName', 'MLEngine'), ('testPlan', None), ('buildName', 'beehive-ci-pipeline-main'), ('buildNumber', ''), ('tester', 'root'), ('release', 'GGR3'), ('branchName', ''), ('reTryCnt', 0), ('id', 1511118)]), 'clusterName': 'dartexe', 'totalTime': 1, 'testName': u'NullTest', 'testResults': OrderedDict([(u'SqlTests', [[u'NullTest', 0, False, '2018-08-15 13:32:28', '2018-08-15 13:32:28', u'/root/Dart/log/queen/sql/test_sql/dart-main-sls12-05_NullTest_2018-08-15-133228.log', u'dart-main-sls12-05_NullTest_2018-08-15-133228.log']])])}
+INFO: 2018-08-15 13:32:47,057:DartRunner.py:1649: -------------------------------------------------------------------------------------------------
+INFO: 2018-08-15 13:32:47,057:DartRunner.py:1219: Thread Count Went Down 0 
+INFO: 2018-08-15 13:32:47,058:DartRunner.py:1237: The test NullTest returned back with the following result: False
+INFO: 2018-08-15 13:32:47,304:DartRunner.py:2154: Ping on cluster dartexe Successful!
+INFO: 2018-08-15 13:32:47,418:DartRunner.py:1260: Freeing up the cluster dartexe
+INFO: 2018-08-15 13:32:47,418:DartRunner.py:1207: All the tests have been executed!
+INFO: 2018-08-15 13:32:47,458:DartRunner.py:1309: {'dartexe': 'free'}
+ERROR: 2018-08-15 13:32:47,461:DartRunner.py:1643: Send email fail: /bin/sh: 14: mail: not found
+sh: echo: I/O error
+
+INFO: 2018-08-15 13:32:47,924:DartRunner.py:2962: DartRunner Final Results!
+INFO: 2018-08-15 13:32:47,924:DartRunner.py:2963:         TESTSET       TESTNAME    STATUS TOTALTIME           STARTTIME             ENDTIME
+INFO: 2018-08-15 13:32:47,924:DartRunner.py:2958:        SqlTests       NullTest     False         0 2018-08-15 13:32:28 2018-08-15 13:32:28
+INFO: 2018-08-15 13:32:47,924:DartRunner.py:2968: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-59
+INFO: 2018-08-15 13:32:47,924:DartRunner.py:1347: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180815-59

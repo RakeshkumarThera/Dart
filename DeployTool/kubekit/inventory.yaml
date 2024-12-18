@@ -1,0 +1,134 @@
+all:
+  vars:
+    # #########################################################################
+    # ATTTENTION:
+    # If you are editing this file for use with a Kubekit cluster running in  
+    # AWS, vSphere or Openstack, STOP! Those platforms are supported by the 
+    # Kubekit-provisioner and should be created via that tool
+    # This file is for Stacki, BareMetal, VRA or generic systems only.
+    # #########################################################################
+
+    # EDIT REQUIRED ALL CONFIGS ###############################################
+    # GENERATE VIA UUID
+    # use "uuidgen" and copy and post the token here
+    etcd_initial_cluster_token: UUID-HERE
+
+    # PICK A NAME FOR THE CLUSTER
+    cluster_name: "kube_cluster"
+
+    # IF SSH KEYS AVAILABLE ON THE KUBEOS NODES
+    #ansible_ssh_private_key_file: <path_to_matching_private_key>
+    # ELSE run configurator with --ask-pass option for password support
+
+    # The name of the network device through which k8s services and pods
+    # will be communicating
+    # IF STACKI, BAREMETAL, MUTLI NIC GENERIC
+    cluster_iface_name: "ansible_eth0"
+    # IF VRA or GENERIC
+    # cluster_iface_name: ansible_eth0    
+
+    # EDIT OPTIONAL CONFIGS ###################################################
+
+    # The dictionary of the cluster interface containing all the relevant
+    # information about it including its device name and ip address.
+    cluster_iface: "{{ hostvars[inventory_hostname][cluster_iface_name] }}"
+    kube_advertise_address: "{{ cluster_iface.ipv4.address }}"
+
+    # CNI Settings
+    cni_iface: "{{ cluster_iface.device }}"
+    cni_plugin: "canal" # Can be canal or calico
+    cni_ip_encapsulation: "always" # Can be ("off" or "always")
+
+     #docker configuration args
+    docker_args: {}
+    # If docker_mtu is not set, it will automatically be set to the cluster_iface_name mtu size or default of 1500
+    # docker_mtu:
+    # GENERAL CONFIGS
+    kube_cluster_cidr: 172.24.0.0/16
+    kube_services_cidr: 172.21.0.0/16
+    kube_service_ip: 172.21.0.1
+    kube_api_ssl_port: 6558
+    # This sets the --max-pods kubelet arg. Default from upstream is 110.
+    kubelet_max_pods: 110
+    # When disable_master_ha is not defined, precheck will define it based on number of masters
+    # disable_master_ha: True
+    # kube_virtual_ip_api is needed for HA. It should be a routable IP in the subent but must not
+    # be pingable.
+    kube_virtual_ip_api:
+    kube_virtual_ip_shortname:
+    kube_vip_api_ssl_port: 8444
+    master_schedulable_enabled: true
+    docker_registry_path: /var/lib/docker/registry
+
+    etcd_logs_crontab_hour: "*"
+    etcd_logs_crontab_minute: "0,30"
+    etcd_logs_days_to_keep: 30
+
+    kube_audit_log_max_age: 30
+    kube_audit_log_max_backup: 10
+    kube_audit_log_max_size: 128
+
+    use_local_images: true
+    net_policy_enabled: true
+
+    storage_devices: []
+
+
+    #dns options
+    dns_args: ""
+    dns_servers: []
+    #Kubernetes will have a warning on `kubectl describe nodes` if you have more than 3 search domains
+    dns_search: []
+ 
+    # set time servers for timesyncd
+    time_servers:
+      - time00.teradata.com
+      - time01.teradata.com
+      - time02.teradata.com
+
+    # nginx ingress enabled
+    # default enabled for 1.2.x
+    nginx_ingress_enabled: yes
+    # nginx config
+
+    # heapster configs
+    heapster_metric_resolution: "60s"
+
+    # set nginx configs
+    nginx_ingress_controller_proxy_body_size: "100m"
+    nginx_ingress_controller_error_log_level: "warn"
+    nginx_ingress_controller_ssl_protocols: "TLSv1.2"
+    nginx_ingress_controller_proxy_read_timeout: "3600"
+    nginx_ingress_controller_proxy_send_timeout: "3600"
+    nginx_ingress_controller_tls_cert_local_path: ""
+    nginx_ingress_controller_tls_key_local_path: ""
+    nginx_ingress_controller_basic_auth_username: "admin"
+    nginx_ingress_controller_basic_auth_password: "kubekit"
+
+    # rook enable
+    rook_enabled: no
+    # rook object store - requires rook_enabled: true
+    rook_object_store_enabled: no
+    # rook file store  - requires rook_enabled: true
+    rook_file_store_enabled: no
+    # rook internal dashbord - requires rook_enabled: true
+    rook_dashboard_enabled: no 
+    # rook external dashboard - requires rook_enabled: true ,  rook_dashboard_enabled: true
+    rook_dashboard_external_enabled: no
+    #requires rook_object_store_enabled, rook_enabled
+    rook_object_store_rados_gateway_enabled: no
+    rook_ceph_storage_directories: [ '/var/lib/docker/rook/storage/0',
+                                '/var/lib/docker/rook/storage/1',
+                                '/var/lib/docker/rook/storage/2' ]
+    # deviceFilter: A regular expression that allows selection of devices to be consumed by OSDs. If individual devices 
+    # have been specified for a node then this filter will be ignored. This field uses golang regular expression syntax. 
+    # For example:
+    #
+    #    sdb: Only selects the sdb device if found
+    #    ^sd.: Selects all devices starting with sd
+    #    ^sd[a-d]: Selects devices starting with sda, sdb, sdc, and sdd if found
+    #    ^s: Selects all devices that start with s
+    #    ^[^r]: Selects all devices that do not start with r
+    # 
+    # Default is blank.
+    #rook_ceph_storage_device_filter: {{ rook_ceph_storage_device_filter | default("") }}  

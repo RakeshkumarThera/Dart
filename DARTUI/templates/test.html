@@ -1,0 +1,589 @@
+<!Doctype html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="../static/js/utility.js"></script>
+    <title> DartExe </title>
+
+{#Json data to drop down list#}
+  <script>
+      $(document).ready(function () {
+          $('#cmdDisplay1').hide();
+          $('#url_loading').hide();
+          $('[data-toggle="tooltip"]').tooltip();
+
+          HistoryCommand()
+           
+          $('.js-example-basic-multiple').select2();
+ 
+          $.getJSON('/data',function (result) {
+              var healthcheck = result.HealthCheck;
+              var branchname = result.BranchName;
+              var revisionnumber = result.revision;
+                  for(let i = 0; i < healthcheck.length;i++) {
+                      var opt = '<option>' + healthcheck[i] + '</option>';
+                      $('#HealthCheck').append(opt);}
+                  for(let i = 0; i < branchname.length;i++) {
+                      var opt = '<option value="' + branchname[i] + '">';
+                      $('#branch').append(opt);}
+                  for(let i = 0; i < revisionnumber.length;i++) {
+                      var opt = '<option value="' + revisionnumber[i] + '">';
+                      $('#revision').append(opt);}
+          })
+                
+       $.ajax({
+               type: "GET",
+               url: "/install",
+               contentType:"application/json",
+               dataType:"json",
+               success : function (result) {
+                            var InstallTests = result.install;
+                            for(let i = 0; i < InstallTests.length;i++) {
+                               var opt = '<option>' + InstallTests[i] + '</option>';
+                               $('#Install').append(opt);}},
+                error : function error() { console.log("error") }
+                })
+ 
+       var path = document.getElementById("TestSetPath").value;
+               $.ajax({
+                    type: "GET",
+                    url: "/testset?path=" + path,
+                    contentType:"application/json",
+                    dataType:"json",
+                    success : function (result) {
+                                  var values = result.test;
+                                      for(let i = 0; i < values.length;i++) {
+                                          var opt = '<option>' + values[i] + '</option>';
+                                          $('#sel').append(opt);}},
+                    error : function error() { console.log("error") }
+               })
+
+            var path1 = document.getElementById("ClustersPath").value;
+               $.ajax({
+                    type: "GET",
+                    url: "/clusters?path=" + path1,
+                    contentType:"application/json",
+                    dataType:"json",
+                    success : function (result) {
+                                  var clusters = result.cluster;
+                                      for(let i = 0; i < clusters.length;i++) {
+                                          var opt = '<option>' + clusters[i] + '</option>';
+                                          $('#sel1').append(opt);}},
+                    error : function error() { console.log("error") }
+               })
+               
+    })
+
+</script>
+<script LANGUAGE="JavaScript" type="text/javascript">
+        function display1() {
+            var User = document.getElementById("UserId").value;
+                if(User =='' || User.length !=8){
+                alert('Please enter a valid UserId');return false;
+                }
+     
+            var Health1;
+            Health1 = document.form1.Health.value;
+            if (Health1 = document.form1.Health.value ) {
+                Health1 = "-k " + document.form1.Health.value;
+            }
+            var testTag;
+            testTAG = document.form1.testTAG.value;
+            if (testTAG = document.form1.testTAG.value ) {
+                testTAG = "--testTAG " + document.form1.testTAG.value;
+            }
+
+            var Install1;
+            Install1 = document.form1.Install.value;
+            if (Install1 = document.form1.Install.value ) { 
+                Install1 = "-i " + document.form1.Install.value;
+            }
+            var buildNumber1;
+            buildNumber1 = document.form1.buildNumber.value;
+
+            var revisionNumber1;
+            revisionNumber1 = document.form1.revisionNumber.value;
+            if (revisionNumber1 = document.form1.revisionNumber.value ) {
+                revisionNumber1 = "--revisionNumber " + document.form1.revisionNumber.value;
+            }
+           
+            var branchName1;
+            branchName1 = document.form1.branchName.value;
+            if (branchName1 = document.form1.branchName.value ) {
+                branchName1 = "--branchName " + document.form1.branchName.value;
+            }
+            // To Make Sure selection of clusters and test set
+            var clusters = document.getElementById("sel1").value;
+            var testset = document.getElementById("sel").value;
+ 	    if (testset == '' || clusters ==''){
+            alert('please select testset and clusters');return false;
+            }
+            if (document.form1.TestSetPath.value == "/root/Dart/testset/"){
+                var testpath = "-t " + document.form1.display2.value   
+            }else{ 
+                var testpath = "-t " + document.getElementById("TestSetPath").value + document.form1.display2.value
+                testpath = testpath.replace(/,/g, ","+ document.getElementById("TestSetPath").value)}
+
+            if (document.form1.ClustersPath.value == "/root/Dart/config/"){
+                var clusterpath = "-c " + document.form1.display.value
+            }else{
+                var clusterpath = "-c " + document.getElementById("ClustersPath").value + document.form1.display.value
+                clusterpath = clusterpath.replace(/,/g, ","+ document.getElementById("ClustersPath").value)}
+
+             message = "python DartRunner.py"+" "+ clusterpath +" "+ testpath +" "+ Health1+" "+ Install1 +" "+ document.form1.releaseName.value +" "+ document.form1.projectName.value +" "+ buildNumber1 +" "+ revisionNumber1 +" "+ branchName1 +" "+ document.form1.Build.value +" "+ document.form1.runLabel.value +" "+ document.form1.retry.value +" "+ document.form1.dashboard.value +" "+ document.form1.other.value + testTAG + " --keywords DartExe"; 
+            $('#cmdDisplay1').html(message); // To Show the Dart Command after generated
+            $('#cmdDisplay1').show();
+            map={}
+            map['command']= message
+            return map
+        }
+
+        function changeProgressBar() {
+            $('#url_loading').show();
+            $(function() {
+                var current_progress = 0;
+                var interval = setInterval(function() {
+                current_progress += 4;
+                $("#dynamic")
+                .css("width", current_progress + "%")
+                .attr("aria-valuenow", current_progress)
+                .text(current_progress + "% Complete");
+                if (current_progress >= 100)
+                  clearInterval(interval);
+                }, 1000);
+            });
+        }
+        
+        function getRunId(user,processid,command) {
+            $.ajax({
+                type: "GET",
+                url: "/runid?user=" + user + "&processid="+ processid + "&command=" + command,
+                contentType:"application/json",
+                dataType:"json",
+                success : function(res){
+                              run_id = res['run_id'];
+                              var url = '<a href="http://dartdashboard.labs.teradata.com/report?run_id='+run_id+'">dartdashboard.labs.teradata.com/report?run_id='+run_id+'</a>';
+                              $('#runId').append(url);
+                          },
+            });
+
+        }
+        
+        function Path() {
+            var path = document.getElementById("TestSetPath").value;
+               $.ajax({
+                    type: "GET",
+                    url: "/testset?path=" + path,
+                    contentType:"application/json",
+                    dataType:"json",
+                    success : function (result) {
+                                  $('#sel').empty();
+                                  var values = result.test;
+                                      for(let i = 0; i < values.length;i++) {
+                                          var opt = '<option>' + values[i] + '</option>';
+                                          $('#sel').append(opt);}},
+                    error : function error() { console.log("error") }
+               })
+            }
+         
+        function ClusterPath() {
+            var path = document.getElementById("ClustersPath").value;
+               $.ajax({
+                    type: "GET",
+                    url: "/clusters?path=" + path,
+                    contentType:"application/json",
+                    dataType:"json",
+                    success : function (result) {
+                                  $('#sel1').empty();
+                                  var clusters = result.cluster;
+                                      for(let i = 0; i < clusters.length;i++) {
+                                          var opt = '<option>' + clusters[i] + '</option>';
+                                          $('#sel1').append(opt);}},
+                    error : function error() { console.log("error") }
+               })
+            }
+        
+        function UserId1() { 
+        var User = document.getElementById("UserId").value;
+        if(User =='' || User.length !=8){
+            alert('Please enter a valid UserId');return false;
+            }
+        UserId={}
+        UserId['user']= User
+        var Id = JSON.stringify(UserId);
+                $.ajax({
+                    type: "POST",
+                    url: "/UserId",
+                    contentType:"application/json",
+                    dataType:"json",
+                    data: Id,
+                    success : function cmd(){
+                              var data = JSON.stringify(display1());
+			      var Command = data["command"]
+                		  $.ajax({
+                    		  type: "POST",
+                   		  url: "/cmd",
+                    		  contentType:"application/json",
+                  		  dataType:"json",
+                 		  data: data,
+                 		  success : function runid(result){
+		                                 var Command = map['command']
+					         var processid = result.processId
+                                                 changeProgressBar()
+                                                 console.log(User,Command)
+                                                 getRunId(User, processid, Command)
+                             		   },
+                   		  error : function error() { console.log("error") }
+               			  });
+    			      },
+                     error : function error() { console.log("error") }
+                })
+        return Id
+        }
+        function git() {
+        $.getJSON('/postgitpulltime',function (result) {
+             var time = "Last Git-Pull is : "+ result.time + ".\nAre you sure you want to git pull Dart";
+        if (confirm(time))
+        {
+            $.ajax({
+                type: "GET",
+                url : "/gitpull",
+                contentType:"application/json",
+                dataType:"json",
+                error : function error() { console.log("error") }
+            })
+        }})}
+
+
+        function HistoryCommand(){
+            var History_Command = decodeURIComponent($.urlParam('command'));
+            if (History_Command != ""){
+               console.log(History_Command);
+               $('#cmdDisplay1').html(History_Command);
+               $('#cmdDisplay1').show();
+               var str = String(History_Command);
+               var split = str.split(" ");
+               clusterIndex = split.indexOf("-c");
+               clusterIndex = clusterIndex + 1;
+               clusters = split[clusterIndex];
+
+               //$('#display').val(clusters);
+               var opt1 = '<option selected>' + clusters + '</option>';
+               $('#sel1').append(opt1);
+               testIndex = split.indexOf("-t");
+               testIndex = testIndex + 1;
+               tests = split[testIndex];
+              // $('#display2').val(tests);
+               var opt2 = '<option selected>' + tests + '</option>';
+               $('#sel').append(opt2);
+
+               InstallIndex = split.indexOf("-i");
+                   if (InstallIndex != -1) {
+                       InstallIndex = InstallIndex + 1;
+                       Install = split[InstallIndex];
+                       var opt = '<option selected>' + Install + '</option>';
+	               $('#Install').append(opt);
+		   }
+               branchIndex = split.indexOf("--branchName");
+                   if (branchIndex != -1) {
+                       branchIndex = branchIndex + 1;
+                       Branch = split[branchIndex];
+                       $('#branchName').val(Branch);
+                   }
+               revisionIndex = split.indexOf("--revisionNumber");
+                   if (revisionIndex != -1) {
+                       revisionIndex = revisionIndex + 1;
+                       Revision = split[revisionIndex];
+                       $('#revisionNumber').val(Revision);
+                   }
+               HealthIndex = split.indexOf("-k");
+                   if (HealthIndex != -1) {
+                       HealthIndex = HealthIndex + 1;
+                       Health = split[HealthIndex];
+                       var opt = '<option selected>' + Health + '</option>';
+                       $('#HealthCheck').append(opt);
+                   }
+            }
+        }
+        
+</script>
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="pull-right"><button id="gitpull" style="margin-top:13px" type="button" title="Git-Pull" data-toggle="tooltip" data-placement="bottom" onClick="git()"><i class="fab fa-github fa-lg"></i></button></div>
+        <div class="pull-left"><a href="#" class="navbar-brand"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></div>
+        <div class="pull-right"><a href="history" data-toggle="tooltip" data-placement="bottom" title="History" onclick="window.open('history','newwindow','width=900,height=600,left=250,top=150');
+              return false;" class="navbar-brand"><i class="fas fa-history"></i></a></div>
+        <div class="pull-right"><a href="help.html" data-toggle="tooltip" data-placement="bottom" title="Help!" onclick="window.open('help','newwindow','width=900,height=600,left=250,top=150');
+              return false;" class="navbar-brand"><i class="fas fa-info-circle"></i></a></div>
+    </div>
+</nav>
+
+
+<div class="container">
+    <div class="jumbotron" style="padding:30px 60px">
+	  <header>
+          <img src="/static/css/images/teradata-logo.png" alt="TERADATA" height="100px">
+          <h2>DartExe</h2>
+          </header>
+    </div>
+</div>
+
+
+
+<div class="container">
+<section>
+<div><!--main div start-->
+	       <form name="form1" method="post">
+                      <div class=row>
+                          <div class="col-md-4">
+                          <p><label style="width: 95px" for="UserId">UserId :</label>
+                          <input type="text" id="UserId" name="UserId">
+                          </p>
+                          </div>
+                          <div class="col-md-4">
+                          <p><label style="width:110px" for="branchName">branchName :</label>
+                          <input list="branch" type="text" id="branchName" name="branchName">
+            			<datalist id="branch">
+  				</datalist>
+                          </p>
+                          </div>
+                          <div class="col-md-4">
+                          <p><label style="width:110px" for="revisionNumber">revisionNumber :</label>
+                          <input list="revision" id="revisionNumber" name="revisionNumber">
+                                <datalist id="revision">
+                                </datalist>
+			  </p>
+                          </div>
+                      </div>
+		      <div class=row>
+			  <div class="col-md-4">
+                           <p><label style="width:100px" for="Install">Install test :</label>
+                               <select style="width:150px" id="Install">
+                                    <option value="">-- optional --</option>
+{#                                  <option value="-i NoInstall.tst">NoInstall.tst</option>#}
+                               </select>
+                           </p>
+                          </div>
+                          <div class="col-md-4">
+                           <p><label style="width:110px" for="testTAG">testTAG :</label>
+                               <input type="text" id="testTAG" name="testTAG">
+                           </p>
+                          </div>
+		      </div>
+                      <div class="row" style="width:70%">
+                             <p><label style ="width:110px;padding-left:13px"for="testsets">Testsets :</label>
+                               <input type="text" id="TestSetPath" name="TestSetPath" value="/root/Dart/testset/">
+                               <input type="button" data-toggle="tooltip" data-placement="right" title=".Load Testsets" onClick="Path()" value="⇩">
+			     </p>
+                             <div class="col-md-6">
+                             <select  class="js-example-basic-multiple" multiple="multiple" id='sel' class="col-md-5" style="height: 50px;width: 300px;border-radius: 10px;padding: 5px;">
+{#                                  <option value="ffr2nightly.tst">ffr2nightly.tst</option>#}
+                             </select>
+                             </div>
+                             <div class="col-md-6">
+                             <textarea style="height: 50px;width: 300px;border-radius: 10px;padding: 5px;" name="display2" id="display2" placeholder="Selected list for test sets" cols="20" rows="4" readonly></textarea>
+                             </div>
+                      </div>
+
+                      <div class="row" style="width:70%">
+                          <p><label style ="width:110px;padding-left:13px" for="Cluster1">Clusters :</label>
+			      <input type="text" id="ClustersPath" name="ClustersPath" value="/root/Dart/config/">
+                              <input type="button" data-toggle="tooltip" data-placement="right" title=".Load Clusters" onClick="ClusterPath()" value="⇩">
+                          </p>
+			  </p>
+                          <div class="col-md-6">
+                              <select class="js-example-basic-multiple" multiple="multiple" id = "sel1" style="width: 300px;border-radius: 10px;padding: 5px;">
+{#                               <option value="dart-main-sls12-04">dart-main-sls12-04</option>#}
+                              </select>
+                          </div>
+                          <div class="col-md-6">
+                              <textarea style="height: 50px;width: 300px;border-radius: 10px;padding: 5px;" name="display" id="display" placeholder="Selected list of clusters" readonly></textarea>
+                          </div>
+                      </div>
+                      <div class="row">                
+                           <div class="col-md-4">
+                           <p><label style="width:110px" for="runLabel">runLabel :</label>
+                           <select id="runLabel">
+                                    <option value="" selected>other</option>
+                                    <option value="--runLabel FAT">FAT</option>
+				    <option value="--runLabel BAT">BAT</option>
+				    <option value="--runLabel REG">REG</option>
+                           </select>
+                           </p>
+ 			   </div>
+			   <div class="col-md-4">
+                           <p><label style="width:110px" for="releaseName">releaseName :</label>
+                           <select id="releaseName">
+                                    <option value="--releaseName GGR4">GGR4</option>
+			            <option value="--releaseName GGR3" selected>GGR3</option>
+                                    <option value="--releaseName GGR2">GGR2</option>
+                           </select>
+                           </p>
+			   </div>
+                           <div class="col-md-4">
+                           <p><label style="width: 95px" for="Build">BuildName :</label>
+                           <select id="Build">
+                              <option value="--buildName beehive-ci-pipeline-main">beehive-ci-pipline-main</option>
+                           </select>
+                           </p>
+                           </div>
+                      </div>    
+		      <div class="row">
+                           <div class="col-md-4">
+                           <p><label style="width:110px" for="projectName">Project Name :</label>
+                           <select id="projectName">
+                                    <option selected value="-p TDAP">TDAP</option>
+                                    <option selected value="-p MLEngine">MLEngine</option>
+                           </select>
+                           </p>
+                           </div>
+			   <div class="col-md-4">	
+			   <p><label style="width:110px" for="buildNumber">buildNumber :</label>
+                           <input type="number" id="buildNumber" name="buildNumber">
+                           </p>
+                           </div>
+			   <div class="col-md-4">
+                           <p><label style="width: 100px" for="HealthCheck">Health Check :</label>
+                           <select name = "Health" id="HealthCheck">
+                               <option value="">-- optional --</option>
+{#                             <option value="-k HealthCheckDocker.tst">HealthCheckDocker.tst</option>#}
+                           </select>
+                           </p>
+                           </div>
+                      </div>
+                      <div class="row">
+			   <div class="col-md-4">
+		           <p><label style="width:110px" for="dashboard">Dashboard :</label>
+                           <select id="dashboard">
+                                    <option value="-l Private">Private</option>
+                                    <option value="-l Public">Public</option>
+                           </select>
+                           </p>
+                           </div>
+			   <div class="col-md-4">
+                           <p><label style="width:110px" for="retry">retry :</label>
+                          <!-- <input id="retry" type="text" list="retry" /> -->
+                           <select id="retry">
+                                    <option value="">None</option>
+                                    <option value="--retry 1">1</option>
+                                    <option value="--retry 2">2</option>
+                                    <option value="--retry 3">3</option>
+                           </select>
+                           </p>
+		           </div>
+			   <div class="col-md-4">
+                              <p><label style="width:110px" for="other">other :</label>
+                              <input type="other" id="other" name="other">
+                              </p>
+                           </div>
+ 		      </div>
+ 
+                     <p><input id = "generate" TYPE="button" class="btn-xs btn-danger" VALUE="Generate Dart Command" onClick="display1()"></p>
+
+                      <div style="margin:10px 0" id="cmdDisplay1">
+                          <textarea style="margin:5px;width:950px;height:40px;" name="cmdDisplay" id="cmdDisplay" placeholder="Dart command to be displayed" cols="20" rows="4" readonly></textarea>
+                      </div>
+                          <input id="run" TYPE="button" class="btn-success btn-xs" value="Run Command" onclick="UserId1()">  <!--disabled should be added-->
+                      <div id="url_loading"> <!--Displayed when Run Command is Clicked-->
+                           <p><strong>Dart url Generating with unique id</strong></p>
+                           <div class="progress"> <!--Dynamic Progress Bar-->
+                           <div id="dynamic" class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="background-color: #ff9300;width: 0%">
+                                <span id="current-progress"></span>
+                           </div>
+                           </div>
+                      </div>
+                      <div id="runId" style="margin:10px 0"> 
+                      </div>
+                </form>
+
+</div><!-- Main div ends here -->
+</section><!-- content 1 ends here-->
+</div><!-- container end -->
+
+
+<div style="clear:both"></div>
+<footer>
+	      <span class="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span> 2018 Teradata
+</footer>
+
+<script>
+//$('#generate').click(function() {
+//    $('#run').prop('disabled',false);    
+//});
+
+// arguments: reference to select list, callback function (optional)
+function getSelectedOptions(sel,fn) {
+    var opts = [], opt;
+    // loop through options in select list
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+        // check if selected
+        if ( opt.selected ) {
+            // add to array of option elements to return from this function
+            opts.push(opt);
+            // invoke optional callback function if provided
+            if (fn) {
+              fn(opt);
+            }}}
+    // return array containing references to selected option elements
+    return opts;
+}
+
+// example callback function (selected options passed one by one)
+function callback(opt) {
+    // display in textarea for this example
+    var display = document.getElementById('display');
+    display.innerHTML += opt.value + ',';
+}
+
+// anonymous function onchange for select list with id lstBox2
+document.getElementById('sel1').onchange = function(e) {
+    // get reference to display textarea
+    var display = document.getElementById('display');
+    display.innerHTML = ''; // reset
+    // callback fn handles selected options
+    getSelectedOptions(this, callback);
+    // remove ', ' at end of string
+    var str = display.innerHTML.slice(0, -1);
+    display.innerHTML = str;
+};
+
+
+function getSelectedOptions1(sel, fn) {
+    var opts = [], opt;
+    for (var i=0, len=sel.options.length; i<len; i++) {
+        opt = sel.options[i];
+        if ( opt.selected ) {
+            opts.push(opt);
+             if (fn) {
+                fn(opt);
+            }}}
+    return opts;
+}
+
+function callback1(opt) {
+    var display2 = document.getElementById('display2');
+    display2.innerHTML += opt.value + ',';
+}
+
+document.getElementById('sel').onchange = function(e) {
+    var display2 = document.getElementById('display2');
+    display2.innerHTML = '';
+    getSelectedOptions1(this, callback1);
+    var str = display2.innerHTML.slice(0, -1);
+    display2.innerHTML = str;
+};
+</script>
+</body>
+</html>

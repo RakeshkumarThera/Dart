@@ -1,0 +1,5 @@
+# Copyright ©  2017  by Teradata Corporation. All Rights Reserved.
+# TERADATA CORPORATION CONFIDENTIAL AND TRADE SECRET
+
+[qgm]
+<fqdn_of_qgm> ansible_host=<ip_of_qgm> ansible_user=<ssh_username> ansible_ssh_pass=<ssh_password>

@@ -1,0 +1,103 @@
+INFO: 2018-08-21 14:16:46,534:DartRunner.py:108: Logfile is /root/Dart/log/DartRunner-2018-08-21-141646.log
+INFO: 2018-08-21 14:16:46,534:DartRunner.py:109: Current Process Id: 36953
+INFO: 2018-08-21 14:16:46,535:DartRunner.py:170: clusterList = dartpm18 
+INFO: 2018-08-21 14:16:46,535:DartRunner.py:178: dartpm18
+INFO: 2018-08-21 14:16:48,423:DartRunner.py:2008: No resources found.
+
+INFO: 2018-08-21 14:16:48,425:DartRunner.py:2037: No
+INFO: 2018-08-21 14:16:48,425:DartRunner.py:2043: kubectl get -o template po No --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 14:16:48,892:DartRunner.py:2008: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-21 14:16:48,955:DartRunner.py:2045: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-21 14:16:48,956:DartRunner.py:2048: Error from server (NotFound): namespaces "cloud-aster" not found
+INFO: 2018-08-21 14:16:48,956:DartRunner.py:2070: Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com
+INFO: 2018-08-21 14:16:48,956:DartRunner.py:2077: []
+INFO: 2018-08-21 14:16:48,956:DartRunner.py:2078: [u'Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com']
+INFO: 2018-08-21 14:16:48,956:DartRunner.py:247: /root/Dart/testset/TDAPInstaller.tst
+INFO: 2018-08-21 14:16:48,957:DartRunner.py:258: Scanning File: /root/Dart/testset/TDAPInstaller.tst 
+INFO: 2018-08-21 14:16:48,962:DartRunner.py:273: Reading tempRunFile : /tmp/TDAPInstaller.tst
+INFO: 2018-08-21 14:16:48,962:DartRunner.py:2944: DockerHealth: ClusterHealthdevops_installer/docker/ClusterHealth                     
+INFO: 2018-08-21 14:16:49,197:DartRunner.py:2154: Ping on cluster dartpm18 Successful!
+INFO: 2018-08-21 14:16:49,348:DartRunner.py:523: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-58
+INFO: 2018-08-21 14:16:49,359:DartRunner.py:1696: Done inserting the information of run 180821-58
+INFO: 2018-08-21 14:16:49,370:DartRunner.py:2665: DB Insert Success: TDAPInstaller
+INFO: 2018-08-21 14:16:50,872:DartRunner.py:754: Looping the Main Loop: 1
+INFO: 2018-08-21 14:16:50,976:DartRunner.py:1916: Running CheckHealth on cluster dartpm18
+INFO: 2018-08-21 14:16:50,977:Dart.py:120: Logfile is /root/Dart/log/Dart-ClusterHealth-None-141650.log
+INFO: 2018-08-21 14:16:51,398:Dart.py:390: No resources found.
+
+INFO: 2018-08-21 14:16:51,400:Dart.py:418: No
+INFO: 2018-08-21 14:16:51,401:Dart.py:424: kubectl get -o template po No --namespace=cloud-aster --template={{.spec.nodeName}}
+INFO: 2018-08-21 14:16:51,782:Dart.py:390: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-21 14:16:51,782:Dart.py:426: Error from server (NotFound): namespaces "cloud-aster" not found
+
+INFO: 2018-08-21 14:16:51,782:Dart.py:429: Error from server (NotFound): namespaces "cloud-aster" not found
+INFO: 2018-08-21 14:16:51,783:Dart.py:453: Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com
+INFO: 2018-08-21 14:16:51,783:Dart.py:460: []
+INFO: 2018-08-21 14:16:51,783:Dart.py:461: [u'Error from server (NotFound): namespaces "cloud-aster" not found.labs.teradata.com']
+INFO: 2018-08-21 14:16:51,783:Dart.py:299: Test Set: DockerHealth 
+INFO: 2018-08-21 14:16:51,783:Dart.py:313: Running Testset: DockerHealth
+INFO: 2018-08-21 14:16:51,784:Dart.py:319:         Running Test: ClusterHealth on Cluster dartpm18
+INFO: 2018-08-21 14:16:51,784:Dart.py:322: [u'ClusterHealth', {u'CATEGORY': u'positive', u'NAME': u'ClusterHealth', u'CHECKLOG': u'no', u'COMPONENT': u'devops_installer/docker', u'LOCATION': u'devops_installer/docker/ClusterHealth', u'TIMEOUT': 1200, u'OWNER': u'divya.sivanandan', u'RESTART': u'yes'}, 0]
+INFO: 2018-08-21 14:16:51,816:Dart.py:752: --------------------------------------------------
+INFO: 2018-08-21 14:16:51,816:TestBase.py:42:           Using the following Test Parameters:
+INFO: 2018-08-21 14:16:51,816:TestBase.py:43: --------------------------------------------------
+INFO: 2018-08-21 14:16:51,816:TestBase.py:45:           CATEGORY : positive 
+INFO: 2018-08-21 14:16:51,816:TestBase.py:45:           timeScale : 1 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           NAME : ClusterHealth 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           CHECKLOG : no 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           filePath : devops_installer/docker 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           logPath : /root/Dart 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           COMPONENT : devops_installer/docker 
+INFO: 2018-08-21 14:16:51,817:TestBase.py:45:           logTimestamp : 2018-08-21-141651 
+INFO: 2018-08-21 14:16:51,818:TestBase.py:45:           LOCATION : devops_installer/docker/ClusterHealth 
+INFO: 2018-08-21 14:16:51,818:TestBase.py:45:           TIMEOUT : 1200 
+INFO: 2018-08-21 14:16:51,818:TestBase.py:45:           OWNER : divya.sivanandan 
+INFO: 2018-08-21 14:16:51,818:TestBase.py:45:           RESTART : yes 
+INFO: 2018-08-21 14:16:51,818:TestBase.py:46: --------------------------------------------------
+INFO: 2018-08-21 14:16:51,838:Kubernetes.py:82: Executing command [asterdart0078.labs.teradata.com]: kubectl get pods --namespace=cloud-aster
+INFO: 2018-08-21 14:16:52,214:TestBase.py:170: 
+INFO: 2018-08-21 14:16:52,214:TestBase.py:172: No Aster cluster installed on this vms. Returns default values
+ERROR: 2018-08-21 14:16:52,228:Dart.py:772: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-21 14:16:52,228:Dart.py:773: The test raised an Unexpected Exception!
+ERROR: 2018-08-21 14:16:52,228:Dart.py:774: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7f66dc0b9680>)
+ERROR: 2018-08-21 14:16:52,229:Dart.py:775: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 25, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-21 14:16:52,229:Dart.py:781: The test ClusterHealth has FAILED
+ERROR: 2018-08-21 14:16:52,229:Dart.py:325: unsupported operand type(s) for +: 'NoneType' and 'str'
+ERROR: 2018-08-21 14:16:52,230:Dart.py:327: (<type 'exceptions.TypeError'>, TypeError("unsupported operand type(s) for +: 'NoneType' and 'str'",), <traceback object at 0x7f66dc0d6c20>)
+ERROR: 2018-08-21 14:16:52,230:Dart.py:328: Traceback (most recent call last):
+  File "/root/Dart/Dart.py", line 323, in __init__
+    self.runTest(testset, test[0], test[1], test[2])
+  File "/root/Dart/Dart.py", line 756, in runTest
+    testInstance = test(self.cfgJson, testParam)
+  File "/root/Dart/testsrc/devops_installer/docker/KubernetesTestBase.py", line 25, in __init__
+    self.ansibleSetupDir = self.buildLoc + "/asterK8sInstaller/kubernetes/multinode/vrealize/ansible-remote"
+TypeError: unsupported operand type(s) for +: 'NoneType' and 'str'
+
+INFO: 2018-08-21 14:16:52,231:Dart.py:329: Continuing with the remaining tests!
+INFO: 2018-08-21 14:16:52,231:Dart.py:334: Test Set : DockerHealth Total Execution Time: 0 
+INFO: 2018-08-21 14:16:52,231:DartRunner.py:2958:    DockerHealth  ClusterHealth     False         0 2018-08-21 14:16:51 2018-08-21 14:16:52
+INFO: 2018-08-21 14:16:53,977:DartRunner.py:1757: The Check Health failed for cluster dartpm18
+INFO: 2018-08-21 14:16:53,978:DartRunner.py:1758: Checking for a next free cluster!
+INFO: 2018-08-21 14:16:53,978:DartRunner.py:1765: Unable to Get free Cluster!
+INFO: 2018-08-21 14:16:53,978:DartRunner.py:893: {'dartpm18': 'free'}
+INFO: 2018-08-21 14:16:53,978:DartRunner.py:894: All clusters matching the test ENV are free and are not in the desired state to allocate tests!
+INFO: 2018-08-21 14:16:53,978:DartRunner.py:895: !!Skipping the Test as there are no clusters which can be allocated for this test!!
+INFO: 2018-08-21 14:16:53,989:DartRunner.py:2570: Updated Status: SKIP on test TDAPInstaller
+INFO: 2018-08-21 14:16:53,990:DartRunner.py:1130: Tests may be currently running..Sleeping for 10 seconds before checking the Queue!
+INFO: 2018-08-21 14:16:53,990:DartRunner.py:1131: {'dartpm18': 'free'}
+INFO: 2018-08-21 14:17:04,000:DartRunner.py:1134: Done with initiating all the tests!
+INFO: 2018-08-21 14:17:04,000:DartRunner.py:1207: All the tests have been executed!
+INFO: 2018-08-21 14:17:04,023:DartRunner.py:1309: {'dartpm18': 'free'}
+INFO: 2018-08-21 14:17:04,328:DartRunner.py:2962: DartRunner Final Results!
+INFO: 2018-08-21 14:17:04,328:DartRunner.py:2963:         TESTSET       TESTNAME    STATUS TOTALTIME           STARTTIME             ENDTIME
+INFO: 2018-08-21 14:17:04,328:DartRunner.py:2968: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-58
+INFO: 2018-08-21 14:17:04,328:DartRunner.py:1347: Dart DashBoard URL: http://dartdashboard.labs.teradata.com/report?run_id=180821-58
