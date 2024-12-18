@@ -1,0 +1,1 @@
+{"dependencyValues":{"entries":[{"key":"provider-MachineName", "value":{"type":"string", "value":"TBD"}},{"key":"provider-operationId", "value":{"type":"string", "value":"Infrastructure.Virtual.Action.RevertSnapshot"}},{"key":"provider-machineId", "value":{"type":"string", "value":"TBD"}},{"key":"provider-SnapshotReference"}]}, "pagingInfo":{"offset":0, "count":20}}
